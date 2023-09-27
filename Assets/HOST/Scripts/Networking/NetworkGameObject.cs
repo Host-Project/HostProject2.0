@@ -17,7 +17,8 @@ public class NetworkGameObject : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("Sync", 0.01f, 0.01f);
+        if(moving)
+            InvokeRepeating("Sync", 0.01f, 0.01f);
     }
 
 
