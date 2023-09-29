@@ -12,9 +12,9 @@ using UnityEngine;
 using Unity.Networking.Transport;
 using Unity.Jobs;
 using Unity.Collections;
-
+using UnityEngine.Networking;
 using System.Collections.Generic;
-
+using System.Net;
 
 namespace HOST.Networking.Transport
 {
@@ -33,13 +33,12 @@ namespace HOST.Networking.Transport
         NetworkConnection m_Connection;
 
 
-        JobHandle m_ClientJobHandle;
 
 
         void Start()
         {
             m_Driver = NetworkTools.GetNetworkDriver(transportType);
-
+            
             var endpoint = NetworkEndpoint.LoopbackIpv4.WithPort(port);
             m_Connection = m_Driver.Connect(endpoint);
         }

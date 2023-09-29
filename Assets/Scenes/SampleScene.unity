@@ -350,7 +350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hostNetworkManager: {fileID: 1928707927}
-  moving: 1
+  moving: 0
 --- !u!1 &586772129
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,7 +366,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &586772130
 Transform:
   m_ObjectHideFlags: 0
@@ -556,7 +556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9229a2da871e14741a30089efa2f7cb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hostNetworkManager: {fileID: 1536679195}
+  hostNetworkManager: {fileID: 1928707927}
   moving: 0
 --- !u!1 &963194225
 GameObject:
@@ -879,6 +879,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hostNetworkActorGameObject: {fileID: 444321931}
   syncGameObjects:
+  - {fileID: 850354951}
   - {fileID: 484952365}
 --- !u!4 &1928707928
 Transform:

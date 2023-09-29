@@ -13,11 +13,14 @@ using Unity.Collections;
 using Unity.Networking.Transport;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Networking;
+using System.Net.NetworkInformation;
 
 namespace HOST.Networking.Transport
 {
     public class HostNetworkServer : MonoBehaviour, IHostNetworkActor
     {
+        
 
         [SerializeField]
         private ushort port = 7777;
@@ -37,6 +40,7 @@ namespace HOST.Networking.Transport
 
         void Start()
         {
+
 
             m_Driver = NetworkTools.GetNetworkDriver(transportType);
 
