@@ -1,69 +1,39 @@
 using HOST.Networking;
 using UnityEngine;
-using HOST.Networking.Transport;
 using System.Collections.Generic;
 using System;
 using UnityEngine.UIElements;
+using Unity.VisualScripting;
+using System.Linq;
 
 namespace HOST.Networking
 {
 
 
-    [Serializable]
-    struct SyncGameObjectData
+    public class HostNetworkManager : MonoBehaviour
     {
-        public int Id;
-        public Vector3 Position;
-        public Quaternion Rotation;
-    }
 
-    public class HostNetworkManager : MonoBehaviour, IHostNetworkListener
-    {
-        [SerializeField]
-        private GameObject hostNetworkActorGameObject = null;
-        private IHostNetworkActor hostNetworkActor = null;
+        public static HostNetworkManager instance;
 
-        [SerializeField]
-        private List<NetworkGameObject> syncGameObjects = new List<NetworkGameObject>();
-
-        private Dictionary<int, NetworkGameObject> _syncGameObjects = new Dictionary<int, NetworkGameObject>();
-
-        public void OnConnected()
+        private void Awake()
         {
-            hostNetworkActor.SendData(HostNetworkMessageType.RPC, "Test data");
-            //throw new System.NotImplementedException();
-        }
-
-        public void OnDataReceived(int senderId, HostNetworkMessage data)
-        {
-            switch (data.MessageType)
-            {
-                case HostNetworkMessageType.RPC:
-                    Debug.Log("RPC received: " + data.Data);
-                    break;
-                case HostNetworkMessageType.Sync:
-                    UpdateNetworkGameObject(data.Data);
-                    break;
-            }
-        }
-
-        public void OnDisconnected()
-        {
-            //throw new System.NotImplementedException();
+            Application.runInBackground = true;
+            if (instance == null) instance = this;
         }
 
         // Start is called before the first frame update
         void Start()
         {
-            hostNetworkActor = hostNetworkActorGameObject.GetComponent<IHostNetworkActor>();
-            if (hostNetworkActor == null) { throw new System.Exception("[HostNetworkManager - Start] HostNetworkActor Interface not in HostNetworkActorGameObject."); }
-            hostNetworkActor.RegisterListener(this);
-
-            foreach (NetworkGameObject syncGameObject in syncGameObjects)
+            HostNetworkObject[] networkObjects = FindObjectsByType<HostNetworkObject>(FindObjectsSortMode.InstanceID);
+            FMNetworkManager.instance.NetworkObjects = new GameObject[networkObjects.Length];
+            int count = 0;
+            foreach (HostNetworkObject networkObject in networkObjects)
             {
-                syncGameObject.Id = _syncGameObjects.Count;
-                _syncGameObjects.Add(syncGameObject.Id, syncGameObject);
+                FMNetworkManager.instance.NetworkObjects[count] = networkObject.gameObject;
+                networkObject.Id = count++;
+
             }
+            
         }
 
         // Update is called once per frame
@@ -72,37 +42,46 @@ namespace HOST.Networking
 
         }
 
-        public void SyncGameObject(NetworkGameObject obj)
+        public void HandleStringDataEvent(string data)
         {
-            SyncGameObjectData data = new SyncGameObjectData()
+            HostNetworkMessage message = JsonUtility.FromJson<HostNetworkMessage>(data);
+            switch (message.MessageType)
             {
-                Id = obj.Id,
-                Position = obj.transform.position,
-                Rotation = obj.transform.rotation
-            };
-
-            data.Id = obj.Id;
-            data.Position = obj.transform.localPosition;
-            data.Rotation = obj.transform.rotation;
-
-
-            hostNetworkActor.SendData(HostNetworkMessageType.Sync, data);
-        }
-
-        private void UpdateNetworkGameObject(string data)
-        {
-            Debug.Log("[HostNetworkManager - UpdateNetworkGameObject] Received data: " + data);
-            SyncGameObjectData syncData = JsonUtility.FromJson<SyncGameObjectData>(data);
-
-            if (_syncGameObjects.ContainsKey(syncData.Id))
-            {
-                _syncGameObjects[syncData.Id].transform.localPosition = syncData.Position;
-                _syncGameObjects[syncData.Id].transform.localRotation = syncData.Rotation;
+                case HostNetworkMessageType.RPC:
+                    HandleRPCMessage(message);
+                    break;
+                case HostNetworkMessageType.ObjectSync:
+                    HandleObjectSyncMessage(message);
+                    break;
             }
         }
-        private void OnDestroy()
+
+        public void HandleRPCMessage(HostNetworkMessage message)
         {
-            hostNetworkActor.UnregisterListener(this);
+
         }
+
+        public void HandleObjectSyncMessage(HostNetworkMessage message)
+        {
+            if (FMNetworkManager.instance.NetworkType == FMNetworkType.Client) return; // Client can't update network objects
+            HostNetworkObjectTransform objectTransform = JsonUtility.FromJson<HostNetworkObjectTransform>(message.Data);
+
+            FMNetworkManager.instance.NetworkObjects.FirstOrDefault(x => x.GetComponent<HostNetworkObject>().Id == objectTransform.Id)
+                .GetComponent<HostNetworkObject>()
+                .SetTransform(objectTransform);
+        }
+
+        public void RequestObjectSync(HostNetworkObjectTransform objectTransform)
+        {
+            string data = HostNetworkTools.SerializeObjectTransform(objectTransform);
+            HostNetworkMessage message = new HostNetworkMessage()
+            {
+                MessageType = HostNetworkMessageType.ObjectSync,
+                NetworkTarget = HostNetworkTarget.Server,
+                Data = data,
+            };
+            FMNetworkManager.instance.SendToServer(HostNetworkTools.SerializeMessage(message));
+        }
+
     }
 }

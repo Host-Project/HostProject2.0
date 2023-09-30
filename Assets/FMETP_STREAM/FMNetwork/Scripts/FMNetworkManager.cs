@@ -6,6 +6,7 @@ using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Net.NetworkInformation;
+using HOST.Networking;
 
 public enum FMProtocol { UDP, TCP }
 public enum FMNetworkType { Server, Client, StereoPi }
@@ -44,7 +45,7 @@ public class FMNetworkManager : MonoBehaviour
                         if (ip.IsDnsEligible)
                         {
                             string detectedIP = ip.Address.ToString();
-                            if(detectedIP != "127.0.0.1" && detectedIP != "0.0.0.0")
+                            if (detectedIP != "127.0.0.1" && detectedIP != "0.0.0.0")
                             {
                                 try
                                 {
@@ -235,6 +236,8 @@ public class FMNetworkManager : MonoBehaviour
                 NetworkTransform[i].position = new Vector3(_transform[0], _transform[1], _transform[2]);
                 NetworkTransform[i].rotation = new Quaternion(_transform[3], _transform[4], _transform[5], _transform[6]);
                 NetworkTransform[i].localScale = new Vector3(_transform[7], _transform[8], _transform[9]);
+
+
             }
         }
     }
@@ -262,9 +265,9 @@ public class FMNetworkManager : MonoBehaviour
     {
         if (Initialised)
         {
-            if(Server != null) Destroy(Server);
-            if(Client != null) Destroy(Client);
-            if(StereoPi != null) Destroy(StereoPi);
+            if (Server != null) Destroy(Server);
+            if (Client != null) Destroy(Client);
+            if (StereoPi != null) Destroy(StereoPi);
         }
 
         switch (NetworkType)
@@ -379,9 +382,29 @@ public class FMNetworkManager : MonoBehaviour
                             CurrentTimestamp += Time.deltaTime;
                             float step = (CurrentTimestamp - LastReceivedTimestamp) / (TargetTimestamp - LastReceivedTimestamp);
                             step = Mathf.Clamp(step, 0f, 1f);
-                            NetworkObjects[i].transform.position = Vector3.Slerp(NetworkObjects[i].transform.position, NetworkTransform[i].position, step);
-                            NetworkObjects[i].transform.rotation = Quaternion.Slerp(NetworkObjects[i].transform.rotation, NetworkTransform[i].rotation, step);
-                            NetworkObjects[i].transform.localScale = Vector3.Slerp(NetworkObjects[i].transform.localScale, NetworkTransform[i].localScale, step);
+
+                            // Modified for HostNetworkObject
+                            HostNetworkObjectTransform transform = new HostNetworkObjectTransform()
+                            {
+                                Id = -1,
+                                Position = Vector3.Slerp(NetworkObjects[i].transform.position, NetworkTransform[i].position, step),
+                                Rotation = Quaternion.Slerp(NetworkObjects[i].transform.rotation, NetworkTransform[i].rotation, step),
+                                Scale = Vector3.Slerp(NetworkObjects[i].transform.localScale, NetworkTransform[i].localScale, step)
+                            };
+
+                            if (NetworkObjects[i].TryGetComponent(out HostNetworkObject obj))
+                            {
+                                transform.Id = obj.Id;
+                                obj.SetTransform(transform);
+                            }
+                            else
+                            {
+                                NetworkObjects[i].transform.position = transform.Position;
+                                NetworkObjects[i].transform.rotation = transform.Rotation;
+                                NetworkObjects[i].transform.localScale = transform.Scale;
+                            }
+
+                            // End modification
                         }
                     }
                 }

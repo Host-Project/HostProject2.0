@@ -1,3 +1,4 @@
+using HOST.Networking;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -60,15 +61,9 @@ public class DragAndDrop : MonoBehaviour
         {
             Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
             Vector3 direction = ray.GetPoint(initialDistance) - clickedObject.transform.position;
-            if (FMNetworkManager.instance.NetworkType == FMNetworkType.Client)
-            {
-                Debug.Log("Send to server");
-                FMNetworkManager.instance.SendToServer(JsonUtility.ToJson(Vector3.SmoothDamp(clickedObject.transform.position, ray.GetPoint(initialDistance), ref velocity, mouseDragSpeed)));
-            }
-            else
-            {
-                clickedObject.transform.position = Vector3.SmoothDamp(clickedObject.transform.position, ray.GetPoint(initialDistance), ref velocity, mouseDragSpeed);
-            }
+
+            
+            clickedObject.transform.position = Vector3.SmoothDamp(clickedObject.transform.position, ray.GetPoint(initialDistance), ref velocity, mouseDragSpeed);
             yield return waitForFixedUpdate;
 
 
