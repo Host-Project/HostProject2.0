@@ -560,6 +560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 462ceb1679ad1a941be7bafff85cb425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instanceId: 0
 --- !u!1 &1695979358
 GameObject:
   m_ObjectHideFlags: 0
@@ -836,7 +837,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AutoInit: 1
   Initialised: 0
-  NetworkType: 1
+  NetworkType: 0
   Server: {fileID: 0}
   Client: {fileID: 0}
   StereoPi: {fileID: 0}

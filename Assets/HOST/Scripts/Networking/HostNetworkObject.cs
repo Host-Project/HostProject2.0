@@ -1,4 +1,5 @@
 using HOST.Networking;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,14 @@ public class HostNetworkObject : MonoBehaviour
 
     private void Update()
     {
-        if(transform.hasChanged && FMNetworkManager.instance.NetworkType == FMNetworkType.Client)
+        HostNetworkManager.instance.SendRPC(new HostNetworkRPCMessage()
+        {
+            InstanceId = HostNetworkManager.instance.instanceId,
+            MethodName = "TestRPC",
+            Parameters = new object[] { 1, "Test" }
+        });
+        
+        if (transform.hasChanged && FMNetworkManager.instance.NetworkType == FMNetworkType.Client)
         {
             HostNetworkManager.instance.RequestObjectSync(this.GetTransform());
         }
@@ -33,4 +41,5 @@ public class HostNetworkObject : MonoBehaviour
         this.transform.localScale = transform.Scale;
         this.transform.hasChanged = false;
     }
+   
 }
