@@ -5,7 +5,7 @@ using System;
 using UnityEngine.UIElements;
 using Unity.VisualScripting;
 using System.Linq;
-
+using FMETP;
 
 namespace HOST.Networking
 {
@@ -55,6 +55,11 @@ namespace HOST.Networking
                 FMNetworkManager.instance.NetworkObjects[count] = networkObject.gameObject;
                 networkObject.Id = count++;
             }
+        }
+
+        public void testString(string s)
+        {
+
         }
 
         public void HandleStringDataEvent(string data)

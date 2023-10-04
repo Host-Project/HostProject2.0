@@ -2,163 +2,284 @@
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(AudioEncoder))]
-[CanEditMultipleObjects]
-public class AudioEncoder_Editor : Editor
+namespace FMETP
 {
-    private AudioEncoder AEncoder;
-
-    SerializedProperty StreamGameSoundProp;
-    SerializedProperty ForceMonoProp;
-    //SerializedProperty OutputSampleRateProp;
-    //SerializedProperty OutputChannelsProp;
-    SerializedProperty GZipModeProp;
-
-    SerializedProperty StreamFPSProp;
-
-
-    SerializedProperty OnDataByteReadyEventProp;
-
-
-    SerializedProperty labelProp;
-    SerializedProperty dataLengthProp;
-
-    void OnEnable()
+    [CustomEditor(typeof(AudioEncoder))]
+    [CanEditMultipleObjects]
+    public class AudioEncoder_Editor : UnityEditor.Editor
     {
+        private AudioEncoder AEncoder;
 
-        StreamGameSoundProp = serializedObject.FindProperty("StreamGameSound");
-        ForceMonoProp = serializedObject.FindProperty("ForceMono");
-        //OutputSampleRateProp = serializedObject.FindProperty("OutputSampleRate");
-        //OutputChannelsProp = serializedObject.FindProperty("OutputChannels");
+        SerializedProperty StreamGameSoundProp;
+        SerializedProperty MuteLocalAudioPlaybackProp;
 
-        StreamFPSProp = serializedObject.FindProperty("StreamFPS");
-        GZipModeProp = serializedObject.FindProperty("GZipMode");
+        SerializedProperty ForceMonoProp;
+        SerializedProperty MatchSystemSampleRateProp;
+        SerializedProperty TargetSampleRateProp;
+        SerializedProperty AudioReadModeProp;
 
+        SerializedProperty GZipModeProp;
+        SerializedProperty StreamFPSProp;
 
-        OnDataByteReadyEventProp = serializedObject.FindProperty("OnDataByteReadyEvent");
-
-        labelProp = serializedObject.FindProperty("label");
-        dataLengthProp = serializedObject.FindProperty("dataLength");
-    }
-
-    // Update is called once per frame
-    public override void OnInspectorGUI()
-    {
-        if(AEncoder== null) AEncoder = (AudioEncoder)target;
-
-        serializedObject.Update();
+        SerializedProperty OutputFormatProp;
+        SerializedProperty OnDataByteReadyEventProp;
+        SerializedProperty OnRawPCM16ReadyEventProp;
 
 
-        GUILayout.Space(10);
-        GUILayout.BeginVertical("box");
+        SerializedProperty labelProp;
+        SerializedProperty dataLengthProp;
+
+        void OnEnable()
         {
-            {
-                //Header
-                GUIStyle style = new GUIStyle();
-                style.normal.textColor = Color.white;
-                style.alignment = TextAnchor.MiddleCenter;
-                style.fontSize = 15;
+            StreamGameSoundProp = serializedObject.FindProperty("StreamGameSound");
+            MuteLocalAudioPlaybackProp = serializedObject.FindProperty("MuteLocalAudioPlayback");
 
-                Texture2D backgroundTexture = new Texture2D(1, 1);
-                backgroundTexture.SetPixel(0, 0, new Color(0.09019608f, 0.09019608f, 0.2745098f));
-                backgroundTexture.Apply();
-                style.normal.background = backgroundTexture;
+            ForceMonoProp = serializedObject.FindProperty("ForceMono");
+            MatchSystemSampleRateProp = serializedObject.FindProperty("MatchSystemSampleRate");
+            TargetSampleRateProp = serializedObject.FindProperty("TargetSampleRate");
+            AudioReadModeProp = serializedObject.FindProperty("AudioReadMode");
 
-                GUILayout.BeginHorizontal();
-                GUILayout.Label("(( FMETP STREAM CORE V2 ))", style);
-                GUILayout.EndHorizontal();
-            }
+            StreamFPSProp = serializedObject.FindProperty("StreamFPS");
+            GZipModeProp = serializedObject.FindProperty("GZipMode");
 
-            GUILayout.Label("- Capture");
-            GUILayout.BeginVertical("box");
-            {
-                GUILayout.BeginHorizontal();
-                EditorGUILayout.PropertyField(StreamGameSoundProp, new GUIContent("Stream Game Sound"));
-                GUILayout.EndHorizontal();
+            OutputFormatProp = serializedObject.FindProperty("OutputFormat");
+            OnDataByteReadyEventProp = serializedObject.FindProperty("OnDataByteReadyEvent");
+            OnRawPCM16ReadyEventProp = serializedObject.FindProperty("OnRawPCM16ReadyEvent");
 
-                GUILayout.BeginHorizontal();
-                EditorGUILayout.PropertyField(ForceMonoProp, new GUIContent("Force Mono"));
-                GUILayout.EndHorizontal();
-            }
-            GUILayout.EndVertical();
+            labelProp = serializedObject.FindProperty("label");
+            dataLengthProp = serializedObject.FindProperty("dataLength");
         }
-        GUILayout.EndVertical();
 
-
-        GUILayout.Space(10);
-        GUILayout.BeginVertical("box");
+        // Update is called once per frame
+        public override void OnInspectorGUI()
         {
-            GUILayout.Label("- Audio Info");
+            if (AEncoder == null) AEncoder = (AudioEncoder)target;
+
+            serializedObject.Update();
+
             GUILayout.BeginVertical("box");
             {
-                GUILayout.BeginHorizontal();
-                GUILayout.Label("Output Channels: " + AEncoder.OutputChannels);
-                GUILayout.EndHorizontal();
-                GUILayout.BeginHorizontal();
-                GUILayout.Label("Output Sample Rate: " + AEncoder.OutputSampleRate);
-                GUILayout.EndHorizontal();
+                {
+                    //Header
+                    GUIStyle style = new GUIStyle();
+                    style.normal.textColor = Color.white;
+                    style.alignment = TextAnchor.MiddleCenter;
+                    style.fontSize = 15;
+
+                    Texture2D backgroundTexture = new Texture2D(1, 1);
+                    backgroundTexture.SetPixel(0, 0, new Color(0.02745098f, 0.1176471f, 0.254902f));
+                    backgroundTexture.Apply();
+                    style.normal.background = backgroundTexture;
+
+                    GUILayout.BeginHorizontal();
+                    GUILayout.Label("(( FMETP STREAM CORE V3 ))", style);
+                    GUILayout.EndHorizontal();
+                }
+
+                if (!AEncoder.EditorShowCapture)
+                {
+                    GUILayout.BeginHorizontal();
+                    GUI.skin.button.alignment = TextAnchor.MiddleLeft;
+                    if (GUILayout.Button("+ Capture")) AEncoder.EditorShowCapture = true;
+                    GUI.skin.button.alignment = TextAnchor.MiddleCenter;
+                    GUILayout.EndHorizontal();
+                }
+                else
+                {
+                    GUILayout.BeginHorizontal();
+                    GUI.skin.button.alignment = TextAnchor.MiddleLeft;
+                    if (GUILayout.Button("- Capture")) AEncoder.EditorShowCapture = false;
+                    GUI.skin.button.alignment = TextAnchor.MiddleCenter;
+                    GUILayout.EndHorizontal();
+
+                    GUILayout.BeginVertical("box");
+                    {
+                        GUILayout.BeginHorizontal();
+                        EditorGUILayout.PropertyField(StreamGameSoundProp, new GUIContent("Stream Game Sound"));
+                        GUILayout.EndHorizontal();
+
+                        GUILayout.BeginHorizontal();
+                        EditorGUILayout.PropertyField(MuteLocalAudioPlaybackProp, new GUIContent("Mute Local Audio Playback"));
+                        GUILayout.EndHorizontal();
+                    }
+                    GUILayout.EndVertical();
+
+                    GUILayout.BeginVertical("box");
+                    {
+                        GUILayout.BeginHorizontal();
+                        EditorGUILayout.PropertyField(ForceMonoProp, new GUIContent("Force Mono"));
+                        GUILayout.EndHorizontal();
+
+                        GUILayout.BeginHorizontal();
+                        EditorGUILayout.PropertyField(MatchSystemSampleRateProp, new GUIContent("Match System SampleRate"));
+                        GUILayout.EndHorizontal();
+
+                        if (!AEncoder.MatchSystemSampleRate)
+                        {
+                            GUILayout.BeginHorizontal();
+                            EditorGUILayout.PropertyField(TargetSampleRateProp, new GUIContent("Target Sample Rate"));
+                            GUILayout.EndHorizontal();
+                        }
+
+                        GUILayout.BeginHorizontal();
+                        EditorGUILayout.PropertyField(AudioReadModeProp, new GUIContent("Audio Read Mode"));
+                        GUILayout.EndHorizontal();
+                    }
+                    GUILayout.EndVertical();
+                }
             }
             GUILayout.EndVertical();
+
+
+            GUILayout.Space(2);
+            GUILayout.BeginVertical("box");
+            {
+                if (!AEncoder.EditorShowAudioInfo)
+                {
+                    GUILayout.BeginHorizontal();
+                    GUI.skin.button.alignment = TextAnchor.MiddleLeft;
+                    if (GUILayout.Button("+ Audio Info ")) AEncoder.EditorShowAudioInfo = true;
+                    GUI.skin.button.alignment = TextAnchor.MiddleCenter;
+                    GUILayout.EndHorizontal();
+                }
+                else
+                {
+                    GUILayout.BeginHorizontal();
+                    GUI.skin.button.alignment = TextAnchor.MiddleLeft;
+                    if (GUILayout.Button("- Audio Info ")) AEncoder.EditorShowAudioInfo = false;
+                    GUI.skin.button.alignment = TextAnchor.MiddleCenter;
+                    GUILayout.EndHorizontal();
+
+                    GUILayout.BeginVertical("box");
+                    {
+                        GUILayout.BeginHorizontal();
+                        GUILayout.Label("System Sample Rate: " + AEncoder.SystemSampleRate);
+                        GUILayout.EndHorizontal();
+
+                        GUILayout.BeginHorizontal();
+                        GUILayout.Label("System Channels: " + AEncoder.SystemChannels);
+                        GUILayout.EndHorizontal();
+                    }
+                    GUILayout.EndVertical();
+
+                    GUILayout.BeginVertical("box");
+                    {
+                        GUILayout.BeginHorizontal();
+                        //GUILayout.Label("Output Sample Rate: " + AEncoder.OutputSampleRate);
+                        GUILayout.Label("Output Sample Rate: " + (AEncoder.MatchSystemSampleRate ? AEncoder.SystemSampleRate : AEncoder.TargetSampleRate));
+                        GUILayout.EndHorizontal();
+
+                        GUILayout.BeginHorizontal();
+                        //GUILayout.Label("Output Channels: " + AEncoder.OutputChannels);
+                        GUILayout.Label("Output Channels: " + (AEncoder.ForceMono ? 1 : AEncoder.SystemChannels));
+                        GUILayout.EndHorizontal();
+                    }
+                    GUILayout.EndVertical();
+                }
+            }
+            GUILayout.EndVertical();
+
+            GUILayout.Space(2);
+            GUILayout.BeginVertical("box");
+            {
+                if (!AEncoder.EditorShowEncoded)
+                {
+                    GUILayout.BeginHorizontal();
+                    GUI.skin.button.alignment = TextAnchor.MiddleLeft;
+                    if (GUILayout.Button("+ Encoded ")) AEncoder.EditorShowEncoded = true;
+                    GUI.skin.button.alignment = TextAnchor.MiddleCenter;
+                    GUILayout.EndHorizontal();
+                }
+                else
+                {
+                    GUILayout.BeginHorizontal();
+                    GUI.skin.button.alignment = TextAnchor.MiddleLeft;
+                    if (GUILayout.Button("- Encoded ")) AEncoder.EditorShowEncoded = false;
+                    GUI.skin.button.alignment = TextAnchor.MiddleCenter;
+                    GUILayout.EndHorizontal();
+                    GUILayout.BeginVertical("box");
+                    {
+                        GUILayout.BeginHorizontal();
+                        EditorGUILayout.PropertyField(StreamFPSProp, new GUIContent("StreamFPS"));
+                        GUILayout.EndHorizontal();
+                    }
+                    GUILayout.EndVertical();
+
+                    GUILayout.BeginVertical("box");
+                    {
+                        GUILayout.BeginHorizontal();
+                        EditorGUILayout.PropertyField(GZipModeProp, new GUIContent("GZip Mode"));
+                        GUILayout.EndHorizontal();
+
+                        GUILayout.BeginHorizontal();
+                        GUIStyle style = new GUIStyle();
+                        style.normal.textColor = Color.yellow;
+                        GUILayout.Label(" Experiment feature: Reduce network traffic", style);
+                        GUILayout.EndHorizontal();
+                    }
+                    GUILayout.EndVertical();
+
+                    GUILayout.BeginVertical("box");
+                    {
+                        GUILayout.BeginHorizontal();
+                        EditorGUILayout.PropertyField(OutputFormatProp, new GUIContent("Output Format"));
+                        GUILayout.EndHorizontal();
+                    }
+                    GUILayout.EndVertical();
+
+                    GUILayout.BeginVertical("box");
+                    {
+                        GUILayout.BeginHorizontal();
+                        if (AEncoder.OutputFormat == AudioOutputFormat.FMPCM16)
+                        {
+                            EditorGUILayout.PropertyField(OnDataByteReadyEventProp, new GUIContent("OnDataByteReadyEvent"));
+                        }
+                        else
+                        {
+                            EditorGUILayout.PropertyField(OnRawPCM16ReadyEventProp, new GUIContent("OnRawPCM16ReadyEvent"));
+                        }
+                        GUILayout.EndHorizontal();
+                    }
+                    GUILayout.EndVertical();
+                }
+            }
+            GUILayout.EndVertical();
+
+            GUILayout.Space(2);
+            GUILayout.BeginVertical("box");
+            {
+                if (!AEncoder.EditorShowPairing)
+                {
+                    GUILayout.BeginHorizontal();
+                    GUI.skin.button.alignment = TextAnchor.MiddleLeft;
+                    if (GUILayout.Button("+ Pair Encoder & Decoder ")) AEncoder.EditorShowPairing = true;
+                    GUI.skin.button.alignment = TextAnchor.MiddleCenter;
+                    GUILayout.EndHorizontal();
+                }
+                else
+                {
+                    GUILayout.BeginHorizontal();
+                    GUI.skin.button.alignment = TextAnchor.MiddleLeft;
+                    if (GUILayout.Button("- Pair Encoder & Decoder ")) AEncoder.EditorShowPairing = false;
+                    GUI.skin.button.alignment = TextAnchor.MiddleCenter;
+                    GUILayout.EndHorizontal();
+                    GUILayout.BeginVertical("box");
+                    {
+                        GUILayout.BeginHorizontal();
+                        EditorGUILayout.PropertyField(labelProp, new GUIContent("label"));
+                        GUILayout.EndHorizontal();
+
+
+                        GUILayout.BeginHorizontal();
+                        EditorGUILayout.PropertyField(dataLengthProp, new GUIContent("Encoded Size(byte)"));
+                        GUILayout.EndHorizontal();
+                    }
+                    GUILayout.EndVertical();
+                }
+            }
+            GUILayout.EndVertical();
+
+            serializedObject.ApplyModifiedProperties();
         }
-        GUILayout.EndVertical();
-
-
-        GUILayout.Space(10);
-        GUILayout.BeginVertical("box");
-        {
-            GUILayout.Label("- Encoded");
-            GUILayout.BeginVertical("box");
-            {
-                GUILayout.BeginHorizontal();
-                EditorGUILayout.PropertyField(StreamFPSProp, new GUIContent("StreamFPS"));
-                GUILayout.EndHorizontal();
-            }
-            GUILayout.EndVertical();
-
-            GUILayout.BeginVertical("box");
-            {
-                GUILayout.BeginHorizontal();
-                EditorGUILayout.PropertyField(GZipModeProp, new GUIContent("GZip Mode"));
-                GUILayout.EndHorizontal();
-
-                GUILayout.BeginHorizontal();
-                GUIStyle style = new GUIStyle();
-                style.normal.textColor = Color.yellow;
-                GUILayout.Label(" Experiment feature: Reduce network traffic", style);
-                GUILayout.EndHorizontal();
-            }
-            GUILayout.EndVertical();
-
-            GUILayout.BeginVertical("box");
-            {
-                GUILayout.BeginHorizontal();
-                EditorGUILayout.PropertyField(OnDataByteReadyEventProp, new GUIContent("OnDataByteReadyEvent"));
-                GUILayout.EndHorizontal();
-            }
-            GUILayout.EndVertical();
-        }
-        GUILayout.EndVertical();
-
-
-        GUILayout.Space(10);
-        GUILayout.BeginVertical("box");
-        {
-            GUILayout.Label("- Pair Encoder & Decoder ");
-            GUILayout.BeginVertical("box");
-            {
-                GUILayout.BeginHorizontal();
-                EditorGUILayout.PropertyField(labelProp, new GUIContent("label"));
-                GUILayout.EndHorizontal();
-
-
-                GUILayout.BeginHorizontal();
-                EditorGUILayout.PropertyField(dataLengthProp, new GUIContent("Encoded Size(byte)"));
-                GUILayout.EndHorizontal();
-            }
-            GUILayout.EndVertical();
-        }
-        GUILayout.EndVertical();
-
-        serializedObject.ApplyModifiedProperties();
     }
 }

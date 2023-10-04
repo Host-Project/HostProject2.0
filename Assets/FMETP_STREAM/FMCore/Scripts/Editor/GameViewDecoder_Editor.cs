@@ -2,199 +2,355 @@
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(GameViewDecoder))]
-[CanEditMultipleObjects]
-public class GameViewDecoder_Editor : Editor
+namespace FMETP
 {
-    private GameViewDecoder GVDecoder;
-
-
-    SerializedProperty FastModeProp;
-    SerializedProperty AsyncModeProp;
-    SerializedProperty DecoderDelayProp;
-
-    SerializedProperty ReceivedTextureProp;
-    SerializedProperty DecodedFilterModeProp;
-    SerializedProperty DecodedWrapModeProp;
-
-    SerializedProperty OnReceivedTextureProp;
-
-    SerializedProperty TestQuadProp;
-    SerializedProperty TestImgProp;
-    SerializedProperty labelProp;
-
-    void OnEnable()
+    [CustomEditor(typeof(GameViewDecoder))]
+    [CanEditMultipleObjects]
+    public class GameViewDecoder_Editor : UnityEditor.Editor
     {
-
-        FastModeProp = serializedObject.FindProperty("FastMode");
-        AsyncModeProp = serializedObject.FindProperty("AsyncMode");
-        DecoderDelayProp = serializedObject.FindProperty("DecoderDelay");
-
-        ReceivedTextureProp = serializedObject.FindProperty("ReceivedTexture");
-        DecodedFilterModeProp = serializedObject.FindProperty("DecodedFilterMode");
-        DecodedWrapModeProp = serializedObject.FindProperty("DecodedWrapMode");
-
-        OnReceivedTextureProp = serializedObject.FindProperty("OnReceivedTexture");
-
-        TestQuadProp = serializedObject.FindProperty("TestQuad");
-        TestImgProp = serializedObject.FindProperty("TestImg");
+        private GameViewDecoder GVDecoder;
 
 
-        labelProp = serializedObject.FindProperty("label");
-    }
+        SerializedProperty FastModeProp;
+        SerializedProperty AsyncModeProp;
+        SerializedProperty DecoderDelayProp;
 
-    // Update is called once per frame
-    public override void OnInspectorGUI()
-    {
-        if(GVDecoder==null) GVDecoder= (GameViewDecoder)target;
+        SerializedProperty MonoProp;
+        SerializedProperty SharpenProp;
+        SerializedProperty DeNoiseProp;
 
-        serializedObject.Update();
+        SerializedProperty DecodedFilterModeProp;
+        SerializedProperty DecodedWrapModeProp;
 
-        GUILayout.Space(10);
-        GUILayout.BeginVertical("box");
+        SerializedProperty OnReceivedTextureEventProp;
+        SerializedProperty OnReceivedDesktopFrameRectEventProp;
+
+        SerializedProperty PreviewTypeProp;
+        SerializedProperty PreviewRawImageProp;
+        SerializedProperty PreviewMeshRendererProp;
+
+        SerializedProperty labelProp;
+
+        void OnEnable()
         {
-            {
-                //Header
-                GUIStyle style = new GUIStyle();
-                style.normal.textColor = Color.white;
-                style.alignment = TextAnchor.MiddleCenter;
-                style.fontSize = 15;
 
-                Texture2D backgroundTexture = new Texture2D(1, 1);
-                backgroundTexture.SetPixel(0, 0, new Color(0.09019608f, 0.09019608f, 0.2745098f));
-                backgroundTexture.Apply();
-                style.normal.background = backgroundTexture;
+            FastModeProp = serializedObject.FindProperty("FastMode");
+            AsyncModeProp = serializedObject.FindProperty("AsyncMode");
+            DecoderDelayProp = serializedObject.FindProperty("DecoderDelay");
 
-                GUILayout.BeginHorizontal();
-                GUILayout.Label("(( FMETP STREAM CORE V2 ))", style);
-                GUILayout.EndHorizontal();
-            }
+            MonoProp = serializedObject.FindProperty("Mono");
+            SharpenProp = serializedObject.FindProperty("Sharpen");
+            DeNoiseProp = serializedObject.FindProperty("DeNoise");
 
-            GUILayout.Label("- Settings");
+            DecodedFilterModeProp = serializedObject.FindProperty("DecodedFilterMode");
+            DecodedWrapModeProp = serializedObject.FindProperty("DecodedWrapMode");
 
-            GUILayout.BeginVertical("box");
-            {
-                GUILayout.BeginHorizontal();
-                EditorGUILayout.PropertyField(FastModeProp, new GUIContent("Fast Decode Mode"));
-                GUILayout.EndHorizontal();
+            OnReceivedTextureEventProp = serializedObject.FindProperty("OnReceivedTextureEvent");
+            OnReceivedDesktopFrameRectEventProp = serializedObject.FindProperty("OnReceivedDesktopFrameRectEvent");
 
-                GUILayout.BeginHorizontal();
-                GUIStyle style = new GUIStyle();
-                style.normal.textColor = Color.yellow;
-                GUILayout.Label(" Experiment for Mac, Windows, Android (Forced Enabled on iOS)", style);
-                GUILayout.EndHorizontal();
+            PreviewTypeProp = serializedObject.FindProperty("PreviewType");
+            PreviewRawImageProp = serializedObject.FindProperty("PreviewRawImage");
+            PreviewMeshRendererProp = serializedObject.FindProperty("PreviewMeshRenderer");
 
-                if (GVDecoder.FastMode)
-                {
-                    //GUILayout.BeginVertical("box");
-                    {
-                        GUILayout.BeginHorizontal();
-                        EditorGUILayout.PropertyField(AsyncModeProp, new GUIContent("Async (multi-threading)"));
-                        GUILayout.EndHorizontal();
-                    }
-                    //GUILayout.EndVertical();
-                }
-            }
-            GUILayout.EndVertical();
-            GUILayout.BeginVertical("box");
-            {
-                GUILayout.BeginHorizontal();
-                EditorGUILayout.PropertyField(DecoderDelayProp, new GUIContent("Delay Decode (sec)"));
-                GUILayout.EndHorizontal();
-            }
-            GUILayout.EndVertical();
+            labelProp = serializedObject.FindProperty("label");
         }
-        GUILayout.EndVertical();
 
-        GUILayout.BeginVertical("box");
+        // Update is called once per frame
+        public override void OnInspectorGUI()
         {
-            GUILayout.Label("- Decoded");
+            if (GVDecoder == null) GVDecoder = (GameViewDecoder)target;
 
-            if (GVDecoder.ReceivedTexture != null)
-            {
-                GUILayout.Label("Preview " + " ( " + GVDecoder.ReceivedTexture.width + " x " + GVDecoder.ReceivedTexture.height + " ) ");
-            }
-            else
-            {
-                GUILayout.Label("Preview (Empty)");
-            }
+            serializedObject.Update();
 
-
+            GUILayout.Space(2);
             GUILayout.BeginVertical("box");
             {
-                const float maxLogoWidth = 430.0f;
-                EditorGUILayout.Separator();
-                float w = EditorGUIUtility.currentViewWidth;
-                Rect r = new Rect();
-                r.width = Math.Min(w - 40.0f, maxLogoWidth);
-                r.height = r.width / 4.886f;
-                Rect r2 = GUILayoutUtility.GetRect(r.width, r.height);
-                r.x = r2.x;
-                r.y = r2.y;
-                if (GVDecoder.ReceivedTexture != null)
                 {
-                    GUI.DrawTexture(r, GVDecoder.ReceivedTexture, ScaleMode.ScaleToFit);
+                    //Header
+                    GUIStyle style = new GUIStyle();
+                    style.normal.textColor = Color.white;
+                    style.alignment = TextAnchor.MiddleCenter;
+                    style.fontSize = 15;
+
+                    Texture2D backgroundTexture = new Texture2D(1, 1);
+                    backgroundTexture.SetPixel(0, 0, new Color(0.02745098f, 0.1176471f, 0.254902f));
+                    backgroundTexture.Apply();
+                    style.normal.background = backgroundTexture;
+
+                    GUILayout.BeginHorizontal();
+                    GUILayout.Label("(( FMETP STREAM CORE V3 ))", style);
+                    GUILayout.EndHorizontal();
+                }
+
+                if (!GVDecoder.EditorShowSettings)
+                {
+                    GUILayout.BeginHorizontal();
+                    GUI.skin.button.alignment = TextAnchor.MiddleLeft;
+                    if (GUILayout.Button("+ Settings")) GVDecoder.EditorShowSettings = true;
+                    GUI.skin.button.alignment = TextAnchor.MiddleCenter;
+                    GUILayout.EndHorizontal();
                 }
                 else
                 {
-                    GUI.DrawTexture(r, new Texture2D((int)r.width, (int)r.height, TextureFormat.RGB24, false), ScaleMode.ScaleToFit);
+                    GUILayout.BeginHorizontal();
+                    GUI.skin.button.alignment = TextAnchor.MiddleLeft;
+                    if (GUILayout.Button("- Settings")) GVDecoder.EditorShowSettings = false;
+                    GUI.skin.button.alignment = TextAnchor.MiddleCenter;
+                    GUILayout.EndHorizontal();
+
+                    GUILayout.BeginVertical("box");
+                    {
+                        GUILayout.BeginHorizontal();
+                        EditorGUILayout.PropertyField(FastModeProp, new GUIContent("Fast Decode Mode"));
+                        GUILayout.EndHorizontal();
+
+                        GUILayout.BeginHorizontal();
+                        GUIStyle style = new GUIStyle();
+                        style.normal.textColor = Color.yellow;
+                        GUILayout.Label("* Experiment for Mac, Windows, Android (Forced Enabled on iOS)", style);
+                        GUILayout.EndHorizontal();
+
+                        if (GVDecoder.FastMode)
+                        {
+                            //GUILayout.BeginVertical("box");
+                            {
+                                GUILayout.BeginHorizontal();
+                                EditorGUILayout.PropertyField(AsyncModeProp, new GUIContent("Async Decode (multi-threading)"));
+                                GUILayout.EndHorizontal();
+                            }
+                            //GUILayout.EndVertical();
+                        }
+                    }
+                    GUILayout.EndVertical();
+                    GUILayout.BeginVertical("box");
+                    {
+                        GUILayout.BeginHorizontal();
+                        EditorGUILayout.PropertyField(DecoderDelayProp, new GUIContent("Delay Decode (sec)"));
+                        GUILayout.EndHorizontal();
+                    }
+                    GUILayout.EndVertical();
                 }
             }
             GUILayout.EndVertical();
 
             GUILayout.BeginVertical("box");
             {
-                //GUILayout.BeginHorizontal();
-                //EditorGUILayout.PropertyField(ReceivedTextureProp, new GUIContent("ReceivedTexture"));
-                //GUILayout.EndHorizontal();
+                if (!GVDecoder.EditorShowDecoded)
+                {
+                    GUILayout.BeginHorizontal();
+                    GUI.skin.button.alignment = TextAnchor.MiddleLeft;
+                    if (GUILayout.Button("+ Decoded")) GVDecoder.EditorShowDecoded = true;
+                    GUI.skin.button.alignment = TextAnchor.MiddleCenter;
+                    GUILayout.EndHorizontal();
+                }
+                else
+                {
+                    GUILayout.BeginHorizontal();
+                    GUI.skin.button.alignment = TextAnchor.MiddleLeft;
+                    if (GUILayout.Button("- Decoded")) GVDecoder.EditorShowDecoded = false;
+                    GUI.skin.button.alignment = TextAnchor.MiddleCenter;
+                    GUILayout.EndHorizontal();
 
-                GUILayout.BeginHorizontal();
-                EditorGUILayout.PropertyField(DecodedFilterModeProp, new GUIContent("Filter Mode"));
-                GUILayout.EndHorizontal();
+                    GUILayout.BeginVertical("box");
+                    {
+                        GUILayout.BeginVertical("box");
+                        {
+                            GUILayout.BeginHorizontal();
+                            EditorGUILayout.PropertyField(MonoProp, new GUIContent("Mono"));
+                            GUILayout.EndHorizontal();
 
-                GUILayout.BeginHorizontal();
-                EditorGUILayout.PropertyField(DecodedWrapModeProp, new GUIContent("Wrap Mode"));
-                GUILayout.EndHorizontal();
+                            GUILayout.BeginHorizontal();
+                            EditorGUILayout.PropertyField(DecodedFilterModeProp, new GUIContent("Filter Mode"));
+                            GUILayout.EndHorizontal();
+
+                            GUILayout.BeginHorizontal();
+                            EditorGUILayout.PropertyField(DecodedWrapModeProp, new GUIContent("Wrap Mode"));
+                            GUILayout.EndHorizontal();
+                        }
+                        GUILayout.EndVertical();
+
+                        GUILayout.BeginVertical("box");
+                        {
+                            GUILayout.BeginHorizontal();
+                            EditorGUILayout.PropertyField(SharpenProp, new GUIContent("Sharpen"));
+                            GUILayout.EndHorizontal();
+
+                            GUILayout.BeginHorizontal();
+                            EditorGUILayout.PropertyField(DeNoiseProp, new GUIContent("DeNoise"));
+                            GUILayout.EndHorizontal();
+                        }
+                        GUILayout.EndVertical();
+                    }
+                    GUILayout.EndVertical();
+                }
+
+                GUILayout.BeginVertical("box");
+                {
+                    if (GVDecoder.ReceivedTexture != null)
+                    {
+                        GUILayout.Label("Preview " + " ( " + GVDecoder.ReceivedTexture.width + " x " + GVDecoder.ReceivedTexture.height + " ) ");
+                    }
+                    else
+                    {
+                        GUILayout.Label("Preview (Empty)");
+                    }
+
+                    const float maxLogoWidth = 430.0f;
+                    EditorGUILayout.Separator();
+                    float w = EditorGUIUtility.currentViewWidth;
+                    Rect r = new Rect();
+                    r.width = Math.Min(w - 40.0f, maxLogoWidth);
+                    r.height = r.width / 4.886f;
+                    Rect r2 = GUILayoutUtility.GetRect(r.width, r.height);
+                    r.x = r2.x;
+                    r.y = r2.y;
+                    if (GVDecoder.ReceivedTexture != null)
+                    {
+                        GUI.DrawTexture(r, GVDecoder.ReceivedTexture, ScaleMode.ScaleToFit);
+                    }
+                    else
+                    {
+                        //GUI.DrawTexture(r, new Texture2D((int)r.width, (int)r.height, TextureFormat.RGB24, false), ScaleMode.ScaleToFit);
+                    }
+                }
+                GUILayout.EndVertical();
+
+                GUILayout.BeginVertical("box");
+                {
+                    GUILayout.BeginHorizontal();
+                    EditorGUILayout.PropertyField(OnReceivedTextureEventProp, new GUIContent("OnReceivedTextureEvent"));
+                    GUILayout.EndHorizontal();
+                }
+                GUILayout.EndVertical();
+
+                GUILayout.BeginVertical("box");
+                {
+                    GUILayout.BeginHorizontal();
+                    EditorGUILayout.PropertyField(PreviewTypeProp, new GUIContent("Preview Type"));
+                    GUILayout.EndHorizontal();
+
+                    GUILayout.BeginHorizontal();
+                    switch (GVDecoder.PreviewType)
+                    {
+                        case GameViewPreviewType.None: break;
+                        case GameViewPreviewType.RawImage: EditorGUILayout.PropertyField(PreviewRawImageProp, new GUIContent("- RawImage")); break;
+                        case GameViewPreviewType.MeshRenderer: EditorGUILayout.PropertyField(PreviewMeshRendererProp, new GUIContent("- MeshRenderer")); break;
+                    }
+                    GUILayout.EndHorizontal();
+                }
+                GUILayout.EndVertical();
             }
             GUILayout.EndVertical();
 
             GUILayout.BeginVertical("box");
             {
-                GUILayout.BeginHorizontal();
-                EditorGUILayout.PropertyField(OnReceivedTextureProp, new GUIContent("OnReceivedTexture"));
-                GUILayout.EndHorizontal();
+                if (!GVDecoder.EditorShowDesktopFrameInfo)
+                {
+                    GUILayout.BeginHorizontal();
+                    GUI.skin.button.alignment = TextAnchor.MiddleLeft;
+                    if (GUILayout.Button("+ Remote Desktop (info)")) GVDecoder.EditorShowDesktopFrameInfo = true;
+                    GUI.skin.button.alignment = TextAnchor.MiddleCenter;
+                    GUILayout.EndHorizontal();
+                }
+                else
+                {
+                    GUILayout.BeginHorizontal();
+                    GUI.skin.button.alignment = TextAnchor.MiddleLeft;
+                    if (GUILayout.Button("- Remote Desktop (info)")) GVDecoder.EditorShowDesktopFrameInfo = false;
+                    GUI.skin.button.alignment = TextAnchor.MiddleCenter;
+                    GUILayout.EndHorizontal();
+
+                    GUILayout.BeginVertical("box");
+                    {
+                        if (GVDecoder.IsDesktopFrame)
+                        {
+                            {
+                                GUILayout.BeginHorizontal();
+                                GUIStyle style = new GUIStyle();
+                                style.normal.textColor = Color.green;
+                                GUILayout.Label("= Remote Desktop Frame: Yes", style);
+                                GUILayout.EndHorizontal();
+                            }
+
+                            {
+                                GUILayout.BeginHorizontal();
+                                GUIStyle style = new GUIStyle();
+                                style.normal.textColor = Color.white;
+                                GUILayout.Label("= Offset (" + GVDecoder.GetFMDesktopFrameRect.x + ", " + GVDecoder.GetFMDesktopFrameRect.y + ") Resolution (" + GVDecoder.GetFMDesktopFrameRect.width + ", " + GVDecoder.GetFMDesktopFrameRect.height + ")", style);
+                                GUILayout.EndHorizontal();
+                            }
+                        }
+                        else
+                        {
+                            {
+                                GUILayout.BeginHorizontal();
+                                GUIStyle style = new GUIStyle();
+                                style.normal.textColor = Color.red;
+                                GUILayout.Label("= Remote Desktop Frame: Unknown / Not Detected", style);
+                                GUILayout.EndHorizontal();
+                            }
+
+                            {
+                                GUILayout.BeginHorizontal();
+                                GUIStyle style = new GUIStyle();
+                                style.normal.textColor = Color.grey;
+                                GUILayout.Label("= Offset (" + GVDecoder.GetFMDesktopFrameRect.x + ", " + GVDecoder.GetFMDesktopFrameRect.y + ") Resolution (" + GVDecoder.GetFMDesktopFrameRect.width + ", " + GVDecoder.GetFMDesktopFrameRect.height + ")", style);
+                                GUILayout.EndHorizontal();
+                            }
+                        }
+
+                        {
+                            GUILayout.BeginHorizontal();
+                            GUIStyle style = new GUIStyle();
+                            style.normal.textColor = Color.yellow;
+                            GUILayout.Label("* Will be invoked when the Remote Desktop Frame is detected", style);
+                            GUILayout.EndHorizontal();
+                        }
+                    }
+                    GUILayout.EndVertical();
+
+                    GUILayout.BeginVertical("box");
+                    {
+                        GUILayout.BeginHorizontal();
+                        EditorGUILayout.PropertyField(OnReceivedDesktopFrameRectEventProp, new GUIContent("OnReceivedDesktopFrameRectEvent"));
+                        GUILayout.EndHorizontal();
+                    }
+                    GUILayout.EndVertical();
+                }
             }
             GUILayout.EndVertical();
 
-            GUILayout.BeginVertical();
-            {
-                GUILayout.BeginHorizontal();
-                EditorGUILayout.PropertyField(TestQuadProp, new GUIContent("TestQuadProp"));
-                GUILayout.EndHorizontal();
-
-                GUILayout.BeginHorizontal();
-                EditorGUILayout.PropertyField(TestImgProp, new GUIContent("TestImgProp"));
-                GUILayout.EndHorizontal();
-            }
-            GUILayout.EndVertical();
-        }
-        GUILayout.EndVertical();
-
-
-        GUILayout.Space(10);
-        GUILayout.BeginVertical("box");
-        {
-            GUILayout.Label("- Pair Encoder & Decoder ");
+            GUILayout.Space(2);
             GUILayout.BeginVertical("box");
             {
-                GUILayout.BeginHorizontal();
-                EditorGUILayout.PropertyField(labelProp, new GUIContent("label"));
-                GUILayout.EndHorizontal();
+                if (!GVDecoder.EditorShowPairing)
+                {
+                    GUILayout.BeginHorizontal();
+                    GUI.skin.button.alignment = TextAnchor.MiddleLeft;
+                    if (GUILayout.Button("+ Pair Encoder & Decoder")) GVDecoder.EditorShowPairing = true;
+                    GUI.skin.button.alignment = TextAnchor.MiddleCenter;
+                    GUILayout.EndHorizontal();
+                }
+                else
+                {
+                    GUILayout.BeginHorizontal();
+                    GUI.skin.button.alignment = TextAnchor.MiddleLeft;
+                    if (GUILayout.Button("- Pair Encoder & Decoder")) GVDecoder.EditorShowPairing = false;
+                    GUI.skin.button.alignment = TextAnchor.MiddleCenter;
+                    GUILayout.EndHorizontal();
+
+                    GUILayout.BeginVertical("box");
+                    {
+                        GUILayout.BeginHorizontal();
+                        EditorGUILayout.PropertyField(labelProp, new GUIContent("label"));
+                        GUILayout.EndHorizontal();
+                    }
+                    GUILayout.EndVertical();
+                }
             }
             GUILayout.EndVertical();
-        }
-        GUILayout.EndVertical();
 
-        serializedObject.ApplyModifiedProperties();
+            serializedObject.ApplyModifiedProperties();
+        }
     }
 }

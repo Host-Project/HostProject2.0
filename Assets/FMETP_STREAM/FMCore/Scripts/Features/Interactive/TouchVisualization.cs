@@ -1,52 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class TouchVisualization : MonoBehaviour
+namespace FMETP
 {
-    public GameObject fingerPrefab;
-    public List<GameObject> fingers;
-
-    // Start is called before the first frame update
-    void Start()
+    public class TouchVisualization : MonoBehaviour
     {
-        fingerPrefab.SetActive(false);
-    }
+        public GameObject fingerPrefab;
+        public List<GameObject> fingers = new List<GameObject>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.touchCount >= 2)
+        void Start() { fingerPrefab.SetActive(false); }
+        void Update()
         {
-            Touch[] touches = Input.touches;
-
-            while(fingers.Count <= Input.touchCount) {
-                fingers.Add(Instantiate(fingerPrefab, Vector3.zero, Quaternion.identity,this.transform));
-            }
-
-            for(int i = 0; i<fingers.Count; i++)
+            if (Input.touchCount > 0)
             {
-                if (i < Input.touchCount)
+                Touch[] touches = Input.touches;
+                while (fingers.Count <= touches.Length) fingers.Add(Instantiate(fingerPrefab, Vector3.zero, Quaternion.identity, this.transform));
+                for (int i = 0; i < fingers.Count; i++)
                 {
-                    fingers[i].SetActive(true);
-                    fingers[i].GetComponent<RectTransform>().position = new Vector3(touches[i].position.x, touches[i].position.y, 0f);
-                }
-                else
-                {
-                    fingers[i].SetActive(false);
+                    if (i < Input.touchCount)
+                    {
+                        fingers[i].SetActive(true);
+                        fingers[i].GetComponent<RectTransform>().position = new Vector3(touches[i].position.x, touches[i].position.y, 0f);
+                    }
+                    else
+                    {
+                        fingers[i].SetActive(false);
+                    }
                 }
             }
-        }
-        else
-        {
-            for (int i = 0; i < fingers.Count; i++)
+            else
             {
-                fingers[i].SetActive(false);
+                for (int i = 0; i < fingers.Count; i++) fingers[i].SetActive(false);
             }
         }
-
     }
-
-
 }

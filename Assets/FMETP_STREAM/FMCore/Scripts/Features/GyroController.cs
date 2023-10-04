@@ -3,144 +3,150 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GyroController : MonoBehaviour {
-
-	public static GyroController instance;
-
-	private bool gyroEnabled;
-	private Gyroscope gyro;
-
-	private GameObject cameraContainer;
-	private Quaternion rot;
-
-	public GameObject offsetContainer;
-	private Quaternion offsetRot;
-
-	public GameObject CamChildrenGrp;
-
-	public Vector3 localRotAng;
-
-    public bool EnableGyroRoation = true;
-    public bool EnableTouchDragRotation = true;
-    [Range(1,10)]
-    public int TouchDragRequireFingerCount = 3;
-
-    void Awake()
+namespace FMETP
+{
+    public class GyroController : MonoBehaviour
     {
-		if (instance == null) instance = this;
-    }
 
-	// Use this for initialization
-	void Start ()
-    {
-		cameraContainer = new GameObject ("Camera Container");
-		cameraContainer.transform.position = transform.position;
-		transform.SetParent (cameraContainer.transform);
+        public static GyroController instance;
 
-		gyroEnabled = EnableGyro ();
+        private bool gyroEnabled;
+        private Gyroscope gyro;
 
-		offsetContainer = new GameObject ("Offset Container");
-		offsetContainer.transform.position = transform.position;
-		cameraContainer.transform.SetParent (offsetContainer.transform);
-	}
+        private GameObject cameraContainer;
+        private Quaternion rot;
 
+        public GameObject offsetContainer;
+        private Quaternion offsetRot;
 
+        public GameObject CamChildrenGrp;
 
-    bool EnableGyro()
-    {
-        if (SystemInfo.supportsGyroscope)
+        public Vector3 localRotAng;
+
+        public bool EnableGyroRoation = true;
+        public bool EnableTouchDragRotation = true;
+        [Range(1, 10)]
+        public int TouchDragRequireFingerCount = 3;
+
+        void Awake()
         {
-            gyro = Input.gyro;
-            gyro.enabled = true;
-
-            cameraContainer.transform.rotation = Quaternion.Euler(90f, 90f, 0f);
-            rot = new Quaternion(0f, 0f, 1f, 0f);
-
-            gyro.updateInterval = 0.01f;
-            return true;
+            if (instance == null) instance = this;
         }
 
-        return false;
-    }
-
-    // Update is called once per frame
-    void Update () {
-        
-      
-        if (gyroEnabled)
+        // Use this for initialization
+        void Start()
         {
-            if(EnableGyroRoation) transform.localRotation = gyro.attitude * rot;
-		}
-        else
-        {
-			MouseDragRot ();
-		}
-      
+            cameraContainer = new GameObject("Camera Container");
+            cameraContainer.transform.position = transform.position;
+            transform.SetParent(cameraContainer.transform);
 
-        localRotAng = transform.localRotation.eulerAngles;
+            gyroEnabled = EnableGyro();
 
-        //for debug only
-        if(EnableTouchDragRotation) TouchDragRot();    
-    }
-
-	//float offsetAng = 0f;
-	public void AimingOffset(float _angle)
-    {
-		offsetContainer.transform.Rotate (new Vector3 (0f, _angle, 0f), Space.World);
-	}
-
-    Vector2 MD_oldPos;
-	Vector2 MD_currentPos;
-	Vector2 MD_deltaPos;
-	float MD_speed = 3000f;
-	void MouseDragRot(){
-        if (Input.GetMouseButtonDown(1))
-        {
-            MD_currentPos.x = Input.mousePosition.x / Screen.width;
-            MD_currentPos.y = Input.mousePosition.y / Screen.height;
+            offsetContainer = new GameObject("Offset Container");
+            offsetContainer.transform.position = transform.position;
+            cameraContainer.transform.SetParent(offsetContainer.transform);
         }
-        else if (Input.GetMouseButton(1))
-        {
-            MD_oldPos = MD_currentPos;
-            MD_currentPos.x = Input.mousePosition.x / Screen.width;
-            MD_currentPos.y = Input.mousePosition.y / Screen.height;
 
-            MD_deltaPos = MD_currentPos - MD_oldPos;
-            offsetContainer.transform.Rotate(new Vector3(0f, -MD_deltaPos.x * Time.deltaTime * MD_speed, 0f), Space.World);
-            offsetContainer.transform.Rotate(new Vector3(MD_deltaPos.y * Time.deltaTime * MD_speed, 0f, 0f), Space.Self);
-        }
-    }
 
-    bool ignoreFirstTouch = false;
-    void TouchDragRot()
-    {
-        if (Input.touchCount >= TouchDragRequireFingerCount)
+
+        bool EnableGyro()
         {
-            if(Input.touches[0].phase == TouchPhase.Began)
+            if (SystemInfo.supportsGyroscope)
             {
-                MD_currentPos.x = Input.touches[0].position.x / Screen.width;
-                MD_currentPos.y = Input.touches[0].position.y / Screen.height;
+                gyro = Input.gyro;
+                gyro.enabled = true;
+
+                cameraContainer.transform.rotation = Quaternion.Euler(90f, 90f, 0f);
+                rot = new Quaternion(0f, 0f, 1f, 0f);
+
+                gyro.updateInterval = 0.01f;
+                return true;
+            }
+
+            return false;
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+
+            if (gyroEnabled)
+            {
+                if (EnableGyroRoation) transform.localRotation = gyro.attitude * rot;
             }
             else
+            {
+                MouseDragRot();
+            }
+
+
+            localRotAng = transform.localRotation.eulerAngles;
+
+            //for debug only
+            if (EnableTouchDragRotation) TouchDragRot();
+        }
+
+        //float offsetAng = 0f;
+        public void AimingOffset(float _angle)
+        {
+            offsetContainer.transform.Rotate(new Vector3(0f, _angle, 0f), Space.World);
+        }
+
+        Vector2 MD_oldPos;
+        Vector2 MD_currentPos;
+        Vector2 MD_deltaPos;
+        float MD_speed = 3000f;
+        void MouseDragRot()
+        {
+            if (Input.GetMouseButtonDown(1))
+            {
+                MD_currentPos.x = Input.mousePosition.x / Screen.width;
+                MD_currentPos.y = Input.mousePosition.y / Screen.height;
+            }
+            else if (Input.GetMouseButton(1))
             {
                 MD_oldPos = MD_currentPos;
-                MD_currentPos.x = Input.touches[0].position.x / Screen.width;
-                MD_currentPos.y = Input.touches[0].position.y / Screen.height;
+                MD_currentPos.x = Input.mousePosition.x / Screen.width;
+                MD_currentPos.y = Input.mousePosition.y / Screen.height;
 
                 MD_deltaPos = MD_currentPos - MD_oldPos;
-            }
-
-            if (ignoreFirstTouch)
-            {
-                ignoreFirstTouch = false;
-            }
-            else
-            {
                 offsetContainer.transform.Rotate(new Vector3(0f, -MD_deltaPos.x * Time.deltaTime * MD_speed, 0f), Space.World);
+                offsetContainer.transform.Rotate(new Vector3(MD_deltaPos.y * Time.deltaTime * MD_speed, 0f, 0f), Space.Self);
             }
-
         }
 
-        if(Input.touchCount == 0) ignoreFirstTouch = true;
+        bool ignoreFirstTouch = false;
+        void TouchDragRot()
+        {
+            if (Input.touchCount >= TouchDragRequireFingerCount)
+            {
+                if (Input.touches[0].phase == TouchPhase.Began)
+                {
+                    MD_currentPos.x = Input.touches[0].position.x / Screen.width;
+                    MD_currentPos.y = Input.touches[0].position.y / Screen.height;
+                }
+                else
+                {
+                    MD_oldPos = MD_currentPos;
+                    MD_currentPos.x = Input.touches[0].position.x / Screen.width;
+                    MD_currentPos.y = Input.touches[0].position.y / Screen.height;
+
+                    MD_deltaPos = MD_currentPos - MD_oldPos;
+                }
+
+                if (ignoreFirstTouch)
+                {
+                    ignoreFirstTouch = false;
+                }
+                else
+                {
+                    offsetContainer.transform.Rotate(new Vector3(0f, -MD_deltaPos.x * Time.deltaTime * MD_speed, 0f), Space.World);
+                }
+
+            }
+
+            if (Input.touchCount == 0) ignoreFirstTouch = true;
+        }
     }
 }

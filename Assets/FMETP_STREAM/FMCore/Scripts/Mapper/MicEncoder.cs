@@ -2,242 +2,275 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Collections.Concurrent;
+using System.Linq;
 
-[Serializable]
-public enum MicDeviceMode { Default, TargetDevice }
-public class MicEncoder : MonoBehaviour{
+namespace FMETP
+{
+    [Serializable]
+    public enum MicDeviceMode { Default, TargetDevice }
+    [AddComponentMenu("FMETP/Mapper/MicEncoder")]
+    public class MicEncoder : MonoBehaviour
+    {
 #if !UNITY_WEBGL || UNITY_EDITOR
-    //----------------------------------------------
-    AudioSource AudioMic;
-    private Queue<byte> AudioBytes = new Queue<byte>();
+        #region EditorProps
+        public bool EditorShowCapture = true;
+        public bool EditorShowAudioInfo = true;
+        public bool EditorShowEncoded = true;
+        public bool EditorShowPairing = true;
+        #endregion
 
-    public MicDeviceMode DeviceMode = MicDeviceMode.Default;
-    public string TargetDeviceName = "MacBook Pro Microphone";
-    string CurrentDeviceName = null;
+        //----------------------------------------------
+        private AudioSource AudioMic;
+        private ConcurrentQueue<byte> AudioBytes = new ConcurrentQueue<byte>();
 
-    [TextArea]
-    public string DetectedDevices;
+        public MicDeviceMode DeviceMode = MicDeviceMode.Default;
+        public string TargetDeviceName = "MacBook Pro Microphone";
+        string CurrentDeviceName = null;
 
-    //[Header("[Capture In-Game Sound]")]
-    public bool StreamGameSound = true;
-    public int OutputSampleRate = 11025;
-    public int OutputChannels = 1;
-    private object _asyncLockAudio = new object();
+        [TextArea]
+        public string DetectedDevices;
 
-    private int CurrentAudioTimeSample = 0;
-    private int LastAudioTimeSample = 0;
-    //----------------------------------------------
+        //[Header("[Capture In-Game Sound]")]
+        public bool StreamGameSound = true;
+        public int OutputSampleRate = 11025;
+        [Range(1, 8)]
+        public int OutputChannels = 1;
 
-    [Range(1f, 60f)]
-    public float StreamFPS = 20f;
-    private float interval = 0.05f;
+        private int CurrentAudioTimeSample = 0;
+        private int LastAudioTimeSample = 0;
+        //----------------------------------------------
 
-    public bool UseHalf = true;
-    public bool GZipMode = false;
+        [Range(1f, 60f)]
+        public float StreamFPS = 20f;
+        private float interval = 0.05f;
 
-    public UnityEventByteArray OnDataByteReadyEvent = new UnityEventByteArray();
+        public bool UseHalf = true;
+        public bool GZipMode = false;
 
-    //[Header("Pair Encoder & Decoder")]
-    public int label = 2001;
-    private int dataID = 0;
-    private int maxID = 1024;
-    private int chunkSize = 8096; //32768;
-    private float next = 0f;
-    private bool stop = false;
+        public AudioOutputFormat OutputFormat = AudioOutputFormat.FMPCM16;
+        public UnityEventByteArray OnDataByteReadyEvent = new UnityEventByteArray();
+        public UnityEventByteArray OnRawPCM16ReadyEvent = new UnityEventByteArray();
 
-    public int dataLength;
-    // Use this for initialization
-    void Start()
-    {
-        StartCoroutine(CaptureMic());
-        StartCoroutine(SenderCOR());
-    }
+        //[Header("Pair Encoder & Decoder")]
+        [Range(1000, UInt16.MaxValue)] public UInt16 label = 2001;
+        private UInt16 dataID = 0;
+        private UInt16 maxID = 1024;
+        private int chunkSize = 1400; //32768;
+        private float next = 0f;
+        private bool stop = false;
+        private byte[] dataByte;
+        private byte[] dataByteTemp;
+        private Queue<byte[]> AppendQueueSendByteFMPCM16 = new Queue<byte[]>();
+        private Queue<byte[]> AppendQueueSendBytePCM16 = new Queue<byte[]>();
 
-    IEnumerator CaptureMic()
-    {
-        if (AudioMic == null) AudioMic = GetComponent<AudioSource>();
-        if (AudioMic == null) AudioMic = gameObject.AddComponent<AudioSource>();
-
-        //Check Target Device
-        DetectedDevices = "";
-        string[] MicNames = Microphone.devices;
-        foreach (string _name in MicNames) DetectedDevices += _name + "\n";
-        if (DeviceMode == MicDeviceMode.TargetDevice)
+        public int dataLength;
+        // Use this for initialization
+        private void Start()
         {
-            bool IsCorrectName = false;
-            for(int i = 0; i<MicNames.Length; i++)
-            {
-                if(MicNames[i] == TargetDeviceName)
-                {
-                    IsCorrectName = true;
-                    break;
-                }
-            }
-            if (!IsCorrectName) TargetDeviceName = null;
+            StartAll();
         }
-        //Check Target Device
 
-        CurrentDeviceName = DeviceMode == MicDeviceMode.Default ? null : TargetDeviceName;
-
-        AudioMic.clip = Microphone.Start(CurrentDeviceName, true, 1, OutputSampleRate);
-        AudioMic.loop = true;
-        while (!(Microphone.GetPosition(CurrentDeviceName) > 0)) { }
-        Debug.Log("Start Mic(pos): " + Microphone.GetPosition(CurrentDeviceName));
-        AudioMic.Play();
-
-        AudioMic.volume = 0f;
-
-        OutputChannels = AudioMic.clip.channels;
-
-        while (!stop)
+        IEnumerator CaptureMic()
         {
-            AddMicData();
+            if (AudioMic == null) AudioMic = GetComponent<AudioSource>();
+            if (AudioMic == null) AudioMic = gameObject.AddComponent<AudioSource>();
+
+            //Check Target Device
+            DetectedDevices = "";
+            string[] MicNames = Microphone.devices;
+            foreach (string _name in MicNames) DetectedDevices += _name + "\n";
+            if (DeviceMode == MicDeviceMode.TargetDevice)
+            {
+                bool IsCorrectName = false;
+                for(int i = 0; i<MicNames.Length; i++)
+                {
+                    if(MicNames[i] == TargetDeviceName)
+                    {
+                        IsCorrectName = true;
+                        break;
+                    }
+                }
+                if (!IsCorrectName) TargetDeviceName = null;
+            }
+            //Check Target Device
+
+            CurrentDeviceName = DeviceMode == MicDeviceMode.Default ? MicNames[0] : TargetDeviceName;
+            AudioMic.clip = Microphone.Start(CurrentDeviceName, true, 1, OutputSampleRate);
+            AudioMic.loop = true;
+            while (!(Microphone.GetPosition(CurrentDeviceName) > 0)) { }
+            Debug.Log(CurrentDeviceName + " Start Mic(pos): " + Microphone.GetPosition(CurrentDeviceName));
+            AudioMic.Play();
+
+            AudioMic.volume = 0f;
+
+            OutputChannels = AudioMic.clip.channels;
+
+            while (!stop)
+            {
+                AddMicData();
+                yield return null;
+            }
             yield return null;
         }
-        yield return null;
-    }
 
-    private Int16 FloatToInt16(float inputFloat)
-    {
-        inputFloat *= 32767;
-        if (inputFloat < -32768) inputFloat = -32768;
-        if (inputFloat > 32767) inputFloat = 32767;
-        return Convert.ToInt16(inputFloat);
-    }
-
-    void AddMicData()
-    {
-        LastAudioTimeSample = CurrentAudioTimeSample;
-        //CurrentAudioTimeSample = AudioMic.timeSamples;
-        CurrentAudioTimeSample = Microphone.GetPosition(CurrentDeviceName);
-
-        if (CurrentAudioTimeSample != LastAudioTimeSample)
+        private void AddMicData()
         {
-            float[] samples = new float[AudioMic.clip.samples];
-            AudioMic.clip.GetData(samples, 0);
+            LastAudioTimeSample = CurrentAudioTimeSample;
+            //CurrentAudioTimeSample = AudioMic.timeSamples;
+            CurrentAudioTimeSample = Microphone.GetPosition(CurrentDeviceName);
 
-            if (CurrentAudioTimeSample > LastAudioTimeSample)
+            if (CurrentAudioTimeSample != LastAudioTimeSample)
             {
-                lock (_asyncLockAudio)
+                float[] samples = new float[AudioMic.clip.samples];
+                AudioMic.clip.GetData(samples, 0);
+
+                if (CurrentAudioTimeSample > LastAudioTimeSample)
                 {
                     for (int i = LastAudioTimeSample; i < CurrentAudioTimeSample; i++)
                     {
-                        byte[] byteData = BitConverter.GetBytes(FloatToInt16(samples[i]));
+                        byte[] byteData = BitConverter.GetBytes(FMCoreTools.FloatToInt16(samples[i]));
                         foreach (byte _byte in byteData) AudioBytes.Enqueue(_byte);
                     }
                 }
-            }
-            else if (CurrentAudioTimeSample < LastAudioTimeSample)
-            {
-                lock (_asyncLockAudio)
+                else if (CurrentAudioTimeSample < LastAudioTimeSample)
                 {
                     for (int i = LastAudioTimeSample; i < samples.Length; i++)
                     {
-                        byte[] byteData = BitConverter.GetBytes(FloatToInt16(samples[i]));
+                        byte[] byteData = BitConverter.GetBytes(FMCoreTools.FloatToInt16(samples[i]));
                         foreach (byte _byte in byteData) AudioBytes.Enqueue(_byte);
                     }
                     for (int i = 0; i < CurrentAudioTimeSample; i++)
                     {
-                        byte[] byteData = BitConverter.GetBytes(FloatToInt16(samples[i]));
+                        byte[] byteData = BitConverter.GetBytes(FMCoreTools.FloatToInt16(samples[i]));
                         foreach (byte _byte in byteData) AudioBytes.Enqueue(_byte);
                     }
                 }
             }
         }
-    }
 
-    IEnumerator SenderCOR()
-    {
-        while (!stop)
+        private IEnumerator InvokeEventsCheckerCOR()
         {
-            if (Time.realtimeSinceStartup > next)
+            while (!stop)
             {
-                interval = 1f / StreamFPS;
-                next = Time.realtimeSinceStartup + interval;
-                EncodeBytes();
+                yield return null;
+                while (AppendQueueSendByteFMPCM16.Count > 0) OnDataByteReadyEvent.Invoke(AppendQueueSendByteFMPCM16.Dequeue());
+                while (AppendQueueSendBytePCM16.Count > 0) OnRawPCM16ReadyEvent.Invoke(AppendQueueSendBytePCM16.Dequeue());
             }
-            yield return null;
-        }
-    }
-
-    void EncodeBytes()
-    {
-        //==================getting byte data==================
-        byte[] dataByte;
-
-        byte[] _samplerateByte = BitConverter.GetBytes(OutputSampleRate);
-        byte[] _channelsByte = BitConverter.GetBytes(OutputChannels);
-        lock (_asyncLockAudio)
-        {
-            dataByte = new byte[AudioBytes.Count + _samplerateByte.Length + _channelsByte.Length];
-
-            Buffer.BlockCopy(_samplerateByte, 0, dataByte, 0, _samplerateByte.Length);
-            Buffer.BlockCopy(_channelsByte, 0, dataByte, 4, _channelsByte.Length);
-            Buffer.BlockCopy(AudioBytes.ToArray(), 0, dataByte, 8, AudioBytes.Count);
-            AudioBytes.Clear();
+            yield break;
         }
 
-        if (GZipMode) dataByte = dataByte.FMZipBytes();
-        //==================getting byte data==================
-
-        dataLength = dataByte.Length;
-        int _length = dataByte.Length;
-        int _offset = 0;
-
-        byte[] _meta_label = BitConverter.GetBytes(label);
-        byte[] _meta_id = BitConverter.GetBytes(dataID);
-        byte[] _meta_length = BitConverter.GetBytes(_length);
-
-        int chunks = Mathf.FloorToInt(dataByte.Length / chunkSize);
-        for (int i = 0; i <= chunks; i++)
+        private IEnumerator SenderCOR()
         {
-            byte[] _meta_offset = BitConverter.GetBytes(_offset);
-            int SendByteLength = (i == chunks) ? (_length % chunkSize + 18) : (chunkSize + 18);
-            byte[] SendByte = new byte[SendByteLength];
+            StartCoroutine(InvokeEventsCheckerCOR());
+            while (!stop)
+            {
+                if (Time.realtimeSinceStartup > next)
+                {
+                    interval = 1f / StreamFPS;
+                    next = Time.realtimeSinceStartup + interval;
 
-            Buffer.BlockCopy(_meta_label, 0, SendByte, 0, 4);
-            Buffer.BlockCopy(_meta_id, 0, SendByte, 4, 4);
-            Buffer.BlockCopy(_meta_length, 0, SendByte, 8, 4);
-            Buffer.BlockCopy(_meta_offset, 0, SendByte, 12, 4);
-            SendByte[16] = (byte)(GZipMode ? 1 : 0);
-            SendByte[17] = (byte)0;//not used, but just keep one empty byte for standard
+                    //==================getting byte data==================
+                    if (OutputFormat == AudioOutputFormat.FMPCM16)
+                    {
+                        byte[] _samplerateByte = BitConverter.GetBytes(OutputSampleRate);
+                        byte[] _channelsByte = BitConverter.GetBytes(OutputChannels);
 
-            Buffer.BlockCopy(dataByte, _offset, SendByte, 18, SendByte.Length - 18);
-            OnDataByteReadyEvent.Invoke(SendByte);
-            _offset += chunkSize;
+                        dataByte = new byte[AudioBytes.Count + _samplerateByte.Length + _channelsByte.Length];
+
+                        Buffer.BlockCopy(_samplerateByte, 0, dataByte, 0, _samplerateByte.Length);
+                        Buffer.BlockCopy(_channelsByte, 0, dataByte, 4, _channelsByte.Length);
+                        Buffer.BlockCopy(AudioBytes.ToArray(), 0, dataByte, 8, AudioBytes.Count);
+                    }
+                    else
+                    {
+                        dataByte = new byte[AudioBytes.Count];
+                        Buffer.BlockCopy(AudioBytes.ToArray(), 0, dataByte, 0, AudioBytes.Count);
+                        GZipMode = false;
+                    }
+
+                    AudioBytes = new ConcurrentQueue<byte>();
+
+                    if (GZipMode) yield return FMCoreTools.RunCOR<byte[]>(FMCoreTools.FMZippedByteCOR(dataByte), (output) => dataByte = output);
+
+                    dataByteTemp = dataByte.ToArray();
+                    //==================getting byte data==================
+                    int _length = dataByteTemp.Length;
+                    dataLength = _length;
+
+                    int _offset = 0;
+                    byte[] _meta_label = BitConverter.GetBytes(label);
+                    byte[] _meta_id = BitConverter.GetBytes(dataID);
+                    byte[] _meta_length = BitConverter.GetBytes(_length);
+
+                    int chunks = Mathf.CeilToInt((float)_length / (float)chunkSize);
+                    int metaByteLength = 14;
+                    for (int i = 1; i <= chunks; i++)
+                    {
+                        int dataByteLength = (i == chunks) ? (_length % chunkSize) : (chunkSize);
+                        if (OutputFormat == AudioOutputFormat.FMPCM16)
+                        {
+                            byte[] _meta_offset = BitConverter.GetBytes(_offset);
+                            byte[] SendByte = new byte[dataByteLength + metaByteLength];
+
+                            Buffer.BlockCopy(_meta_label, 0, SendByte, 0, 2);
+                            Buffer.BlockCopy(_meta_id, 0, SendByte, 2, 2);
+                            Buffer.BlockCopy(_meta_length, 0, SendByte, 4, 4);
+                            Buffer.BlockCopy(_meta_offset, 0, SendByte, 8, 4);
+                            SendByte[12] = (byte)(GZipMode ? 1 : 0);
+                            SendByte[13] = (byte)0;//not used, but just keep one empty byte for standard
+
+                            Buffer.BlockCopy(dataByteTemp, _offset, SendByte, 14, dataByteLength);
+                            AppendQueueSendByteFMPCM16.Enqueue(SendByte);
+                        }
+                        else
+                        {
+                            byte[] SendByte = new byte[dataByteLength];
+                            Buffer.BlockCopy(dataByteTemp, _offset, SendByte, 0, dataByteLength);
+
+                            if (!BitConverter.IsLittleEndian) Array.Reverse(SendByte);
+                            AppendQueueSendBytePCM16.Enqueue(SendByte);
+                        }
+                        _offset += chunkSize;
+                    }
+
+                    dataID++;
+                    if (dataID > maxID) dataID = 0;
+                }
+                yield return null;
+            }
         }
 
-        dataID++;
-        if (dataID > maxID) dataID = 0;
-    }
+        private void OnEnable() { StartAll(); }
+        private void OnDisable() { StopAll(); }
+        private void OnApplicationQuit() { StopAll(); }
+        private void OnDestroy() { StopAll(); }
 
-    private void OnEnable()
-    {
-        if (Time.realtimeSinceStartup <= 3f) return;
-        StartAll();
-    }
-    private void OnDisable()
-    {
-        StopAll();
-    }
-
-    void StartAll()
-    {
-        if (stop)
+        private bool initialised = false;
+        private void StartAll()
         {
+            if (initialised) return;
+            initialised = true;
+
             stop = false;
             StartCoroutine(SenderCOR());
             StartCoroutine(CaptureMic());
         }
-    }
-    void StopAll()
-    {
-        stop = true;
-        StopCoroutine(SenderCOR());
-        StopCoroutine(CaptureMic());
+        private void StopAll()
+        {
+            initialised = false;
+            stop = true;
+            StopAllCoroutines();
 
-        AudioMic.Stop();
-        Microphone.End(CurrentDeviceName);
-    }
+            if (AudioMic != null)
+            {
+                AudioMic.Stop();
+                Microphone.End(CurrentDeviceName);
+            }
+
+            AppendQueueSendByteFMPCM16.Clear();
+            AppendQueueSendBytePCM16.Clear();
+        }
 #endif
+    }
 }

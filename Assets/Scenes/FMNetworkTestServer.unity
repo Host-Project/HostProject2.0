@@ -815,7 +815,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2145730577}
-  - component: {fileID: 2145730576}
+  - component: {fileID: 2145730578}
   m_Layer: 0
   m_Name: FMNetworkManager
   m_TagString: Untagged
@@ -823,7 +823,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2145730576
+--- !u!4 &2145730577
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2145730575}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2145730578
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -832,30 +847,51 @@ MonoBehaviour:
   m_GameObject: {fileID: 2145730575}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f68ecff929c04b31832e383f4dfe4fd, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d91033a6cc07c549868976848f16305, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EditorShowNetworking: 1
+  EditorShowSyncTransformation: 1
+  EditorShowEvents: 1
+  EditorShowDebug: 1
+  EditorShowServerSettings: 1
+  EditorShowClientSettings: 0
+  EditorShowDataStreamSettings: 0
+  EditorShowNetworkObjects: 0
+  EditorShowReceiverEvents: 1
+  EditorShowConnectionEvents: 0
   AutoInit: 1
-  Initialised: 0
   NetworkType: 0
   Server: {fileID: 0}
   Client: {fileID: 0}
-  StereoPi: {fileID: 0}
+  DataStream: {fileID: 0}
   ServerSettings:
     ServerListenPort: 3333
-    UseAsyncListener: 0
-    UseMainThreadSender: 1
+    UseAsyncListener: 1
+    UseMainThreadSender: 0
+    SupportMulticast: 0
+    MulticastAddress: 239.255.255.255
     ConnectionCount: 0
   ClientSettings:
     ClientListenPort: 3334
-    UseMainThreadSender: 1
+    UseMainThreadSender: 0
+    ForceBroadcast: 0
+    SupportMulticast: 0
+    MulticastAddress: 239.255.255.255
     AutoNetworkDiscovery: 1
     ServerIP: 
     IsConnected: 0
-  StereoPiSettings:
-    StereoPiProtocol: 0
+  DataStreamSettings:
+    DataStreamType: 0
+    DataStreamProtocol: 0
     ClientListenPort: 3001
+    UDPTransferType: 0
+    TCPSocketType: 0
+    MulticastAddress: 239.255.255.255
     IsConnected: 0
+    ClientIP: 127.0.0.1
+    ClientIPList: []
+    UseMainThreadSender: 1
   DebugStatus: 1
   ShowLog: 1
   Status: 
@@ -881,23 +917,24 @@ MonoBehaviour:
   GetRawReceivedData:
     m_PersistentCalls:
       m_Calls: []
+  OnClientConnectedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnClientDisconnectedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnConnectionCountChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnFoundServerEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnLostServerEvent:
+    m_PersistentCalls:
+      m_Calls: []
   NetworkObjects: []
   SyncFPS: 30
---- !u!4 &2145730577
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2145730575}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  EnableNetworkObjectsSync: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

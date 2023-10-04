@@ -3,41 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ConnectionDebugText : MonoBehaviour
+namespace FMETP
 {
-    public Text DebugText;
-
-    public NetworkDiscovery ND;
-    public NetworkActionClient NC;
-    // Start is called before the first frame update
-    void Start()
+    public class ConnectionDebugText : MonoBehaviour
     {
-        
-    }
+        public Text DebugText;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(DebugText == null) return;
+        public NetworkDiscovery ND;
+        public NetworkActionClient NC;
 
-        string debugStr = "";
-        debugStr += "num thread: " + Loom.numThreads + " / " + Loom.maxThreads + "\n";
-        if (ND != null)
+        // Update is called once per frame
+        void Update()
         {
-            debugStr += "Network Discovery\n";
-            debugStr += "-server IP: " + ND.ServerIP + "\n";
-            debugStr += "-client IP: " + ND.ClientIP + "\n";
-            debugStr += "-server received: " + ND.ServerStr + "\n";
-            debugStr += "-client received: " + ND.ClientStr + "\n";
-        }
+            if (DebugText == null) return;
 
-        if (NC != null)
-        {
-            debugStr += "Network TCP Client\n";
-            debugStr += "-connected: " + NC.isConnected + "\n";
-            debugStr += "-Ip: " + NC.IP + "\n";
-        }
+            string debugStr = "";
+            debugStr += "num thread: " + Loom.numThreads + " / " + Loom.maxThreads + "\n";
+            if (ND != null)
+            {
+                debugStr += "Network Discovery\n";
+                debugStr += "-server IP: " + ND.ServerIP + "\n";
+                debugStr += "-client IP: " + ND.ClientIP + "\n";
+                debugStr += "-server received: " + ND.ServerStr + "\n";
+                debugStr += "-client received: " + ND.ClientStr + "\n";
+            }
 
-        DebugText.text = debugStr;
+            if (NC != null)
+            {
+                debugStr += "Network TCP Client\n";
+                debugStr += "-connected: " + NC.isConnected + "\n";
+                debugStr += "-Ip: " + NC.IP + "\n";
+            }
+
+            DebugText.text = debugStr;
+        }
     }
 }

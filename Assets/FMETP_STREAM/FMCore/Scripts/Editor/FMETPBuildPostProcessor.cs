@@ -10,8 +10,10 @@ using System.Collections.Generic;
 using UnityEditor.iOS.Xcode;
 #endif
 
-public class FMETPBuildPostProcessor
+namespace FMETP
 {
+    public class FMETPBuildPostProcessor
+    {
 #if UNITY_IOS
     [PostProcessBuildAttribute(1)]
     public static void OnPostProcessBuild(BuildTarget target, string path)
@@ -44,7 +46,13 @@ public class FMETPBuildPostProcessor
         //project.AddBuildProperty(g, "LIBRARY_SEARCH_PATHS", "../FFmpeg-iOS/lib");
 
         Debug.Log("FM Build Settings: added Other Linker Flag for XCode");
+
+        //ref: https://developer.apple.com/documentation/xcode-release-notes/xcode-15-release-notes#Linking
+        project.AddBuildProperty(g, "OTHER_LDFLAGS", "-Wl");//fixed XCode 15 bug
+        project.AddBuildProperty(g, "OTHER_LDFLAGS", "-ld_classic");//fixed XCode 15 bug
+
         project.AddBuildProperty(g, "OTHER_LDFLAGS", "-lturbojpeg");
     }
 #endif
+    }
 }

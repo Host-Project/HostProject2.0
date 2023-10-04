@@ -2,30 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OffScreenTrigger : MonoBehaviour
+namespace FMETP
 {
-    WorldToScreenSpace[] WSSs;
-    // Start is called before the first frame update
-    void Start()
+    public class OffScreenTrigger : MonoBehaviour
     {
-        WSSs = transform.parent.GetComponentsInChildren<WorldToScreenSpace>(true);
-        foreach (WorldToScreenSpace WSS in WSSs)
+        private WorldToScreenSpace[] WSSs;
+        // Start is called before the first frame update
+        void Start()
         {
-            WSS.enabled = true;
+            WSSs = transform.parent.GetComponentsInChildren<WorldToScreenSpace>(true);
+            foreach (WorldToScreenSpace WSS in WSSs) WSS.enabled = true;
         }
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void Action_offscreen()
-    {
-        foreach (WorldToScreenSpace WSS in WSSs)
+        public void Action_offscreen()
         {
-            WSS.InvokeOffScreen();
+            foreach (WorldToScreenSpace WSS in WSSs) WSS.InvokeOffScreen();
         }
     }
 }

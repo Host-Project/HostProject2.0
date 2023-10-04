@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneManager_helper : MonoBehaviour
+namespace FMETP
 {
-    public void Action_LoadSceneName(string _scene)
+    public class SceneManager_helper : MonoBehaviour
     {
-        SceneManager.LoadScene(_scene);
-    }
+        public void Action_LoadSceneName(string _scene)
+        {
+            SceneManager.LoadScene(_scene);
+        }
 
-    public void Action_Quit()
-    {
+        public void Action_Quit()
+        {
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
-        Application.Quit();
+            Application.Quit();
+        }
     }
 }
