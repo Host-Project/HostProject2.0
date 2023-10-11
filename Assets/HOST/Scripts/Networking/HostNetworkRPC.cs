@@ -9,15 +9,16 @@ namespace HOST.Networking {
     {
 
         public static int instanceCount = 0;
-        public int instanceId = 0;
+
+
+        public int InstanceId { get; set; }
 
         public static List<HostNetworkRPC> rpcInstances = new List<HostNetworkRPC>();
 
         // Start is called before the first frame update
         protected void Start()
         {
-            
-            instanceId = instanceCount++;
+            InstanceId = instanceCount++;
             rpcInstances.Add(this);
         }
 

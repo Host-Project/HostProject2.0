@@ -7,22 +7,15 @@ using Unity.VisualScripting;
 using System.Linq;
 using FMETP;
 
+
 namespace HOST.Networking
 {
 
 
-    public class HostNetworkManager : HostNetworkRPC
+    public class HostNetworkManager : MonoBehaviour
     {
 
         public static HostNetworkManager instance;
-
-        private Dictionary<string, Action> rpcMethods = new Dictionary<string, Action>();
-        private List<object> rpcObjects = new List<object>();
-
-        public void TestRPC(int i, string j)
-        {
-            Debug.Log("RPC Test: " + i + ", " + j);
-        }
 
         private void Awake()
         {
@@ -32,9 +25,8 @@ namespace HOST.Networking
         }
 
         // Start is called before the first frame update
-        protected void Start()
+        void Start()
         {
-            base.Start();
             RegisterNetworkObjects();
         }
 
@@ -55,11 +47,6 @@ namespace HOST.Networking
                 FMNetworkManager.instance.NetworkObjects[count] = networkObject.gameObject;
                 networkObject.Id = count++;
             }
-        }
-
-        public void testString(string s)
-        {
-
         }
 
         public void HandleStringDataEvent(string data)

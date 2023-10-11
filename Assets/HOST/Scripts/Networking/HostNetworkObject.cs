@@ -11,12 +11,12 @@ public class HostNetworkObject : MonoBehaviour
 
     private void Update()
     {
-        HostNetworkManager.instance.SendRPC(new HostNetworkRPCMessage()
+        /*HostNetworkManager.instance.SendRPC(new HostNetworkRPCMessage()
         {
-            InstanceId = HostNetworkManager.instance.instanceId,
+            InstanceId = HostNetworkManager.instance.InstanceId,
             MethodName = "TestRPC",
             Parameters = new object[] { 1, "Test" }
-        });
+        });*/
         
         if (transform.hasChanged && FMNetworkManager.instance.NetworkType == FMNetworkType.Client)
         {

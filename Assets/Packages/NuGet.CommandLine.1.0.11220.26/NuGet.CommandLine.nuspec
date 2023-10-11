@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <id>NuGet.CommandLine</id>
+    <version>1.0.11220.26</version>
+    <authors>Outercurve Foundation</authors>
+    <owners>Outercurve Foundation</owners>
+    <projectUrl>http://nuget.codeplex.com</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>NuGet command line tool used to create and push packages.</description>
+    <summary>NuGet command line tool used to create and push packages.</summary>
+    <language>en-US</language>
+    <tags>nuget</tags>
+  </metadata>
+</package>
