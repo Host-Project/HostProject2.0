@@ -1,3 +1,5 @@
+using FMETP;
+using HOST.Networking;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,24 +7,29 @@ using UnityEngine.Events;
 
 namespace HOST.Scenario
 {
-    public class Element : MonoBehaviour
+    public class Element : HostNetworkRPC
     {
+
         [SerializeField]
-        private int weight = 1;
+        private List<IInfluencer> influencers;
 
-        private UnityEvent<Element> onComplete;
-
-        public UnityEvent<Element> OnComplete { get => onComplete; set => onComplete = value; }
+        public UnityEvent<Element> onComplete;
 
         private bool isCompleted = false;
 
-        public int Weight { get => weight; set => weight = value; }
-
-
         public void Complete()
         {
+            if(FMNetworkManager.instance.NetworkType == FMNetworkType.Server)
+            {
+                HostNetworkManager.instance.SendRPC(new HostNetworkRPCMessage()
+                {
+                    InstanceId = this.InstanceId,
+                    MethodName = "Complete",
+                    Parameters = new object[] {  }
+                });
+            }
             isCompleted = true;
-            OnComplete.Invoke(this);
+            onComplete.Invoke(this);
         }
 
 
@@ -30,6 +37,7 @@ namespace HOST.Scenario
         {
             return isCompleted;
         }
+
 
 
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using HOST.Networking;
 using UnityEngine.Events;
+using FMETP;
 
 namespace HOST.Scenario
 {
@@ -11,21 +12,16 @@ namespace HOST.Scenario
         [SerializeField]
         private List<Riddle> riddles;
 
-        [SerializeField]
-        private int recommandedTimeInSeconds;
+        #region Events
 
-        [SerializeField]
-        private UnityEvent onScenarioStart;
+        public UnityEvent onScenarioStart;
 
-        [SerializeField]
-        private UnityEvent onScenarioComplete;
+        public UnityEvent onScenarioComplete;
 
-        [SerializeField]
-        private UnityEvent<Riddle> onRiddleComplete;
+        #endregion
 
         public static Scenario instance;
 
-        private int timeCounterInSeconds = 0;
 
         private int currentRiddleIndex = 0;
 
@@ -33,43 +29,49 @@ namespace HOST.Scenario
         {
             base.Start();
             if (instance == null) instance = this;
-            foreach (Riddle element in riddles)
-            {
-                element.OnComplete.AddListener(OnRiddleComplete);
-                element.StartGlobal();
-            }
-            onScenarioStart.Invoke();
         }
 
         private void Update()
         {
-            
+
 
         }
 
-        private void OnRiddleComplete()
+        public void StartScenario()
         {
-
-            if(currentRiddleIndex == riddles.Count)
+            if (FMNetworkManager.instance.NetworkType == FMNetworkType.Client) return;
+            foreach (Riddle riddle in riddles)
             {
+                riddle.onRiddleComplete.AddListener(OnRiddleComplete);
+                riddle.StartGlobal();
+            }
+            currentRiddleIndex = 0;
+            StartRiddle();
+            onScenarioStart.Invoke();
+        }
+
+        public void StartRiddle()
+        {
+            if (FMNetworkManager.instance.NetworkType == FMNetworkType.Client) return;
+            riddles[currentRiddleIndex].StartRiddle();
+        }
+
+        public void OnRiddleComplete(Riddle r)
+        {
+            if (FMNetworkManager.instance.NetworkType == FMNetworkType.Client) return;
+            if (r != riddles[currentRiddleIndex]) return;
+            if (currentRiddleIndex == riddles.Count - 1)
+            {
+
                 onScenarioComplete.Invoke();
             }
             else
             {
-                StartNextRiddle();
+                currentRiddleIndex++;
+                StartRiddle();
             }
-
         }
 
-        private void StartNextRiddle()
-        {
-            currentRiddleIndex++;
-            riddles[currentRiddleIndex].StartRiddle();
-        }
 
-        public float GetCompletion()
-        {
-            return 0f;
-        }
     }
 }

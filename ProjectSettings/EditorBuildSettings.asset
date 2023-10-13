@@ -5,11 +5,8 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/FMNetworkManagerTestClient.unity
-    guid: 15ea9b57f32888546a2b588bc1977aa3
   - enabled: 1
-    path: Assets/HOST/Scenes/FMNetworkTestServer.unity
-    guid: 949270b23175cf44280b19aec46819be
+    path: Assets/HOST/Scenes/ScenarioTest.unity
+    guid: dd3f24cff34b7ad45a7a85fef664460b
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
