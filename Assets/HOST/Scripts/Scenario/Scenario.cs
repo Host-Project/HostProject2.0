@@ -25,18 +25,19 @@ namespace HOST.Scenario
 
         private int currentRiddleIndex = 0;
 
-        private new void Start()
+        private void OnEnable()
+        {
+            
+        }
+
+        private  void Start()
         {
             base.Start();
-            if (instance == null) instance = this;
+            if(instance != null)
+            {
+                instance = this;
+            }
         }
-
-        private void Update()
-        {
-
-
-        }
-
         public void StartScenario()
         {
             if (FMNetworkManager.instance.NetworkType == FMNetworkType.Client) return;
@@ -72,6 +73,10 @@ namespace HOST.Scenario
             }
         }
 
+        public  List<Riddle> GetRiddles()
+        {
+            return riddles;
+        }
 
     }
 }
