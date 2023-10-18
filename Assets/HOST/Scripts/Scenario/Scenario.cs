@@ -30,14 +30,14 @@ namespace HOST.Scenario
             
         }
 
-        private  void Start()
+        private void Awake()
         {
-            base.Start();
-            if(instance != null)
+            if (instance == null)
             {
                 instance = this;
             }
         }
+
         public void StartScenario()
         {
             if (FMNetworkManager.instance.NetworkType == FMNetworkType.Client) return;
@@ -78,5 +78,9 @@ namespace HOST.Scenario
             return riddles;
         }
 
+        public void PlayInfluence(int influenceLevel)
+        {
+            riddles[currentRiddleIndex].PlayInfluence(influenceLevel);
+        }
     }
 }

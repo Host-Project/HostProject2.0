@@ -11,7 +11,7 @@ namespace HOST.Scenario
     {
 
         [SerializeField]
-        private List<IInfluencer> influencers;
+        public List<Influencer> influencers;
 
         public UnityEvent<Element> onComplete;
 

@@ -41,7 +41,6 @@ public class DragAndDrop : MonoBehaviour
 
     private void MousePressed(InputAction.CallbackContext context)
     {
-        Debug.Log("MousePressed");
         Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
@@ -55,14 +54,10 @@ public class DragAndDrop : MonoBehaviour
 
     private IEnumerator DragUpdate(GameObject clickedObject)
     {
-        Debug.Log("DragUpdate");
         float initialDistance = Vector3.Distance(clickedObject.transform.position, mainCamera.transform.position);
         while (mouseClick.ReadValue<float>() != 0)
         {
             Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
-            Vector3 direction = ray.GetPoint(initialDistance) - clickedObject.transform.position;
-
-            
             clickedObject.transform.position = Vector3.SmoothDamp(clickedObject.transform.position, ray.GetPoint(initialDistance), ref velocity, mouseDragSpeed);
             yield return waitForFixedUpdate;
 

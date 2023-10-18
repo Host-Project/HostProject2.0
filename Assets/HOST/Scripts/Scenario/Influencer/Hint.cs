@@ -5,28 +5,21 @@ using UnityEngine.Events;
 
 namespace HOST.Scenario
 {
-    public class Hint : MonoBehaviour, IInfluencer
+    public class Hint : Influencer
     {
         [SerializeField]
         [Range(1, 5)]
         private int influenceLevel = -1;
 
-        [SerializeField]
-        private UnityEvent play;
 
-        public int GetInfluenceLevel()
+        public override int GetInfluenceLevel()
         {
             return influenceLevel;
         }
 
-        public void Play()
+        public void Debug()
         {
-            play.Invoke();
-        }
-
-        public static void Debug()
-        {
-            UnityEngine.Debug.Log("Debug Hint");
+            UnityEngine.Debug.Log("Debug Hint of influence : " + GetInfluenceLevel());
         }
     }
 }

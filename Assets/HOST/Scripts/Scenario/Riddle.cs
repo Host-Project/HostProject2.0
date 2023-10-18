@@ -18,10 +18,12 @@ namespace HOST.Scenario
         public UnityEvent<Riddle> onRiddleStart;
         public UnityEvent<Riddle> onRiddleComplete;
 
+        public List<Element> Elements { get => elements; set => elements = value; }
+
         private void Start()
         {
             base.Start();
-            foreach (Element element in elements)
+            foreach (Element element in Elements)
             {
                 element.onComplete.AddListener(OnElementComplete);
             }
@@ -29,7 +31,7 @@ namespace HOST.Scenario
 
         private bool IsCompleted()
         {
-            foreach (Element element in elements)
+            foreach (Element element in Elements)
             {
                 if (!element.IsCompleted())
                 {
@@ -41,7 +43,7 @@ namespace HOST.Scenario
 
         private void OnElementComplete(Element elem)
         {
-            if(IsCompleted())
+            if (IsCompleted())
                 onRiddleComplete.Invoke(this);
         }
 
@@ -74,6 +76,36 @@ namespace HOST.Scenario
             if (IsCompleted())
             {
                 onRiddleComplete.Invoke(this);
+            }
+        }
+
+        public void PlayInfluence(int influenceLevel)
+        {
+            while (true)
+            {
+                foreach (Element e in Elements)
+                {
+                    if (e.IsCompleted()) continue;
+
+                    foreach (Influencer influencer in e.influencers)
+                    {
+                        if (influencer.GetInfluenceLevel() == influenceLevel)
+                        {
+                            HostNetworkManager.instance.SendRPC(new HostNetworkRPCMessage()
+                            {
+                                InstanceId = influencer.InstanceId,
+                                MethodName = "Play",
+                                Parameters = new object[] { }
+                            });
+
+                            influencer.Play();
+                            return;
+                        }
+                    }
+                }
+                influenceLevel += influenceLevel > 0 ? -1 : 1;
+                if (influenceLevel == 0)
+                    return;
             }
         }
 
