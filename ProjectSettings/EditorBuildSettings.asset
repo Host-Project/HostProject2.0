@@ -8,5 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/HOST/Scenes/ScenarioTest.unity
     guid: dd3f24cff34b7ad45a7a85fef664460b
-  m_configObjects: {}
+  m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 08d2dbaa0bb955a49800aa0398ab5c44, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 8c74a8a6ee6f4f3499de967bac1bfb04, type: 2}
   m_UseUCBPForAssetBundles: 0

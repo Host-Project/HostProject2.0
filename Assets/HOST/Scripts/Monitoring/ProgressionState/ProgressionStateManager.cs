@@ -86,11 +86,11 @@ namespace HOST.Monitoring
             float deltaRiddleProgression = GetCurrentRiddleProgressionPercentage() - expectedRiddleProgressionAtT;
             float deltaScenarioProgression = GetScenarioProgressionPercentage() - expectedScenarioProgressionAtT;
 
-            if (deltaRiddleProgression > 0.1f)
+            if (deltaRiddleProgression > deltaOnTime)
             {
                 currentRiddleState = new RiddleEarlyState();
             }
-            else if (deltaRiddleProgression < -0.1f)
+            else if (deltaRiddleProgression < -deltaOnTime)
             {
                 currentRiddleState = new RiddleLateState();
             }
@@ -99,11 +99,11 @@ namespace HOST.Monitoring
                 currentRiddleState = new OnTimeState();
             }
 
-            if (deltaScenarioProgression > 0.1f)
+            if (deltaScenarioProgression > deltaOnTime)
             {
                 currentScenarioState = new ScenarioEarlyState();
             }
-            else if (deltaScenarioProgression < -0.1f)
+            else if (deltaScenarioProgression < -deltaOnTime)
             {
                 currentScenarioState = new ScenarioLateState();
             }

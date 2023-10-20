@@ -20,7 +20,7 @@ namespace HOST.Scenario
 
         public List<Element> Elements { get => elements; set => elements = value; }
 
-        private void Start()
+        private new void Start()
         {
             base.Start();
             foreach (Element element in Elements)

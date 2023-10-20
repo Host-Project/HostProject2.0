@@ -10,9 +10,21 @@ using UnityEngine.Events;
 namespace HOST.Monitoring
 {
     [Serializable]
-    public struct WeightedRiddle
+    public class WeightedRiddle
     {
         public Scenario.Riddle riddle;
+        public List<WeightedElements> weightedElements;
+
+        public int GetWeight()
+        {
+            return weightedElements.Sum(w => w.weight);
+        }
+    }
+
+    [Serializable]
+    public class WeightedElements
+    {
+        public Scenario.Element element;
         public int weight;
     }
     public class ScenarioManager : ProgressionStateManager
@@ -35,7 +47,7 @@ namespace HOST.Monitoring
                 {
                     element.onComplete.AddListener(OnElementComplete);
                 }
-                ScenarioWeights += wr.weight;
+                ScenarioWeights += wr.GetWeight();
             }
         }
 
@@ -43,14 +55,14 @@ namespace HOST.Monitoring
         {
             WeightedRiddle rw = riddles.Where(w => w.riddle == r).First();
 
-            ScenarioProgression += rw.weight;
+            ScenarioProgression += rw.GetWeight();
         }
 
         private void OnRiddleStart(Scenario.Riddle r)
         {
             WeightedRiddle rw = riddles.Where(w => w.riddle == r).First();
 
-            CurrentRiddleWeight = rw.weight;
+            CurrentRiddleWeight = rw.GetWeight();
             CurrentRiddleProgression = 0.0f;
             CurrentRiddleDuration = 0.0f;
 
@@ -58,7 +70,8 @@ namespace HOST.Monitoring
 
         private void OnElementComplete(Scenario.Element e)
         {
-            CurrentRiddleProgression += 1.0f / CurrentRiddleWeight;
+            WeightedRiddle rw = riddles.Where(w => w.riddle.Elements.Contains(e)).First();
+            CurrentRiddleProgression += rw.weightedElements.Where(w => w.element == e).First().weight;
             LastCompletionTime = CurrentTime;
         }
 

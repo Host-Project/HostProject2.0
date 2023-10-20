@@ -9,8 +9,6 @@ public class DragAndDrop : MonoBehaviour
     [SerializeField]
     private InputAction mouseClick;
 
-    [SerializeField]
-    private float mouseDragPhysicsSpeed = 1f;
 
     [SerializeField]
     private float mouseDragSpeed = 0.1f;
