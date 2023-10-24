@@ -22,7 +22,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="HOST.Monitoring.ProgressionStateManager">
-    <Position X="3.25" Y="10.5" Width="3.25" />
+    <Position X="12" Y="11.25" Width="3.25" />
     <TypeIdentifier>
       <HashCode>IgAQACAECAIgAAgCCBAACAkQAAwQAECAABAAgAgQAEA=</HashCode>
       <FileName>Assets\HOST\Scripts\Monitoring\ProgressionState\ProgressionStateManager.cs</FileName>
@@ -71,7 +71,20 @@
     </TypeIdentifier>
   </Class>
   <Class Name="HOST.Monitoring.WeightedRiddle">
-    <Position X="8" Y="13" Width="1.5" />
+    <Position X="5.25" Y="11.25" Width="1.5" />
+    <AssociationLine Name="riddle" Type="HOST.Scenario.Riddle" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.531" Y="11.25" />
+        <Point X="6.531" Y="10.607" />
+        <Point X="8.188" Y="10.607" />
+        <Point X="8.188" Y="10.232" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="weightedElements" Type="HOST.Monitoring.WeightedElements">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.075" Y="0.085" />
+      </MemberNameLabel>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAACAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\HOST\Scripts\Monitoring\ScenarioManager.cs</FileName>
@@ -84,7 +97,12 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="HOST.Monitoring.WeightedElements">
-    <Position X="9.5" Y="10.75" Width="1.75" />
+    <Position X="9.75" Y="11.25" Width="1.75" />
+    <AssociationLine Name="element" Type="HOST.Scenario.Element">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.034" Y="0.355" />
+      </MemberNameLabel>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAgAAAAAAAAAAA=</HashCode>
       <FileName>Assets\HOST\Scripts\Monitoring\ScenarioManager.cs</FileName>
@@ -94,7 +112,12 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="HOST.Monitoring.ScenarioManager">
-    <Position X="3.5" Y="17.75" Width="2.5" />
+    <Position X="5.25" Y="14.25" Width="2.5" />
+    <AssociationLine Name="riddles" Type="HOST.Monitoring.WeightedRiddle">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-2.154" Y="0.564" />
+      </MemberNameLabel>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AQAAAAEACCAAgAAAAAAEAAAIAEAAAAAAAAAAAgCAAAQ=</HashCode>
       <FileName>Assets\HOST\Scripts\Monitoring\ScenarioManager.cs</FileName>
@@ -132,7 +155,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="HOST.Scenario.Element">
-    <Position X="10.75" Y="6" Width="2.75" />
+    <Position X="10.75" Y="8" Width="2.75" />
     <TypeIdentifier>
       <HashCode>IAAAQAAAAAAAAAIAAAAAAAAAEAAAABAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\HOST\Scripts\Scenario\Element.cs</FileName>
@@ -163,7 +186,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="HOST.Scenario.Riddle">
-    <Position X="7" Y="6" Width="3" />
+    <Position X="7.25" Y="6.75" Width="3" />
     <TypeIdentifier>
       <HashCode>gAAABAAQICAAABgAAAAQAAAAAEAAABAAAAAAAAAQAAA=</HashCode>
       <FileName>Assets\HOST\Scripts\Scenario\Riddle.cs</FileName>
