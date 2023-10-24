@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="DragAndDrop" Collapsed="true">
+    <Position X="19" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAAAAAAAAAIAAlAAIIAQAAAAACEA=</HashCode>
+      <FileName>Assets\HOST\Scripts\DragAndDrop.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HostNetworkObject" Collapsed="true">
+    <Position X="22.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Assets\HOST\Scripts\Networking\HostNetworkObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TestStructure" Collapsed="true">
+    <Position X="22.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAESAAAAAAAAAAAAAAAAEAAAAAAAAEAAAAAgAQ=</HashCode>
+      <FileName>Assets\HOST\Scripts\Scenario\TestStructure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HOST.Monitoring.ProgressionStateManager">
+    <Position X="3.25" Y="10.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>IgAQACAECAIgAAgCCBAACAkQAAwQAECAABAAgAgQAEA=</HashCode>
+      <FileName>Assets\HOST\Scripts\Monitoring\ProgressionState\ProgressionStateManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HOST.Monitoring.OnTimeState" Collapsed="true">
+    <Position X="12.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\HOST\Scripts\Monitoring\ProgressionState\States\OnTimeState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HOST.Monitoring.ProgressionState">
+    <Position X="7.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Assets\HOST\Scripts\Monitoring\ProgressionState\States\ProgressionState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HOST.Monitoring.RiddleEarlyState" Collapsed="true">
+    <Position X="3.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\HOST\Scripts\Monitoring\ProgressionState\States\RiddleEarlyState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HOST.Monitoring.RiddleLateState" Collapsed="true">
+    <Position X="5.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\HOST\Scripts\Monitoring\ProgressionState\States\RiddleLateState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HOST.Monitoring.ScenarioEarlyState" Collapsed="true">
+    <Position X="8" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\HOST\Scripts\Monitoring\ProgressionState\States\ScenarioEarlyState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HOST.Monitoring.ScenarioLateState" Collapsed="true">
+    <Position X="10.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\HOST\Scripts\Monitoring\ProgressionState\States\ScenarioLateState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HOST.Monitoring.WeightedRiddle">
+    <Position X="8" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\HOST\Scripts\Monitoring\ScenarioManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="riddle" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="weightedElements" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="HOST.Monitoring.WeightedElements">
+    <Position X="9.5" Y="10.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\HOST\Scripts\Monitoring\ScenarioManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="element" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="HOST.Monitoring.ScenarioManager">
+    <Position X="3.5" Y="17.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAEACCAAgAAAAAAEAAAIAEAAAAAAAAAAAgCAAAQ=</HashCode>
+      <FileName>Assets\HOST\Scripts\Monitoring\ScenarioManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="riddles" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="HOST.Networking.HostNetworkManager" Collapsed="true">
+    <Position X="20.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQABAAAACAAACAABAAAAAAAAABAAAAAABAAAAAIAMA=</HashCode>
+      <FileName>Assets\HOST\Scripts\Networking\HostNetworkManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HOST.Networking.HostNetworkRPC" Collapsed="true">
+    <Position X="10.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAQAAAAAAAAQAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Assets\HOST\Scripts\Networking\HostNetworkRPC.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HOST.Networking.HostNetworkRPCMessage" Collapsed="true">
+    <Position X="19" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAIACAAAAQAA=</HashCode>
+      <FileName>Assets\HOST\Scripts\Networking\HostNetworkTools.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HOST.Networking.HostNetworkTools" Collapsed="true">
+    <Position X="20.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAABAADQAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\HOST\Scripts\Networking\HostNetworkTools.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HOST.Scenario.Element">
+    <Position X="10.75" Y="6" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>IAAAQAAAAAAAAAIAAAAAAAAAEAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\HOST\Scripts\Scenario\Element.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="influencers" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="HOST.Scenario.Hint" Collapsed="true">
+    <Position X="16.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAgAAAAIAAA=</HashCode>
+      <FileName>Assets\HOST\Scripts\Scenario\Influencer\Hint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HOST.Scenario.Influencer">
+    <Position X="15.25" Y="6" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAgAAAAAAIAAA=</HashCode>
+      <FileName>Assets\HOST\Scripts\Scenario\Influencer\Influencer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HOST.Scenario.Perturbation" Collapsed="true">
+    <Position X="14.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAgAAAAIAAA=</HashCode>
+      <FileName>Assets\HOST\Scripts\Scenario\Influencer\Perturbation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HOST.Scenario.Riddle">
+    <Position X="7" Y="6" Width="3" />
+    <TypeIdentifier>
+      <HashCode>gAAABAAQICAAABgAAAAQAAAAAEAAABAAAAAAAAAQAAA=</HashCode>
+      <FileName>Assets\HOST\Scripts\Scenario\Riddle.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="elements" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="HOST.Scenario.Scenario">
+    <Position X="3.75" Y="6" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAEQKQAAAAAAAAAAAAAAAABAAAAAAACAAAAASGA=</HashCode>
+      <FileName>Assets\HOST\Scripts\Scenario\Scenario.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="instance" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="riddles" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Struct Name="HOST.Networking.HostNetworkMessage" Collapsed="true">
+    <Position X="19" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAAAIABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\HOST\Scripts\Networking\HostNetworkTools.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="HOST.Networking.HostNetworkObjectTransform" Collapsed="true">
+    <Position X="20.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAIAgAAIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\HOST\Scripts\Networking\HostNetworkTools.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Enum Name="HOST.Networking.HostNetworkMessageType" Collapsed="true">
+    <Position X="19" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\HOST\Scripts\Networking\HostNetworkTools.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="HOST.Networking.HostNetworkTarget" Collapsed="true">
+    <Position X="20.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAIAAAgAAAAA=</HashCode>
+      <FileName>Assets\HOST\Scripts\Networking\HostNetworkTools.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
