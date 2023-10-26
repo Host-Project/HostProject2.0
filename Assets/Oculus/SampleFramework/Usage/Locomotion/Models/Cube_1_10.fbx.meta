@@ -94,3 +94,10 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/SampleFramework/Usage/Locomotion/Models/Cube_1_10.fbx
+  uploadId: 618200

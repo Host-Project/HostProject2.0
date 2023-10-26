@@ -1,5 +1,12 @@
 fileFormatVersion: 2
 guid: a8a2b20b08b22374db698b58653b47a3
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Interaction/Samples/Objects/Environment/Tooltips/DialogVideos/Instruction_Transformer.mp4
+  uploadId: 618200
 VideoClipImporter:
   externalObjects: {}
   serializedVersion: 2

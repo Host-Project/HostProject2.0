@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: dc96f5380d7d743d9ae91f11379eb85b
 timeCreated: 1477078886
-licenseType: Free
+licenseType: Store
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []
@@ -10,3 +10,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Platform/Samples/VrHoops/Scripts/FlyText.cs
+  uploadId: 618200

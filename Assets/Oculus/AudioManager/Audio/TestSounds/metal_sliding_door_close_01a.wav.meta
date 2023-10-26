@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: d3994560fb567c34a821fd9355c10eef
 timeCreated: 1461716882
-licenseType: Pro
+licenseType: Store
 AudioImporter:
   serializedVersion: 6
   defaultSettings:
@@ -20,3 +20,10 @@ AudioImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/AudioManager/Audio/TestSounds/metal_sliding_door_close_01a.wav
+  uploadId: 618200

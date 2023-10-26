@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: f0b2606dc17092048b00d7388d73fbb5
 timeCreated: 1474493601
-licenseType: Free
+licenseType: Store
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []
@@ -10,3 +10,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Platform/Samples/VrVoiceChat/Scripts/P2PManager.cs
+  uploadId: 618200

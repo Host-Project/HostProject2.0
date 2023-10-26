@@ -1,5 +1,12 @@
 fileFormatVersion: 2
 guid: 17b4a7a6ecf9f014d883a8d6ed71b5fa
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Interaction/Samples/Objects/Environment/Tooltips/DialogVideos/Instruction_Poke_Button.mp4
+  uploadId: 618200
 VideoClipImporter:
   externalObjects: {}
   serializedVersion: 2

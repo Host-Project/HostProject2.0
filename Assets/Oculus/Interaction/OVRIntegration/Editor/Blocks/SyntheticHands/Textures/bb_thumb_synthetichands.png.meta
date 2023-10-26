@@ -133,3 +133,10 @@ TextureImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Interaction/OVRIntegration/Editor/Blocks/SyntheticHands/Textures/bb_thumb_synthetichands.png
+  uploadId: 618200

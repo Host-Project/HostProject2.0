@@ -29,7 +29,6 @@ namespace HOST.Monitoring
     }
     public class ScenarioManager : ProgressionStateManager
     {
-        public TMP_Text timerText;
 
         public List<WeightedRiddle> riddles; // Automatically updated by the editor
 
@@ -38,7 +37,8 @@ namespace HOST.Monitoring
 
         private void Start()
         {
-
+            Scenario.Scenario.instance.onScenarioStart.AddListener(StartTimer);
+            Scenario.Scenario.instance.onScenarioComplete.AddListener(StopTimer);
             foreach (WeightedRiddle wr in riddles)
             {
                 wr.riddle.onRiddleStart.AddListener(OnRiddleStart);
@@ -99,7 +99,6 @@ namespace HOST.Monitoring
             }
 
             onTimerTick.Invoke(CurrentTime);
-            timerText.text = "Time : " + CurrentTime.ToString();
         }
 
         public float GetTime()

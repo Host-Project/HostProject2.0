@@ -1,5 +1,12 @@
 fileFormatVersion: 2
 guid: 048e32cae8e80b247835e0fe39b2898b
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Interaction/Samples/Objects/Environment/Tooltips/DialogVideos/Instruction_TouchGrab.mp4
+  uploadId: 618200
 VideoClipImporter:
   externalObjects: {}
   serializedVersion: 2

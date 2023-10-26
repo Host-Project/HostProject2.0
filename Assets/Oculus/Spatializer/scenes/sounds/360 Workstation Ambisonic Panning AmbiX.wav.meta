@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 1340d7fb0cd1bfb4caa3b3270cb2ea5f
 timeCreated: 1479409279
-licenseType: Pro
+licenseType: Store
 AudioImporter:
   serializedVersion: 6
   defaultSettings:
@@ -21,3 +21,11 @@ AudioImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Spatializer/scenes/sounds/360 Workstation Ambisonic Panning
+    AmbiX.wav
+  uploadId: 618200

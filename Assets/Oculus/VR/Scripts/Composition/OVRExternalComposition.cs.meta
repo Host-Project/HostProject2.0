@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 2c109ff55176f71418ec2c06d1b5d28e
 timeCreated: 1502990231
-licenseType: Pro
+licenseType: Store
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []
@@ -10,3 +10,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/VR/Scripts/Composition/OVRExternalComposition.cs
+  uploadId: 618200

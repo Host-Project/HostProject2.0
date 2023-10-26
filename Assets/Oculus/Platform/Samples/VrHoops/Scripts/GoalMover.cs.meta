@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: fbea2c3cb080a064f84d3bd86c2f3a53
 timeCreated: 1475173562
-licenseType: Free
+licenseType: Store
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []
@@ -10,3 +10,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Platform/Samples/VrHoops/Scripts/GoalMover.cs
+  uploadId: 618200

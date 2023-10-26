@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: aed62bf3ae2456c408f247f96808ce96
 timeCreated: 1486166271
-licenseType: Free
+licenseType: Store
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []
@@ -10,3 +10,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/VR/Scripts/Util/OVRControllerHelper.cs
+  uploadId: 618200

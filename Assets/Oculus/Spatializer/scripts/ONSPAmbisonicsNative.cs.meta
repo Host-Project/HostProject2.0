@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: bb001ad917b86f148a2c85acdd0d5c6a
 timeCreated: 1479161980
-licenseType: Pro
+licenseType: Store
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []
@@ -10,3 +10,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Spatializer/scripts/ONSPAmbisonicsNative.cs
+  uploadId: 618200

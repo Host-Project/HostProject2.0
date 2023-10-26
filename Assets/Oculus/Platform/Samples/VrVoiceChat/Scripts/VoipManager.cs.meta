@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 310e9262e28564c9d9b5c5a872a42e41
 timeCreated: 1474561098
-licenseType: Free
+licenseType: Store
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []
@@ -10,3 +10,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Platform/Samples/VrVoiceChat/Scripts/VoipManager.cs
+  uploadId: 618200

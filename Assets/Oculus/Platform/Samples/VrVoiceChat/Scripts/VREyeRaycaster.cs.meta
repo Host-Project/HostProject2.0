@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 5a66c6bd0ba312c4b8c6fd2a08491521
 timeCreated: 1473882274
-licenseType: Free
+licenseType: Store
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []
@@ -10,3 +10,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Platform/Samples/VrVoiceChat/Scripts/VREyeRaycaster.cs
+  uploadId: 618200

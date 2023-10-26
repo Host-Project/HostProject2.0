@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: e91e0cd389745ab47bb862cb9fe2298b
 timeCreated: 1523486801
-licenseType: Pro
+licenseType: Store
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []
@@ -10,3 +10,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Platform/Scripts/Models/MatchmakingEnqueuedUser.cs
+  uploadId: 618200

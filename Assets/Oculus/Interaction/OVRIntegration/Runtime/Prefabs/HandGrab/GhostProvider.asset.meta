@@ -1,5 +1,12 @@
 fileFormatVersion: 2
 guid: ba24f6f783d84ef4f8ff075364e1283c
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Interaction/OVRIntegration/Runtime/Prefabs/HandGrab/GhostProvider.asset
+  uploadId: 618200
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 11400000

@@ -1,5 +1,12 @@
 fileFormatVersion: 2
 guid: e5af65f493a159440a27be5c67131892
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Interaction/Samples/Objects/Environment/Tooltips/DialogVideos/Instruction_DistanceGrab.mp4
+  uploadId: 618200
 VideoClipImporter:
   externalObjects: {}
   serializedVersion: 2

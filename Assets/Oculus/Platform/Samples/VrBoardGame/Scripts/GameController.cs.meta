@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: e8e18544645909d4ca3288d03cc2bb95
 timeCreated: 1480276241
-licenseType: Free
+licenseType: Store
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []
@@ -10,3 +10,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Platform/Samples/VrBoardGame/Scripts/GameController.cs
+  uploadId: 618200

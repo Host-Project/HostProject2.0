@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: cffe8c2b7142fa3438fc1b6ccaeda372
 timeCreated: 1527615925
-licenseType: Pro
+licenseType: Store
 PluginImporter:
   serializedVersion: 2
   iconMap: {}
@@ -119,3 +119,10 @@ PluginImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/LipSync/Plugins/Win64/OVRLipSync.dll
+  uploadId: 618200

@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 82aa5cb7a870de440baadff9083be41c
 timeCreated: 1444935432
-licenseType: Pro
+licenseType: Store
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -11,3 +11,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/LipSync/Scripts/OVRLipSync.cs
+  uploadId: 618200

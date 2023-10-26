@@ -33,3 +33,10 @@ TextureImporter:
   textureType: 5
   buildTargetSettings: []
   userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/VR/Textures/Logos/OculusLogo.png
+  uploadId: 618200

@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 197b6f9ffe1223343aa4672db3771875
 timeCreated: 1443655172
-licenseType: Pro
+licenseType: Store
 AudioImporter:
   serializedVersion: 6
   defaultSettings:
@@ -20,3 +20,10 @@ AudioImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Spatializer/scenes/sounds/sine.wav
+  uploadId: 618200

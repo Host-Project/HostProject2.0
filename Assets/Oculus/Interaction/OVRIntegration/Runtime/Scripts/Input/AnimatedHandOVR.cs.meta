@@ -1,5 +1,12 @@
 fileFormatVersion: 2
 guid: 2864da2f393a3e948bb12ec4ac9b1782
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Interaction/OVRIntegration/Runtime/Scripts/Input/AnimatedHandOVR.cs
+  uploadId: 618200
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

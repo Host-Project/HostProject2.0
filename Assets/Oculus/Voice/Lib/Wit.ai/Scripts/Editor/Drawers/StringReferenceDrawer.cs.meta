@@ -1,3 +1,10 @@
 ﻿fileFormatVersion: 2
 guid: e885f2612e2647c1813153fb6981e5e9
 timeCreated: 1680299773
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Voice/Lib/Wit.ai/Scripts/Editor/Drawers/StringReferenceDrawer.cs
+  uploadId: 618200

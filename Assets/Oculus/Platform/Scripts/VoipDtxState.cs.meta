@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: e3f0df97a35282540a46cd1c97d9311b
 timeCreated: 1533910663
-licenseType: Pro
+licenseType: Store
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []
@@ -10,3 +10,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Platform/Scripts/VoipDtxState.cs
+  uploadId: 618200

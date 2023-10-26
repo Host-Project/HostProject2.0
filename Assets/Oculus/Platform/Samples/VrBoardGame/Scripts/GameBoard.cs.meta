@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 94decd43dfca0db43a3936edb109ca2e
 timeCreated: 1479840163
-licenseType: Free
+licenseType: Store
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []
@@ -10,3 +10,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Platform/Samples/VrBoardGame/Scripts/GameBoard.cs
+  uploadId: 618200

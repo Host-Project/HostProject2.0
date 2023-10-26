@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: e4f7411db9bf50545a8b0b3c5b3c1ff8
 timeCreated: 1479421035
-licenseType: Free
+licenseType: Store
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []
@@ -10,3 +10,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Platform/Samples/VrBoardGame/Scripts/MatchmakingManager.cs
+  uploadId: 618200

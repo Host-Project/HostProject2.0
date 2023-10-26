@@ -5,3 +5,11 @@ PrefabImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Interaction/OVRIntegration/Editor/Blocks/SyntheticHands/Prefabs/[BB]
+    Right Hand Synthetic.prefab
+  uploadId: 618200

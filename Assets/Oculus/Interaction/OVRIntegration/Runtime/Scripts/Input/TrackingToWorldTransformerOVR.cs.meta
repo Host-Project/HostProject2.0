@@ -1,5 +1,12 @@
 fileFormatVersion: 2
 guid: 998a5646185efb9488265f3a2f35a99a
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Interaction/OVRIntegration/Runtime/Scripts/Input/TrackingToWorldTransformerOVR.cs
+  uploadId: 618200
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

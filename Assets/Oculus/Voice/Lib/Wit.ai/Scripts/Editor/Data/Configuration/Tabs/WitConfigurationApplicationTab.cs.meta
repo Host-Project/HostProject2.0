@@ -1,3 +1,10 @@
 ﻿fileFormatVersion: 2
 guid: bebd7edc23f2449f86d2b4c28582465c
 timeCreated: 1677872642
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Voice/Lib/Wit.ai/Scripts/Editor/Data/Configuration/Tabs/WitConfigurationApplicationTab.cs
+  uploadId: 618200

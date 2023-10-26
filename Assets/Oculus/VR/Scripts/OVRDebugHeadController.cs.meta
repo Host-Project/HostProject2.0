@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 563681618daa71b4c89f979b1fd7170b
 timeCreated: 1433450365
-licenseType: Free
+licenseType: Store
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []
@@ -10,3 +10,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/VR/Scripts/OVRDebugHeadController.cs
+  uploadId: 618200

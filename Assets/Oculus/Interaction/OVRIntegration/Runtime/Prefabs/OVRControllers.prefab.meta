@@ -1,5 +1,12 @@
 fileFormatVersion: 2
 guid: fbfc588a949bb1a42b20e5bddc4cf8cf
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Interaction/OVRIntegration/Runtime/Prefabs/OVRControllers.prefab
+  uploadId: 618200
 PrefabImporter:
   externalObjects: {}
   userData: 

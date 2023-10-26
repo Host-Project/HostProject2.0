@@ -1,5 +1,12 @@
 fileFormatVersion: 2
-guid: 4de33202ea72a3f4d9159f256680827e
+guid: 98665c5c84a875a428fd848a082702f3
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Spatializer/Plugins/x86_64/AudioPluginOculusSpatializer.dll.new
+  uploadId: 618200
 PluginImporter:
   externalObjects: {}
   serializedVersion: 2

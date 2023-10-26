@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: cb850b86de9091d4db4595959c56f954
 timeCreated: 1442269815
-licenseType: Pro
+licenseType: Store
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []
@@ -10,3 +10,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Spatializer/editor/ONSPAudioSourceEditor.cs
+  uploadId: 618200

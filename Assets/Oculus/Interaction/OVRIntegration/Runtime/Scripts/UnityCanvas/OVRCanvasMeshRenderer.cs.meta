@@ -1,5 +1,12 @@
 fileFormatVersion: 2
 guid: e79beb32c1e430c42aa2376685d99ae7
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Interaction/OVRIntegration/Runtime/Scripts/UnityCanvas/OVRCanvasMeshRenderer.cs
+  uploadId: 618200
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

@@ -81,6 +81,7 @@ namespace HOST.Networking
 
         public void HandleObjectSyncMessage(HostNetworkMessage message)
         {
+            Debug.Log(message);
             if (FMNetworkManager.instance.NetworkType == FMNetworkType.Client) return; // Client can't update network objects
             HostNetworkObjectTransform objectTransform = HostNetworkTools.DeserializeObjectTransform(message.Data);
 

@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 1be7ff64e219f4e44b17e7a42f13247b
 timeCreated: 1536610736
-licenseType: Pro
+licenseType: Store
 PluginImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -94,3 +94,10 @@ PluginImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/LipSync/Plugins/Android32/libOVRLipSync.so
+  uploadId: 618200

@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 66d441ddf01234331b50e929139f4780
 timeCreated: 1477071923
-licenseType: Free
+licenseType: Store
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []
@@ -10,3 +10,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Platform/Samples/VrHoops/Scripts/AchievementsManager.cs
+  uploadId: 618200

@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 020d1a102a7f2a14ebf6cefe7b977303
 timeCreated: 1425942022
-licenseType: Pro
+licenseType: Store
 TextureImporter:
   fileIDToRecycleName: {}
   serializedVersion: 2
@@ -53,3 +53,10 @@ TextureImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/VR/Textures/cube_texture.png
+  uploadId: 618200

@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: b4164fa75939f1e46a3e36dfbdc7f821
 timeCreated: 1474514990
-licenseType: Free
+licenseType: Store
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []
@@ -10,3 +10,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Platform/Samples/VrHoops/Scripts/BallEjector.cs
+  uploadId: 618200

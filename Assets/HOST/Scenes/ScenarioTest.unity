@@ -166,20 +166,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   play:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1002569117}
-        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-        m_MethodName: set_text
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 'Influence Level : 4'
-          m_BoolArgument: 0
-        m_CallState: 2
-  influenceLevel: 4
+      m_Calls: []
+  influenceLevel: -1
 --- !u!1 &160265778
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,20 +288,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   play:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1002569117}
-        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-        m_MethodName: set_text
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 'Influence Level : -2'
-          m_BoolArgument: 0
-        m_CallState: 2
-  influenceLevel: -2
+      m_Calls: []
+  influenceLevel: -1
 --- !u!1 &205108293
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,58 +418,10 @@ MonoBehaviour:
   - {fileID: 456529686}
   onScenarioStart:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1124026290}
-        m_TargetAssemblyTypeName: TestStructure, Assembly-CSharp
-        m_MethodName: OnScenarioStart
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 218723615}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1124026291}
-        m_TargetAssemblyTypeName: HOST.Monitoring.ScenarioManager, Assembly-CSharp
-        m_MethodName: StartTimer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onScenarioComplete:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1124026290}
-        m_TargetAssemblyTypeName: TestStructure, Assembly-CSharp
-        m_MethodName: OnScenarioComplete
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 218723615}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1124026291}
-        m_TargetAssemblyTypeName: HOST.Monitoring.ScenarioManager, Assembly-CSharp
-        m_MethodName: StopTimer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!4 &218723617
 Transform:
   m_ObjectHideFlags: 0
@@ -542,19 +470,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   play:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1002569117}
-        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-        m_MethodName: set_text
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 'Influence Level : -1'
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   influenceLevel: -1
 --- !u!4 &221741308
 Transform:
@@ -666,24 +582,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6717d7e44cf1ff24db30d85cafebae9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  influencers:
-  - {fileID: 2078129321}
-  - {fileID: 68959363}
+  influencers: []
   onComplete:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1124026290}
-        m_TargetAssemblyTypeName: TestStructure, Assembly-CSharp
-        m_MethodName: OnElementComplete
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 369478215}
-          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!4 &358695608
 Transform:
   m_ObjectHideFlags: 0
@@ -864,19 +766,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   play:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1002569117}
-        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-        m_MethodName: set_text
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 'Influence Level : 1'
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   influenceLevel: -1
 --- !u!4 &373825373
 Transform:
@@ -1075,7 +965,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &416583352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1324,7 +1214,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1124026290}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TestStructure, Assembly-CSharp
         m_MethodName: RequestComplete
         m_Mode: 2
@@ -1420,54 +1310,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 456ed8f181208e346b818901c22ea57e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elements:
-  - {fileID: 567159582}
-  - {fileID: 1709561336}
+  elements: []
   onGlobalStart:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1124026290}
-        m_TargetAssemblyTypeName: TestStructure, Assembly-CSharp
-        m_MethodName: OnRiddleGlobalStart
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 456529684}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onRiddleStart:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1124026290}
-        m_TargetAssemblyTypeName: TestStructure, Assembly-CSharp
-        m_MethodName: OnRiddleStart
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1767479744}
-          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onRiddleComplete:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1124026290}
-        m_TargetAssemblyTypeName: TestStructure, Assembly-CSharp
-        m_MethodName: OnRiddleComplete
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1767479744}
-          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &534029003
 GameObject:
   m_ObjectHideFlags: 0
@@ -1648,20 +1500,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   play:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1002569117}
-        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-        m_MethodName: set_text
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 'Influence Level : 2'
-          m_BoolArgument: 0
-        m_CallState: 2
-  influenceLevel: 2
+      m_Calls: []
+  influenceLevel: -1
 --- !u!1 &567159580
 GameObject:
   m_ObjectHideFlags: 0
@@ -1706,24 +1546,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6717d7e44cf1ff24db30d85cafebae9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  influencers:
-  - {fileID: 221741307}
-  - {fileID: 202270237}
+  influencers: []
   onComplete:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1124026290}
-        m_TargetAssemblyTypeName: TestStructure, Assembly-CSharp
-        m_MethodName: OnElementComplete
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 381104770}
-          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &676154058
 GameObject:
   m_ObjectHideFlags: 0
@@ -1911,20 +1737,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   play:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1002569117}
-        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-        m_MethodName: set_text
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 'Influence Level : -4'
-          m_BoolArgument: 0
-        m_CallState: 2
-  influenceLevel: -4
+      m_Calls: []
+  influenceLevel: -1
 --- !u!1 &856083841
 GameObject:
   m_ObjectHideFlags: 0
@@ -2247,7 +2061,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1124026290}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TestStructure, Assembly-CSharp
         m_MethodName: RequestComplete
         m_Mode: 2
@@ -2697,7 +2511,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1124026289}
-  - component: {fileID: 1124026290}
   - component: {fileID: 1124026291}
   m_Layer: 0
   m_Name: ScenarioManager
@@ -2721,18 +2534,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 416583353}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1124026290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1124026287}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b15c5c9aefc483b4c8ad576fa8e5940c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1124026291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2747,20 +2548,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deltaOnTime: 0.1
   expectedDuration: 60
-  timerText: {fileID: 2061686571}
-  riddles:
-  - riddle: {fileID: 1359519768}
-    weightedElements:
-    - element: {fileID: 1272144130}
-      weight: 3
-    - element: {fileID: 358695607}
-      weight: 4
-  - riddle: {fileID: 456529686}
-    weightedElements:
-    - element: {fileID: 567159582}
-      weight: 1
-    - element: {fileID: 1709561336}
-      weight: 2
+  riddles: []
   onTimerTick:
     m_PersistentCalls:
       m_Calls: []
@@ -2810,20 +2598,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   play:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1002569117}
-        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-        m_MethodName: set_text
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 'Influence Level : -3'
-          m_BoolArgument: 0
-        m_CallState: 2
-  influenceLevel: -3
+      m_Calls: []
+  influenceLevel: -1
 --- !u!1 &1147893985
 GameObject:
   m_ObjectHideFlags: 0
@@ -3445,24 +3221,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6717d7e44cf1ff24db30d85cafebae9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  influencers:
-  - {fileID: 373825372}
-  - {fileID: 564557132}
+  influencers: []
   onComplete:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1124026290}
-        m_TargetAssemblyTypeName: TestStructure, Assembly-CSharp
-        m_MethodName: OnElementComplete
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1219092298}
-          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1272713662
 GameObject:
   m_ObjectHideFlags: 0
@@ -3758,54 +3520,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 456ed8f181208e346b818901c22ea57e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elements:
-  - {fileID: 1272144130}
-  - {fileID: 358695607}
+  elements: []
   onGlobalStart:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1124026290}
-        m_TargetAssemblyTypeName: TestStructure, Assembly-CSharp
-        m_MethodName: OnRiddleGlobalStart
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1359519766}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onRiddleStart:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1124026290}
-        m_TargetAssemblyTypeName: TestStructure, Assembly-CSharp
-        m_MethodName: OnRiddleStart
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1102109073}
-          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onRiddleComplete:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1124026290}
-        m_TargetAssemblyTypeName: TestStructure, Assembly-CSharp
-        m_MethodName: OnRiddleComplete
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1102109073}
-          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1370738913
 GameObject:
   m_ObjectHideFlags: 0
@@ -4280,7 +4004,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1124026290}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TestStructure, Assembly-CSharp
         m_MethodName: RequestComplete
         m_Mode: 2
@@ -4561,24 +4285,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6717d7e44cf1ff24db30d85cafebae9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  influencers:
-  - {fileID: 1131772114}
-  - {fileID: 721282089}
+  influencers: []
   onComplete:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1124026290}
-        m_TargetAssemblyTypeName: TestStructure, Assembly-CSharp
-        m_MethodName: OnElementComplete
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1593153082}
-          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!4 &1709561337
 Transform:
   m_ObjectHideFlags: 0
@@ -4740,8 +4450,8 @@ GameObject:
   - component: {fileID: 1771342211}
   - component: {fileID: 1771342210}
   - component: {fileID: 1771342209}
-  - component: {fileID: 1771342208}
   - component: {fileID: 1771342213}
+  - component: {fileID: 1771342214}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -4749,18 +4459,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1771342208
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1771342207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56076aa9f5116b14cb69b50e9380dca3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &1771342209
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4856,19 +4554,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 1771342207}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc30fe6cb6445014081a454188b85b95, type: 3}
+  m_Script: {fileID: 11500000, guid: 56076aa9f5116b14cb69b50e9380dca3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1771342214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1771342207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21fb1a5fceaf9294490b0c2578b4b758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mouseClick:
     m_Name: Mouse Click
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 97bbaa68-49e5-4b15-9325-6ad44e53cc8b
+    m_Id: 4150abea-9e10-4885-8efa-7cec2e847bb4
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings:
     - m_Name: 
-      m_Id: 6d804ef3-4c5f-4a08-b461-e3923a308ee8
+      m_Id: e90cd257-8802-45f8-8ad2-4704932307ba
       m_Path: <Mouse>/leftButton
       m_Interactions: 
       m_Processors: 
@@ -4924,20 +4634,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   play:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1002569117}
-        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-        m_MethodName: set_text
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 'Influence Level : -5'
-          m_BoolArgument: 0
-        m_CallState: 2
-  influenceLevel: -5
+      m_Calls: []
+  influenceLevel: -1
 --- !u!21 &1807810987
 Material:
   serializedVersion: 8
@@ -5066,20 +4764,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   play:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1002569117}
-        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-        m_MethodName: set_text
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 'Influence Level : 5'
-          m_BoolArgument: 0
-        m_CallState: 2
-  influenceLevel: 5
+      m_Calls: []
+  influenceLevel: -1
 --- !u!1 &1923046790
 GameObject:
   m_ObjectHideFlags: 0
@@ -5128,7 +4814,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1942659574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5826,20 +5512,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   play:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1002569117}
-        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-        m_MethodName: set_text
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 'Influence Level : 3'
-          m_BoolArgument: 0
-        m_CallState: 2
-  influenceLevel: 3
+      m_Calls: []
+  influenceLevel: -1
 --- !u!1 &2080988903
 GameObject:
   m_ObjectHideFlags: 0
@@ -5995,7 +5669,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1124026290}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TestStructure, Assembly-CSharp
         m_MethodName: RequestComplete
         m_Mode: 2

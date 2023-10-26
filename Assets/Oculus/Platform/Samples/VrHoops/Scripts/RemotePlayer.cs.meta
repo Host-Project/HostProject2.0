@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 125c22697d9e63447888218eccbc7005
 timeCreated: 1475264820
-licenseType: Free
+licenseType: Store
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []
@@ -10,3 +10,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Platform/Samples/VrHoops/Scripts/RemotePlayer.cs
+  uploadId: 618200

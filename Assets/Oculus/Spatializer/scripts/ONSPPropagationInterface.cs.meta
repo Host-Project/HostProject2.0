@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: b604e1956166619468a5c9801f1b3756
 timeCreated: 1525727421
-licenseType: Free
+licenseType: Store
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []
@@ -10,3 +10,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Spatializer/scripts/ONSPPropagationInterface.cs
+  uploadId: 618200

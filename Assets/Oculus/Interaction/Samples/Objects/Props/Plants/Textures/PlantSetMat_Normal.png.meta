@@ -64,8 +64,7 @@ TextureImporter:
   applyGammaDecoding: 0
   platformSettings:
   - serializedVersion: 3
-    buildTarget: DefaultTexturePlatform
-    // @lint-ignore SOCIALVRTEXTUREIMPORTS
+    buildTarget: DefaultTexturePlatform // @lint-ignore SOCIALVRTEXTUREIMPORTS
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -77,8 +76,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Standalone
-    // @lint-ignore SOCIALVRTEXTUREIMPORTS
+    buildTarget: Standalone // @lint-ignore SOCIALVRTEXTUREIMPORTS
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -90,8 +88,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Android
-    // @lint-ignore SOCIALVRTEXTUREIMPORTS
+    buildTarget: Android // @lint-ignore SOCIALVRTEXTUREIMPORTS
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -121,3 +118,10 @@ TextureImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Interaction/Samples/Objects/Props/Plants/Textures/PlantSetMat_Normal.png
+  uploadId: 618200

@@ -1,5 +1,12 @@
 fileFormatVersion: 2
 guid: 42ab5e1773cfced4c91af50d8b1899be
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Interaction/Samples/Objects/Environment/Tooltips/DialogVideos/Instruction_Ray.mp4
+  uploadId: 618200
 VideoClipImporter:
   externalObjects: {}
   serializedVersion: 2

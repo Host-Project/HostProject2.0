@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: a13e8fdc4c1263e43a7f56781529a4cc
 timeCreated: 1523486800
-licenseType: Pro
+licenseType: Store
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []
@@ -10,3 +10,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Platform/Scripts/Models/UserAndRoom.cs
+  uploadId: 618200

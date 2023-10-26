@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: e791ce392b6937f47b1f7c90c6b402db
 timeCreated: 1468857307
-licenseType: Pro
+licenseType: Store
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []
@@ -10,3 +10,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/AudioManager/Scripts/Audio/Editor/SoundFXPropertyDrawer.cs
+  uploadId: 618200

@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 332b8e08854932543ba356eec601c0ef
 timeCreated: 1470352252
-licenseType: Pro
+licenseType: Store
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []
@@ -10,3 +10,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/VR/Scripts/OVRBoundary.cs
+  uploadId: 618200

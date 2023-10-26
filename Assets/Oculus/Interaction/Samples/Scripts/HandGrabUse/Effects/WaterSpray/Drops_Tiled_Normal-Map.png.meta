@@ -64,8 +64,7 @@ TextureImporter:
   applyGammaDecoding: 0
   platformSettings:
   - serializedVersion: 3
-    buildTarget: DefaultTexturePlatform
-    // @lint-ignore SOCIALVRTEXTUREIMPORTS
+    buildTarget: DefaultTexturePlatform // @lint-ignore SOCIALVRTEXTUREIMPORTS
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -95,3 +94,10 @@ TextureImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Interaction/Samples/Scripts/HandGrabUse/Effects/WaterSpray/Drops_Tiled_Normal-Map.png
+  uploadId: 618200

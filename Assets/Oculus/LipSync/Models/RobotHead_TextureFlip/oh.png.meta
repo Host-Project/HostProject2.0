@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 5f658e6e48970d340b4491a5fc959251
 timeCreated: 1444079115
-licenseType: Pro
+licenseType: Store
 TextureImporter:
   fileIDToRecycleName: {}
   serializedVersion: 2
@@ -54,3 +54,10 @@ TextureImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/LipSync/Models/RobotHead_TextureFlip/oh.png
+  uploadId: 618200

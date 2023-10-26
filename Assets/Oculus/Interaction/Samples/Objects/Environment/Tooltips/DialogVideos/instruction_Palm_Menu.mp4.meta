@@ -1,5 +1,12 @@
 fileFormatVersion: 2
 guid: 4a934364623d5144e8a1f6e0aa50c806
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Interaction/Samples/Objects/Environment/Tooltips/DialogVideos/instruction_Palm_Menu.mp4
+  uploadId: 618200
 VideoClipImporter:
   externalObjects: {}
   serializedVersion: 2

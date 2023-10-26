@@ -1,5 +1,12 @@
 fileFormatVersion: 2
 guid: aa3a2b3718100f84fb5d8ff9adb8ccb7
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Interaction/Runtime/Textures/Reticle-Dot.png
+  uploadId: 618200
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

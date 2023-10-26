@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: e21cea670b0f32c428ee862e590a7108
 timeCreated: 1528844468
-licenseType: Pro
+licenseType: Store
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6
@@ -22,3 +22,10 @@ AudioImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/LipSync/Audio/vox_lp_01.wav
+  uploadId: 618200

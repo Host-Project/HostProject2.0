@@ -1,3 +1,10 @@
 ﻿fileFormatVersion: 2
 guid: e1014ec949564436944663d476cf2c48
 timeCreated: 1680838351
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Voice/Features/Hub/Scripts/Editor/Markdown/MarkdownInspector.cs
+  uploadId: 618200

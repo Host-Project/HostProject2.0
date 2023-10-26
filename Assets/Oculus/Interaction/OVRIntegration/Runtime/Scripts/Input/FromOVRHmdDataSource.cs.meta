@@ -1,5 +1,12 @@
 fileFormatVersion: 2
 guid: f273abee0604ad2409c9bbc9a60e461e
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Interaction/OVRIntegration/Runtime/Scripts/Input/FromOVRHmdDataSource.cs
+  uploadId: 618200
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

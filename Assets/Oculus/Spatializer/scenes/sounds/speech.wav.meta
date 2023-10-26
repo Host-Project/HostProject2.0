@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 2cfa96c21e4f54c20824bd26cd46c10f
 timeCreated: 1424054227
-licenseType: Pro
+licenseType: Store
 AudioImporter:
   serializedVersion: 6
   defaultSettings:
@@ -19,3 +19,10 @@ AudioImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Spatializer/scenes/sounds/speech.wav
+  uploadId: 618200

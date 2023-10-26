@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: f418f541d32d24e7aad85c24970462d1
 timeCreated: 1475634295
-licenseType: Free
+licenseType: Store
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []
@@ -10,3 +10,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Platform/Samples/VrHoops/Scripts/P2PManager.cs
+  uploadId: 618200

@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: e10d7d54285902b48a88ddf18008a848
 timeCreated: 1446741207
-licenseType: Pro
+licenseType: Store
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []
@@ -10,3 +10,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Platform/Samples/SimplePlatformSample/DataEntry.cs
+  uploadId: 618200

@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 8a6c32d06b48d244b9c65729404d2afe
 timeCreated: 1531249571
-licenseType: Pro
+licenseType: Store
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []
@@ -10,3 +10,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/LipSync/Scenes/Scripts/LipSyncDemo_Control.cs
+  uploadId: 618200

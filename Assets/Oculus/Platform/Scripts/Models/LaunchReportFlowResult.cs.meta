@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: dd39534aa19eea849a28ea4da4aac464
 timeCreated: 1536102211
-licenseType: Pro
+licenseType: Store
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []
@@ -10,3 +10,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Platform/Scripts/Models/LaunchReportFlowResult.cs
+  uploadId: 618200

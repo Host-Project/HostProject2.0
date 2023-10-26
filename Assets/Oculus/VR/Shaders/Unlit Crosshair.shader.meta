@@ -3,3 +3,10 @@ guid: 05b53b473302943b58b8e33c93a38dac
 ShaderImporter:
   defaultTextures: []
   userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/VR/Shaders/Unlit Crosshair.shader
+  uploadId: 618200

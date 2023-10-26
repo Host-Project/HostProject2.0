@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: d7c40db1e91886345b8e1866120f6c49
 timeCreated: 1523486801
-licenseType: Pro
+licenseType: Store
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []
@@ -10,3 +10,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/Platform/Scripts/VoipAudioSource.cs
+  uploadId: 618200

@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 63f0fe0d60ddeb54f9f43d701286af2d
 timeCreated: 1520636357
-licenseType: Pro
+licenseType: Store
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []
@@ -10,3 +10,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82022
+  packageName: Oculus Integration
+  packageVersion: 57.0
+  assetPath: Assets/Oculus/VR/Scripts/Util/OVRRecord.cs
+  uploadId: 618200
