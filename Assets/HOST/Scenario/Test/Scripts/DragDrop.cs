@@ -1,6 +1,7 @@
 using HOST.Networking;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
@@ -15,6 +16,8 @@ public class DragDrop : MonoBehaviour
 
     [SerializeField]
     private Vector3 velocity = Vector3.zero;
+
+    public UnityEvent OnDrag;
 
 
     private Camera mainCamera;
@@ -48,7 +51,7 @@ public class DragDrop : MonoBehaviour
             if (hit.collider.gameObject == this.gameObject)
             {
                 StartCoroutine(DragUpdate(hit.collider.gameObject));
-               
+                OnDrag.Invoke();
             }
         }
     }

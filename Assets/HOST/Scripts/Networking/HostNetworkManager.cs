@@ -67,16 +67,8 @@ namespace HOST.Networking
         {
             HostNetworkRPCMessage rpcMessage = HostNetworkTools.DeserializeRPCMessage(message.Data);
 
-            try
-            {
-                var method = HostNetworkRPC.rpcInstances[rpcMessage.InstanceId].GetType().GetMethod(rpcMessage.MethodName);
+            HostNetworkRPC.rpcInstances[rpcMessage.InstanceId].HandleRPC(rpcMessage);
 
-                method.Invoke(HostNetworkRPC.rpcInstances[rpcMessage.InstanceId], rpcMessage.Parameters);
-            }
-            catch (Exception e)
-            {
-                Debug.LogError("RPC Error: " + e.Message);
-            }
         }
 
         public void HandleObjectSyncMessage(HostNetworkMessage message)

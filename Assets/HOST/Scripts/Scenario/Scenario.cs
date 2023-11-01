@@ -25,9 +25,18 @@ namespace HOST.Scenario
 
         private int currentRiddleIndex = 0;
 
+        [SerializeField]
+        private bool startScenario = false;
+
+        private void Start()
+        {
+            if (startScenario)
+                StartScenario();
+        }
+
         private void OnEnable()
         {
-            
+
         }
 
         private void Awake()
@@ -73,7 +82,7 @@ namespace HOST.Scenario
             }
         }
 
-        public  List<Riddle> GetRiddles()
+        public List<Riddle> GetRiddles()
         {
             return riddles;
         }

@@ -34,9 +34,20 @@ namespace HOST.Monitoring
 
         public UnityEvent<float> onTimerTick;
 
+        [SerializeField]
+        private float timeBetweenHints = 30f;
+        
+        [SerializeField]
+        private float timeBetweenPertubators = 15f;
+
+        private float lastHintTime;
+        private float lastPertubatorTime;
 
         private void Start()
         {
+            lastHintTime = -timeBetweenHints;
+            lastPertubatorTime = -timeBetweenPertubators;
+
             Scenario.Scenario.instance.onScenarioStart.AddListener(StartTimer);
             Scenario.Scenario.instance.onScenarioComplete.AddListener(StopTimer);
             foreach (WeightedRiddle wr in riddles)
@@ -95,7 +106,17 @@ namespace HOST.Monitoring
             int influenceLevel = ComputeInfluenceLevel();
             if (influenceLevel != 0)
             {
-                Scenario.Scenario.instance.PlayInfluence(influenceLevel);
+                
+                if (influenceLevel > 0 && CurrentTime-lastHintTime >= timeBetweenHints)
+                {
+                    Scenario.Scenario.instance.PlayInfluence(influenceLevel);
+                    lastHintTime = CurrentTime;
+                }
+                else if (influenceLevel < 0 && CurrentTime-lastPertubatorTime >= timeBetweenPertubators)
+                {
+                    Scenario.Scenario.instance.PlayInfluence(influenceLevel);
+                    lastPertubatorTime = CurrentTime;
+                }
             }
 
             onTimerTick.Invoke(CurrentTime);

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Xml;
 using UnityEngine;
 using UnityEngine.Events;
+using HOST.Influencers;
 
 namespace HOST.Scenario
 {

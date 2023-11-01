@@ -21,8 +21,6 @@ public class MissingBatteryCheck : MonoBehaviour
 
         if(WantedObject.GetInstanceID() == other.gameObject.GetInstanceID())
         {
-            
-
             ItemFound.Invoke();
         }
     }

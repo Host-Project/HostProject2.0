@@ -1,0 +1,142 @@
+fileFormatVersion: 2
+guid: 7af43f2a0c1aada47be6fdfcd64fc85e
+timeCreated: 1513195954
+licenseType: Store
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: bandage
+    100002: Bandage_pack
+    100004: //RootNode
+    100006: medicine_box_01
+    100008: medicine_box_02
+    100010: medicine_box_03
+    100012: pill_tablet
+    100014: syringe
+    100016: vial01
+    100018: vial_suport
+    100020: vial_suport001
+    400000: bandage
+    400002: Bandage_pack
+    400004: //RootNode
+    400006: medicine_box_01
+    400008: medicine_box_02
+    400010: medicine_box_03
+    400012: pill_tablet
+    400014: syringe
+    400016: vial01
+    400018: vial_suport
+    400020: vial_suport001
+    2300000: bandage
+    2300002: Bandage_pack
+    2300004: medicine_box_01
+    2300006: medicine_box_02
+    2300008: medicine_box_03
+    2300010: pill_tablet
+    2300012: syringe
+    2300014: vial01
+    2300016: vial_suport
+    2300018: vial_suport001
+    3300000: bandage
+    3300002: Bandage_pack
+    3300004: medicine_box_01
+    3300006: medicine_box_02
+    3300008: medicine_box_03
+    3300010: pill_tablet
+    3300012: syringe
+    3300014: vial01
+    3300016: vial_suport
+    3300018: vial_suport001
+    4300000: vial01
+    4300002: medicine_box_01
+    4300004: medicine_box_02
+    4300006: medicine_box_03
+    4300008: Bandage_pack
+    4300010: bandage
+    4300012: pill_tablet
+    4300014: vial_suport
+    4300016: syringe
+    4300018: vial_suport001
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #1877'
+    second: {fileID: 2100000, guid: 963ebc802b51ff943b139038c3724ef2, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
