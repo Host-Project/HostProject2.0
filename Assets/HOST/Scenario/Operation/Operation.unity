@@ -91341,7 +91341,7 @@ MonoBehaviour:
   onScenarioComplete:
     m_PersistentCalls:
       m_Calls: []
-  startScenario: 0
+  startScenario: 1
 --- !u!4 &1998726738
 Transform:
   m_ObjectHideFlags: 0
