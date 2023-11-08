@@ -9,6 +9,27 @@ public class HostNetworkObject : MonoBehaviour
 {
     public int Id { get; set; }
 
+    private bool onStartGravity = false;
+    private Rigidbody rb;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            onStartGravity = rb.useGravity;
+        }
+        if (FMNetworkManager.instance.NetworkType == FMNetworkType.Client)
+        {
+            if (rb != null)
+            {
+                rb.useGravity = false;
+            }
+
+        }
+    }
+
+
     public HostNetworkObjectTransform GetTransform()
     {
         return new HostNetworkObjectTransform()
@@ -32,6 +53,19 @@ public class HostNetworkObject : MonoBehaviour
         this.transform.rotation = transform.Rotation;
         this.transform.localScale = transform.Scale;
         this.transform.hasChanged = false;
+        if (onStartGravity)
+        {
+            CancelInvoke("UseGravity");
+            Invoke("UseGravity", 0.2f);
+        }
     }
-   
+
+
+    private void UseGravity()
+    {
+        if(rb != null)
+        {
+            rb.useGravity = onStartGravity;
+        }
+    }
 }

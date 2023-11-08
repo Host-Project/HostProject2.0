@@ -581,6 +581,18 @@ namespace FMETP
             Initialised = true;
         }
 
+        public void UpdateNumberOfSyncObjects()
+        {
+            NetworkTransform = new FMNetworkTransform[NetworkObjects.Length];
+            for (int i = 0; i < NetworkTransform.Length; i++)
+            {
+                NetworkTransform[i] = new FMNetworkTransform();
+                NetworkTransform[i].position = Vector3.zero;
+                NetworkTransform[i].rotation = Quaternion.identity;
+                NetworkTransform[i].localScale = new Vector3(1f, 1f, 1f);
+            }
+        }
+
         private void Awake()
         {
             Application.runInBackground = true;

@@ -1,0 +1,333 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4971545203974118720
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6881520154790708271}
+  - component: {fileID: 4856189813248587094}
+  - component: {fileID: 3693684223287557312}
+  m_Layer: 0
+  m_Name: Server
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &6881520154790708271
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4971545203974118720}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8044862250462843999}
+  - {fileID: 5291915467981549932}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4856189813248587094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4971545203974118720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d91033a6cc07c549868976848f16305, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EditorShowNetworking: 1
+  EditorShowSyncTransformation: 1
+  EditorShowEvents: 1
+  EditorShowDebug: 1
+  EditorShowServerSettings: 1
+  EditorShowClientSettings: 1
+  EditorShowDataStreamSettings: 0
+  EditorShowNetworkObjects: 0
+  EditorShowReceiverEvents: 1
+  EditorShowConnectionEvents: 1
+  AutoInit: 1
+  NetworkType: 0
+  Server: {fileID: 0}
+  Client: {fileID: 0}
+  DataStream: {fileID: 0}
+  ServerSettings:
+    ServerListenPort: 3333
+    UseAsyncListener: 0
+    UseMainThreadSender: 0
+    SupportMulticast: 0
+    MulticastAddress: 239.255.255.255
+    ConnectionCount: 0
+  ClientSettings:
+    ClientListenPort: 3334
+    UseMainThreadSender: 0
+    ForceBroadcast: 0
+    SupportMulticast: 0
+    MulticastAddress: 239.255.255.255
+    AutoNetworkDiscovery: 1
+    ServerIP: 
+    IsConnected: 0
+  DataStreamSettings:
+    DataStreamType: 0
+    DataStreamProtocol: 0
+    ClientListenPort: 3001
+    UDPTransferType: 0
+    TCPSocketType: 0
+    MulticastAddress: 239.255.255.255
+    IsConnected: 0
+    ClientIP: 127.0.0.1
+    ClientIPList: []
+    UseMainThreadSender: 1
+  DebugStatus: 1
+  ShowLog: 1
+  Status: 
+  UIStatus: {fileID: 0}
+  OnReceivedByteDataEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3693684223287557312}
+        m_TargetAssemblyTypeName: FMETP.GameViewDecoder, Assembly-CSharp
+        m_MethodName: Action_ProcessImageData
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnReceivedStringDataEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: HOST.Networking.HostNetworkManager, Assembly-CSharp
+        m_MethodName: HandleStringDataEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  GetRawReceivedData:
+    m_PersistentCalls:
+      m_Calls: []
+  OnClientConnectedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnClientDisconnectedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnConnectionCountChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnFoundServerEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnLostServerEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  NetworkObjects: []
+  SyncFPS: 60
+  EnableNetworkObjectsSync: 1
+--- !u!114 &3693684223287557312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4971545203974118720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41b958dc0d06c834b944242ed4c03c0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EditorShowSettings: 1
+  EditorShowDecoded: 1
+  EditorShowDesktopFrameInfo: 0
+  EditorShowPairing: 1
+  FastMode: 1
+  AsyncMode: 1
+  DecoderDelay: 0
+  ReceivedTexture2D: {fileID: 0}
+  ReceivedRenderTexture: {fileID: 0}
+  ColorReductionLevel: 0
+  PreviewType: 1
+  PreviewRawImage: {fileID: 0}
+  PreviewMeshRenderer: {fileID: 0}
+  OnReceivedTextureEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnReceivedDesktopFrameRectEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  Mono: 0
+  Sharpen: 0
+  DeNoise: 0
+  DecodedFilterMode: 1
+  DecodedWrapMode: 1
+  MatColorAdjustment: {fileID: 0}
+  label: 1001
+  GZipMode: 0
+--- !u!1 &5742428766245871596
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8044862250462843999}
+  - component: {fileID: 2817812539989210147}
+  - component: {fileID: 2768603457558027731}
+  m_Layer: 0
+  m_Name: Main Camera
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8044862250462843999
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5742428766245871596}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.045, z: -3.455}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6881520154790708271}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &2817812539989210147
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5742428766245871596}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 50
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: -1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!81 &2768603457558027731
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5742428766245871596}
+  m_Enabled: 1
+--- !u!1 &8884602935412773802
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5291915467981549932}
+  - component: {fileID: 730047676238139923}
+  m_Layer: 0
+  m_Name: ScenarioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5291915467981549932
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8884602935412773802}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.15598965, y: 0.61202395, z: -0.012580872}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6881520154790708271}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &730047676238139923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8884602935412773802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5610e991a3eabc74ea245bdab594d445, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deltaOnTime: 0.1
+  expectedDuration: 60
+  riddles:
+  - riddle: {fileID: 0}
+    weightedElements: []
+  - riddle: {fileID: 0}
+    weightedElements: []
+  onTimerTick:
+    m_PersistentCalls:
+      m_Calls: []
+  timeBetweenHints: 30
+  timeBetweenPertubators: 15

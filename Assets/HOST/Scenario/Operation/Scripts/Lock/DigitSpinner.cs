@@ -11,7 +11,6 @@ public class DigitSpinner : MonoBehaviour
 
     public UnityEvent OnDigitChanged;
 
-
     private float _sensitivity = 0.4f;
     private Vector3 _mouseReference;
     private Vector3 _mouseOffset;
@@ -19,8 +18,31 @@ public class DigitSpinner : MonoBehaviour
     private bool _isRotating;
 
 
+    private bool hasMoved = false;
+    private Vector3 oldRotation;
+
+    private void Start()
+    {
+        UpdateRotation();
+    }
+
     void Update()
     {
+        if (transform.gameObject.TryGetComponent(out Rigidbody rb))
+        {
+            if (hasMoved && rb.angularVelocity.magnitude == 0f)
+            {
+                SetNumberFromAngle();
+                hasMoved = false;
+            }
+            else if (rb.angularVelocity.magnitude != 0f)
+            {
+                hasMoved = true;
+            }
+
+            oldRotation = transform.rotation.eulerAngles;
+        }
+
         if (_isRotating)
         {
             // offset
@@ -35,7 +57,9 @@ public class DigitSpinner : MonoBehaviour
             // store mouse
             _mouseReference = Input.mousePosition;
         }
+
     }
+
 
     void OnMouseDown()
     {
@@ -53,13 +77,12 @@ public class DigitSpinner : MonoBehaviour
 
         SetNumberFromAngle();
     }
-
     private void SetNumberFromAngle()
     {
         // 0 number is at 106° angle, each number is 36°
         float angle = transform.localEulerAngles.y;
 
-        currentNumber = (Mathf.RoundToInt((angle - 106) / 36) % 10  + 10) % 10;
+        currentNumber = (Mathf.RoundToInt((angle - 106) / 36) % 10 + 10) % 10;
         OnDigitChanged.Invoke();
         UpdateRotation();
     }
@@ -72,7 +95,7 @@ public class DigitSpinner : MonoBehaviour
     private void UpdateRotation()
     {
         // 0 number is at 106° angle, each number is 36°
-        float angle = 106 + currentNumber  * 36;
+        float angle = 106 + currentNumber * 36;
         transform.DOLocalRotate(new Vector3(0f, angle, 0f), 0.5f, RotateMode.Fast);
     }
 }

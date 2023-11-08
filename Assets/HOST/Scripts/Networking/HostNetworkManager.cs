@@ -47,6 +47,8 @@ namespace HOST.Networking
                 FMNetworkManager.instance.NetworkObjects[count] = networkObject.gameObject;
                 networkObject.Id = count++;
             }
+
+            FMNetworkManager.instance.UpdateNumberOfSyncObjects();
         }
 
         public void HandleStringDataEvent(string data)
