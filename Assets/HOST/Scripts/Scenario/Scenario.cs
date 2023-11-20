@@ -4,6 +4,7 @@ using UnityEngine;
 using HOST.Networking;
 using UnityEngine.Events;
 using FMETP;
+using HOST.Monitoring.Settings;
 
 namespace HOST.Scenario
 {
@@ -11,6 +12,7 @@ namespace HOST.Scenario
     {
         [SerializeField]
         private List<Riddle> riddles;
+
 
         #region Events
 
@@ -20,7 +22,6 @@ namespace HOST.Scenario
 
         #endregion
 
-        public static Scenario instance;
 
 
         private int currentRiddleIndex = 0;
@@ -39,17 +40,9 @@ namespace HOST.Scenario
 
         }
 
-        private void Awake()
-        {
-            if (instance == null)
-            {
-                instance = this;
-            }
-        }
-
         public void StartScenario()
         {
-            if (FMNetworkManager.instance.NetworkType == FMNetworkType.Client) return;
+            if (!HostNetworkManager.instance.IsServer()) return;
             foreach (Riddle riddle in riddles)
             {
                 riddle.onRiddleComplete.AddListener(OnRiddleComplete);
@@ -62,13 +55,13 @@ namespace HOST.Scenario
 
         public void StartRiddle()
         {
-            if (FMNetworkManager.instance.NetworkType == FMNetworkType.Client) return;
+            if (!HostNetworkManager.instance.IsServer()) return;
             riddles[currentRiddleIndex].StartRiddle();
         }
 
         public void OnRiddleComplete(Riddle r)
         {
-            if (FMNetworkManager.instance.NetworkType == FMNetworkType.Client) return;
+            if (!HostNetworkManager.instance.IsServer()) return;
             if (r != riddles[currentRiddleIndex]) return;
             if (currentRiddleIndex == riddles.Count - 1)
             {

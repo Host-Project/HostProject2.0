@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8150308832831441630}
   - component: {fileID: 2235984573478109224}
   - component: {fileID: 6730645691102764177}
+  - component: {fileID: 4457311193362715986}
   m_Layer: 0
   m_Name: Client
   m_TagString: Untagged
@@ -288,6 +289,18 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &4457311193362715986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7861363211131474741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eea07b9601eac249b1f3138b9586be7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2126279265011528424
 PrefabInstance:
   m_ObjectHideFlags: 0

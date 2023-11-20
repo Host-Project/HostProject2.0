@@ -6,29 +6,29 @@ using HOST.Scenario;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
+using HOST.Monitoring.Settings;
 
-[CustomEditor(typeof(ScenarioManager))]
+//[CustomEditor(typeof(ScenarioSettings))]
 public class ScenarioManagerEditor : Editor
 {
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
 
-        UpdateRiddles();
+        //UpdateRiddles();
 
     }
 
     private void UpdateRiddles()
     {
-        ScenarioManager manager = (ScenarioManager)target;
-        Scenario scenario = FindObjectsByType<Scenario>(FindObjectsSortMode.None)[0];
+        ScenarioSettings manager = (ScenarioSettings)target;
       
 
-        if (AnyRiddleUpdate(manager, scenario))
+        /*if (AnyRiddleUpdate(manager))
         {
             List<WeightedRiddle> tmp = new List<WeightedRiddle>(manager.riddles);
             manager.riddles = new List<WeightedRiddle>();
-            foreach (Riddle riddle in scenario.GetRiddles())
+            foreach (Riddle riddle in manager.Scenario.GetRiddles())
             {
 
                 WeightedRiddle wr = new WeightedRiddle();
@@ -55,10 +55,10 @@ public class ScenarioManagerEditor : Editor
 
                 manager.riddles.Add(r);
             }
-        }
+        }*/
         
     }
-
+/*
     private void UpdateElements(ref WeightedRiddle wr, Riddle r)
     {
         List<WeightedElements> tmp = new List<WeightedElements>(wr.weightedElements);
@@ -86,15 +86,15 @@ public class ScenarioManagerEditor : Editor
         }
     }
 
-    private bool AnyRiddleUpdate(ScenarioManager manager, Scenario scenario)
+    private bool AnyRiddleUpdate(ScenarioManager manager)
     {
-        if (manager.riddles.Count != scenario.GetRiddles().Count) return true;
+        if (manager.riddles.Count != manager.Scenario.GetRiddles().Count) return true;
 
         for(int i = 0; i < manager.riddles.Count; i++)
         {
-            if (scenario.GetRiddles()[i] != manager.riddles[i].riddle) return true;
+            if (manager.Scenario.GetRiddles()[i] != manager.riddles[i].riddle) return true;
 
-            if (AnyElementsUpdate(manager.riddles[i], scenario.GetRiddles()[i])) return true;
+            if (AnyElementsUpdate(manager.riddles[i], manager.Scenario.GetRiddles()[i])) return true;
         }
 
         return false;
@@ -111,4 +111,5 @@ public class ScenarioManagerEditor : Editor
 
         return false;
     }
+*/
 }

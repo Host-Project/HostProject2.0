@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6881520154790708271}
   - component: {fileID: 4856189813248587094}
   - component: {fileID: 3693684223287557312}
+  - component: {fileID: 2676049373986211794}
   m_Layer: 0
   m_Name: Server
   m_TagString: Untagged
@@ -183,6 +184,18 @@ MonoBehaviour:
   MatColorAdjustment: {fileID: 0}
   label: 1001
   GZipMode: 0
+--- !u!114 &2676049373986211794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4971545203974118720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eea07b9601eac249b1f3138b9586be7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5742428766245871596
 GameObject:
   m_ObjectHideFlags: 0
@@ -194,6 +207,7 @@ GameObject:
   - component: {fileID: 8044862250462843999}
   - component: {fileID: 2817812539989210147}
   - component: {fileID: 2768603457558027731}
+  - component: {fileID: 1253857287734796980}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -210,7 +224,7 @@ Transform:
   m_GameObject: {fileID: 5742428766245871596}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.045, z: -3.455}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -275,6 +289,23 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5742428766245871596}
   m_Enabled: 1
+--- !u!114 &1253857287734796980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5742428766245871596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1abd7b320df138a46a1d82cd1add4160, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 1
+  fastMovementSpeed: 10
+  freeLookSensitivity: 1
+  zoomSensitivity: 10
+  fastZoomSensitivity: 50
 --- !u!1 &8884602935412773802
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,6 +352,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deltaOnTime: 0.1
   expectedDuration: 60
+  Scenario: {fileID: 0}
   riddles:
   - riddle: {fileID: 0}
     weightedElements: []

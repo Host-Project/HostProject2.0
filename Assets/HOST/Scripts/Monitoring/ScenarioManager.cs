@@ -1,95 +1,116 @@
 using FMETP;
 using HOST;
+using HOST.Monitoring.Settings;
+using HOST.Networking;
+using HOST.Scenario;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 namespace HOST.Monitoring
 {
-    [Serializable]
-    public class WeightedRiddle
-    {
-        public Scenario.Riddle riddle;
-        public List<WeightedElements> weightedElements;
 
-        public int GetWeight()
-        {
-            return weightedElements.Sum(w => w.weight);
-        }
-    }
 
-    [Serializable]
-    public class WeightedElements
+    public class ScenarioManager : MonoBehaviour
     {
-        public Scenario.Element element;
-        public int weight;
-    }
-    public class ScenarioManager : ProgressionStateManager
-    {
-
-        public List<WeightedRiddle> riddles; // Automatically updated by the editor
+        [SerializeField]
+        private ScenarioSettings settings;
 
         public UnityEvent<float> onTimerTick;
 
-        [SerializeField]
-        private float timeBetweenHints = 30f;
-        
-        [SerializeField]
-        private float timeBetweenPertubators = 15f;
+        private int currentRiddleIndex = 0;
 
-        private float lastHintTime;
-        private float lastPertubatorTime;
+        private float lastHintTime = 0;
+        private float lastPertubatorTime = 0;
+
+        private ProgressionState currentScenarioState;
+        private ProgressionState currentRiddleState;
+
+
+        [SerializeField]
+        private ProgressionState scenarioEarlyState = new ScenarioEarlyState();
+        [SerializeField]
+        private ProgressionState scenarioLateState = new ScenarioLateState();
+        [SerializeField]
+        private ProgressionState scenarioOnTimeState = new OnTimeState();
+
+        [SerializeField]
+        private ProgressionState riddleEarlyState = new RiddleEarlyState();
+        [SerializeField]
+        private ProgressionState riddleLateState = new RiddleLateState();
+        [SerializeField]
+        private ProgressionState riddleOnTimeState = new OnTimeState();
 
         private void Start()
         {
-            lastHintTime = -timeBetweenHints;
-            lastPertubatorTime = -timeBetweenPertubators;
+            SceneManager.sceneLoaded += OnSceneLoaded;
+            
+        }
 
-            Scenario.Scenario.instance.onScenarioStart.AddListener(StartTimer);
-            Scenario.Scenario.instance.onScenarioComplete.AddListener(StopTimer);
-            foreach (WeightedRiddle wr in riddles)
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            //var tmp = FindObjectsByType<Scenario.Scenario>(FindObjectsSortMode.None);
+            settings.Scenario = FindFirstObjectByType<Scenario.Scenario>();
+            ResetSettings();
+            
+            
+            settings.Scenario.StartScenario();
+        }
+
+        private void ResetSettings()
+        {
+            currentScenarioState = scenarioOnTimeState;
+            currentRiddleState = riddleOnTimeState;
+
+            lastHintTime = -settings.TimeBetweenHints;
+            lastPertubatorTime = -settings.TimeBetweenPertubators;
+
+            settings.Scenario.onScenarioStart.AddListener(StartTimer);
+            settings.Scenario.onScenarioComplete.AddListener(StopTimer);
+
+            foreach (RiddleSettings rs in settings.Riddles)
             {
-                wr.riddle.onRiddleStart.AddListener(OnRiddleStart);
-                wr.riddle.onRiddleComplete.AddListener(OnRiddleComplete);
-                foreach (Scenario.Element element in wr.riddle.Elements)
+                rs.ScenarioSettings = settings;
+                rs.Riddle.onRiddleComplete.AddListener(OnRiddleComplete);
+
+                foreach (Element element in rs.Riddle.Elements)
                 {
                     element.onComplete.AddListener(OnElementComplete);
                 }
-                ScenarioWeights += wr.GetWeight();
+
             }
         }
 
-        private void OnRiddleComplete(Scenario.Riddle r)
-        {
-            WeightedRiddle rw = riddles.Where(w => w.riddle == r).First();
 
-            ScenarioProgression += rw.GetWeight();
+        public void LoadScenario()
+        {
+            SceneManager.LoadScene(settings.Scene.name);
+        }
+        public void SetScenarioSettings(ScenarioSettings settings)
+        {
+            this.settings = settings;
         }
 
-        private void OnRiddleStart(Scenario.Riddle r)
+        private void OnRiddleComplete(Riddle r)
         {
-            WeightedRiddle rw = riddles.Where(w => w.riddle == r).First();
-
-            CurrentRiddleWeight = rw.GetWeight();
-            CurrentRiddleProgression = 0.0f;
-            CurrentRiddleDuration = 0.0f;
-
+            currentRiddleIndex++;
         }
 
-        private void OnElementComplete(Scenario.Element e)
+        private void OnElementComplete(Element e)
         {
-            WeightedRiddle rw = riddles.Where(w => w.riddle.Elements.Contains(e)).First();
-            CurrentRiddleProgression += rw.weightedElements.Where(w => w.element == e).First().weight;
-            LastCompletionTime = CurrentTime;
+            settings.LastCompletionTime = settings.Time;
         }
 
         public void StartTimer()
         {
-            if (FMNetworkManager.instance.NetworkType == FMNetworkType.Client) return;
-            InvokeRepeating("TimerTick", 0.0f, 1.0f);
+            if (HostNetworkManager.instance.IsServer())
+            {
+                InvokeRepeating("TimerTick", 0.0f, 1.0f);
+            }
         }
 
         public void StopTimer()
@@ -99,32 +120,73 @@ namespace HOST.Monitoring
 
         private void TimerTick()
         {
-            CurrentTime += 1.0f;
-            CurrentRiddleDuration += 1.0f;
+            ((SimulationSettings)settings).Tick();
+            ((SimulationSettings)settings.GetRiddleSettings(currentRiddleIndex)).Tick();
+
+            ComputeCurrentState();
 
 
-            int influenceLevel = ComputeInfluenceLevel();
+            int influenceLevel = currentScenarioState.ComputeInfluenceLevel(settings) + currentRiddleState.ComputeInfluenceLevel(settings.GetRiddleSettings(currentRiddleIndex)); 
             if (influenceLevel != 0)
             {
-                
-                if (influenceLevel > 0 && CurrentTime-lastHintTime >= timeBetweenHints)
+
+                if (influenceLevel > 0 && settings.Time - lastHintTime >= settings.TimeBetweenHints)
                 {
-                    Scenario.Scenario.instance.PlayInfluence(influenceLevel);
-                    lastHintTime = CurrentTime;
+                    settings.Scenario.PlayInfluence(influenceLevel);
+                    lastHintTime = settings.Time;
                 }
-                else if (influenceLevel < 0 && CurrentTime-lastPertubatorTime >= timeBetweenPertubators)
+                else if (influenceLevel < 0 && settings.Time - lastPertubatorTime >= settings.TimeBetweenPertubators)
                 {
-                    Scenario.Scenario.instance.PlayInfluence(influenceLevel);
-                    lastPertubatorTime = CurrentTime;
+                    settings.Scenario.PlayInfluence(influenceLevel);
+                    lastPertubatorTime = settings.Time;
                 }
             }
 
-            onTimerTick.Invoke(CurrentTime);
+            onTimerTick.Invoke(settings.Time);
+        }
+
+        private void ComputeCurrentState()
+        {
+
+            RiddleSettings currentRiddleSettings = settings.GetRiddleSettings(currentRiddleIndex);
+
+            float expectedScenarioProgressionAtT = settings.Time / settings.ExpectedDuration();
+            float expectedRiddleProgressionAtT = currentRiddleSettings.Time / currentRiddleSettings.ExpectedDuration();
+
+            float deltaRiddleProgression = ((SimulationSettings)currentRiddleSettings).GetProgressionPercentage() - expectedRiddleProgressionAtT;
+            float deltaScenarioProgression = ((SimulationSettings)settings).GetProgressionPercentage() - expectedScenarioProgressionAtT;
+
+            if (deltaRiddleProgression > settings.DeltaOnTime)
+            {
+                currentRiddleState = riddleEarlyState;
+            }
+            else if (deltaRiddleProgression < -settings.DeltaOnTime)
+            {
+                currentRiddleState = riddleLateState;
+            }
+            else
+            {
+                currentRiddleState = riddleOnTimeState;
+            }
+
+            if (deltaScenarioProgression > settings.DeltaOnTime)
+            {
+                currentScenarioState = scenarioEarlyState;
+            }
+            else if (deltaScenarioProgression < -settings.DeltaOnTime)
+            {
+                currentScenarioState = scenarioLateState;
+            }
+            else
+            {
+                currentScenarioState = scenarioOnTimeState;
+            }
+
         }
 
         public float GetTime()
         {
-            return CurrentTime;
+            return settings.Time;
         }
 
 

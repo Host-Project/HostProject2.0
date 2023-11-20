@@ -9,6 +9,11 @@ public class DebugText : MonoBehaviour
 
     public void Debug(string txt)
     {
+        if(txt == null)
+        {
+            UnityEngine.Debug.Log(txt);
+            return;
+        }
         text.text = txt;
         CancelInvoke("EmptyText");
         Invoke("EmptyText", 5f);

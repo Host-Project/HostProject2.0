@@ -6,20 +6,18 @@ using UnityEngine.UIElements;
 using Unity.VisualScripting;
 using System.Linq;
 using FMETP;
-
+using UnityEngine.Events;
 
 namespace HOST.Networking
 {
-
-
     public class HostNetworkManager : MonoBehaviour
     {
-
+        public UnityEvent<string> OnClientConnection;
+        public UnityEvent<string> OnClientDisconnection;
         public static HostNetworkManager instance;
 
         private void Awake()
         {
-
             Application.runInBackground = true;
             if (instance == null) instance = this;
         }
@@ -30,11 +28,6 @@ namespace HOST.Networking
             RegisterNetworkObjects();
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
 
 
         private void RegisterNetworkObjects()
@@ -51,6 +44,16 @@ namespace HOST.Networking
             FMNetworkManager.instance.UpdateNumberOfSyncObjects();
         }
 
+        public void HandleConnection(string data)
+        {
+            OnClientConnection?.Invoke(data);
+        }
+
+
+        public void HandleDisconnection(string data)
+        {
+            OnClientDisconnection?.Invoke(data);
+        }
         public void HandleStringDataEvent(string data)
         {
             HostNetworkMessage message = JsonUtility.FromJson<HostNetworkMessage>(data);
@@ -76,7 +79,7 @@ namespace HOST.Networking
         public void HandleObjectSyncMessage(HostNetworkMessage message)
         {
             Debug.Log(message);
-            if (FMNetworkManager.instance.NetworkType == FMNetworkType.Client) return; // Client can't update network objects
+            if (!IsServer()) return; // Client can't update network objects
             HostNetworkObjectTransform objectTransform = HostNetworkTools.DeserializeObjectTransform(message.Data);
 
             FMNetworkManager.instance.NetworkObjects.FirstOrDefault(x => x.GetComponent<HostNetworkObject>().Id == objectTransform.Id)
@@ -106,7 +109,7 @@ namespace HOST.Networking
                 Data = data,
             };
 
-            if (FMNetworkManager.instance.NetworkType == FMNetworkType.Server)
+            if (IsServer())
             {
                 FMNetworkManager.instance.SendToOthers(HostNetworkTools.SerializeMessage(message));
             }
@@ -116,6 +119,11 @@ namespace HOST.Networking
             }
 
 
+        }
+
+        public bool IsServer()
+        {
+            return FMNetworkManager.instance.NetworkType == FMNetworkType.Server;
         }
 
     }

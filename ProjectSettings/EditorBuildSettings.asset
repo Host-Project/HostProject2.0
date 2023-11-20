@@ -8,7 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/HOST/Scenes/ScenarioTest.unity
     guid: dd3f24cff34b7ad45a7a85fef664460b
-  - enabled: 0
+  - enabled: 1
+    path: Assets/HOST/Scenes/01_Lobby.unity
+    guid: f0dd73ed67ff54c4fbd9286fd46a4c9b
+  - enabled: 1
     path: Assets/HOST/Scenario/Plane/Plane.unity
     guid: 490a7637e3fd0fd488b8cdbae0bc24a5
   - enabled: 1
