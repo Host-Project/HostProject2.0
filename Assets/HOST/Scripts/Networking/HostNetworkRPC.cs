@@ -10,18 +10,22 @@ namespace HOST.Networking
 {
     public class HostNetworkRPC : MonoBehaviour
     {
-
+        [SerializeField]
+        private int instanceId = -1;
         public static int instanceCount = 0;
-
-
-        public int InstanceId { get; set; }
+        
 
         public static List<HostNetworkRPC> rpcInstances = new List<HostNetworkRPC>();
+
+        public int InstanceId { get => instanceId; set => instanceId = value; }
 
         // Start is called before the first frame update
         protected virtual void Start()
         {
-            InstanceId = instanceCount++;
+            /*if(InstanceId == -1 || GetRPCInstance(InstanceId) != null)
+            {
+                throw new Exception("This RPC Id is not registered or already in use");
+            }*/
             rpcInstances.Add(this);
         }
 
@@ -39,7 +43,10 @@ namespace HOST.Networking
             method.Invoke(this, message.Parameters);
         }
 
-
+        public static HostNetworkRPC GetRPCInstance(int instanceId)
+        {
+            return rpcInstances.Find(x => x.InstanceId == instanceId);
+        }
        
     }
 }

@@ -21,7 +21,7 @@ namespace HOST.Scenario
 
         public void RequestComplete()
         {
-            if (FMNetworkManager.instance.NetworkType == FMNetworkType.Server)
+            if (HostNetworkManager.instance.IsServer())
             {
                 HostNetworkManager.instance.SendRPC(new HostNetworkRPCMessage()
                 {

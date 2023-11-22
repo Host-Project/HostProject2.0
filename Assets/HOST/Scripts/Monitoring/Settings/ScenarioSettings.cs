@@ -4,7 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
-using UnityEditor.SearchService;
 using UnityEngine;
 
 namespace HOST.Monitoring.Settings
@@ -17,7 +16,7 @@ namespace HOST.Monitoring.Settings
         private Scenario.Scenario scenario;
 
         [SerializeField]
-        private SceneAsset scene;
+        private string sceneName;
 
         [SerializeField]
         private float expectedDuration = 600f;
@@ -42,7 +41,7 @@ namespace HOST.Monitoring.Settings
         public List<RiddleSettings> Riddles { get => riddles; set => riddles = value; }
         public float LastCompletionTime { get; set;}
         public float Time { get; set; }
-        public SceneAsset Scene { get => scene; set => scene = value; }
+        public string SceneName { get => sceneName; set => sceneName = value; }
 
         private void Start()
         {

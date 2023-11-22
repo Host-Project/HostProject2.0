@@ -8,6 +8,7 @@ using UnityEngine.Events;
 public class SpinnableDigitLock : CodeLock
 {
     
+
     public List<DigitSpinner> digitSpinners = new List<DigitSpinner>();
 
 
@@ -32,7 +33,6 @@ public class SpinnableDigitLock : CodeLock
         {
             currentCode += spinner.GetCurrentNumber().ToString();
         }
-
-        RequestTryCode(currentCode);
+            RequestTryCode(currentCode);
     }
 }

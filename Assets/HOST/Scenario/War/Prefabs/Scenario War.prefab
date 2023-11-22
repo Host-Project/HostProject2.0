@@ -880,7 +880,7 @@ GameObject:
   - component: {fileID: 1676722380201096556}
   - component: {fileID: 512116034652290406}
   m_Layer: 0
-  m_Name: Scenario Operation
+  m_Name: Scenario War
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -940,7 +940,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scenario: {fileID: 1676722380201096556}
-  scene: {fileID: 102900000, guid: 2f875ea69c046db44868b581a7eadfc5, type: 3}
+  sceneName: War
   expectedDuration: 600
   timeBetweenHints: 30
   timeBetweenPertubators: 15

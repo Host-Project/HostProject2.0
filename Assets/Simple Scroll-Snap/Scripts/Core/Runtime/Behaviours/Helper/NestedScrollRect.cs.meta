@@ -1,14 +1,5 @@
 fileFormatVersion: 2
 guid: b062ed099cb30744394aab356d0dd584
-MonoImporter:
-  externalObjects: {}
-  serializedVersion: 2
-  defaultReferences: []
-  executionOrder: 0
-  icon: {instanceID: 0}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
   productId: 140884
@@ -16,3 +7,12 @@ AssetOrigin:
   packageVersion: 2.0.0
   assetPath: Assets/Simple Scroll-Snap/Scripts/Core/Runtime/Behaviours/Helper/NestedScrollRect.cs
   uploadId: 470672
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 300
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

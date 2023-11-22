@@ -557,7 +557,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scenario: {fileID: 398603785747847863}
-  scene: {fileID: 102900000, guid: 490a7637e3fd0fd488b8cdbae0bc24a5, type: 3}
+  sceneName: Plane
   expectedDuration: 600
   timeBetweenHints: 30
   timeBetweenPertubators: 15

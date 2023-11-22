@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using System.Linq;
 using FMETP;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 namespace HOST.Networking
 {
@@ -16,19 +17,26 @@ namespace HOST.Networking
         public UnityEvent<string> OnClientDisconnection;
         public static HostNetworkManager instance;
 
+
+
         private void Awake()
         {
             Application.runInBackground = true;
             if (instance == null) instance = this;
+
+           
         }
 
         // Start is called before the first frame update
         void Start()
         {
-            RegisterNetworkObjects();
+            SceneManager.sceneLoaded += SceneManager_sceneLoaded;
         }
 
-
+        private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
+        {
+            RegisterNetworkObjects();
+        }
 
         private void RegisterNetworkObjects()
         {
@@ -70,9 +78,16 @@ namespace HOST.Networking
 
         public void HandleRPCMessage(HostNetworkMessage message)
         {
+            Debug.Log("Handle RPC Message");
+            Debug.Log("Message data : " + message.Data);
+            foreach(HostNetworkRPC instance in HostNetworkRPC.rpcInstances)
+            {
+                Debug.Log(string.Format("ID : {0}, Name : {1}", instance.InstanceId, instance.gameObject.name));
+            }
+
             HostNetworkRPCMessage rpcMessage = HostNetworkTools.DeserializeRPCMessage(message.Data);
 
-            HostNetworkRPC.rpcInstances[rpcMessage.InstanceId].HandleRPC(rpcMessage);
+            HostNetworkRPC.GetRPCInstance(rpcMessage.InstanceId).HandleRPC(rpcMessage);
 
         }
 
@@ -118,6 +133,14 @@ namespace HOST.Networking
                 FMNetworkManager.instance.SendToServer(HostNetworkTools.SerializeMessage(message));
             }
 
+
+
+            Debug.Log("Send RPC Message");
+            Debug.Log("Message data : " + message.Data);
+            foreach (HostNetworkRPC instance in HostNetworkRPC.rpcInstances)
+            {
+                Debug.Log(string.Format("ID : {0}, Name : {1}", instance.InstanceId, instance.gameObject.name));
+            }
 
         }
 

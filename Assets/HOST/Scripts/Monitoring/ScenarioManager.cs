@@ -57,7 +57,11 @@ namespace HOST.Monitoring
             settings.Scenario = FindFirstObjectByType<Scenario.Scenario>();
             ResetSettings();
             
-            
+            Invoke("StartScenario", 20.0f);
+        }
+
+        private void StartScenario()
+        {
             settings.Scenario.StartScenario();
         }
 
@@ -88,7 +92,7 @@ namespace HOST.Monitoring
 
         public void LoadScenario()
         {
-            SceneManager.LoadScene(settings.Scene.name);
+            SceneLoader.instance.RequestLoadScene(settings.SceneName);
         }
         public void SetScenarioSettings(ScenarioSettings settings)
         {
