@@ -33,6 +33,7 @@ namespace HOST.Monitoring.Settings
         [SerializeField]
         private List<RiddleSettings> riddles; // Automatically updated by the editor
 
+        private float time = 0;
 
         public Scenario.Scenario Scenario { get => scenario; set => scenario = value; }
         public float TimeBetweenHints { get => timeBetweenHints; set => timeBetweenHints = value; }
@@ -40,8 +41,9 @@ namespace HOST.Monitoring.Settings
         public float DeltaOnTime { get => deltaOnTime; set => deltaOnTime = value; }
         public List<RiddleSettings> Riddles { get => riddles; set => riddles = value; }
         public float LastCompletionTime { get; set;}
-        public float Time { get; set; }
+        
         public string SceneName { get => sceneName; set => sceneName = value; }
+        public float Time { get => time; set => time = value; }
 
         private void Start()
         {

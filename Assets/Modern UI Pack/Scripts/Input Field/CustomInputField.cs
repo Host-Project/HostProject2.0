@@ -22,7 +22,7 @@ namespace Michsky.MUIP
         public bool clearOnSubmit = true;
 
         [Header("Events")]
-        public UnityEvent onSubmit;
+        public UnityEvent<string> onSubmit;
 
         // Hidden variables
         private float cachedDuration = 0.5f;
@@ -58,7 +58,7 @@ namespace Michsky.MUIP
 #if ENABLE_LEGACY_INPUT_MANAGER
             if (Input.GetKeyDown(KeyCode.Return)) 
             { 
-                onSubmit.Invoke();
+                onSubmit.Invoke(this.inputText.text);
 
                 if (clearOnSubmit) 
                 {
@@ -143,6 +143,11 @@ namespace Michsky.MUIP
         {
             yield return new WaitForSecondsRealtime(cachedDuration);
             inputFieldAnimator.enabled = false;
+        }
+
+        public void SubmitText()
+        {
+            onSubmit.Invoke(this.inputText.text);
         }
     }
 }

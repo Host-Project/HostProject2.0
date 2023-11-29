@@ -49,7 +49,7 @@ namespace Michsky.MUIP
             else if(decimals == 4) { inputField.text = value.ToString("F4"); }
         }
 
-        void SetValue()
+        void SetValue(string text)
         {
             if (sliderManager.mainSlider.wholeNumbers == true) { sliderManager.mainSlider.value = int.Parse(inputField.text); }
             else { sliderManager.mainSlider.value = float.Parse(inputField.text); }

@@ -157,26 +157,26 @@ namespace FMETP
             }
 
 #if UNITY_EDITOR || UNITY_STANDALONE || WINDOWS_UWP
-        if (detectedIPs.Count > 1)
-        {
-            string endPointIP = "0.0.0.0";
-            try
+            if (detectedIPs.Count > 1)
             {
-                using (Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, 0))
+                string endPointIP = "0.0.0.0";
+                try
                 {
-                    socket.Connect("8.8.8.8", 65530);
-                    IPEndPoint endPoint = socket.LocalEndPoint as IPEndPoint;
-                    endPointIP = endPoint.Address.ToString();
-                    if (socket.Connected) socket.Disconnect(true);
+                    using (Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, 0))
+                    {
+                        socket.Connect("8.8.8.8", 65530);
+                        IPEndPoint endPoint = socket.LocalEndPoint as IPEndPoint;
+                        endPointIP = endPoint.Address.ToString();
+                        if (socket.Connected) socket.Disconnect(true);
+                    }
+                }
+                catch { }
+
+                for (int i = 0; i < detectedIPs.Count; i++)
+                {
+                    if (detectedIPs[i] == endPointIP) localIP = detectedIPs[i];
                 }
             }
-            catch { }
-
-            for (int i = 0; i < detectedIPs.Count; i++)
-            {
-                if (detectedIPs[i] == endPointIP) localIP = detectedIPs[i];
-            }
-        }
 #endif
             return localIP;
         }
@@ -302,7 +302,7 @@ namespace FMETP
             if (ShowLog) Debug.Log("OnClientConnected: " + inputClientIP);
 
             //force reset network sync timestamp if owned network objects
-            if (NetworkObjects.Length > 0) Server.Action_AddNetworkObjectPacket(new byte[]{ 0 }, FMSendType.TargetIP);
+            if (NetworkObjects.Length > 0) Server.Action_AddNetworkObjectPacket(new byte[] { 0 }, FMSendType.TargetIP);
         }
         public void OnClientDisconnected(string inputClientIP)
         {
@@ -706,7 +706,10 @@ namespace FMETP
         }
 
         // Use this for initialization
-        private void Start() { if (AutoInit) Init(); }
+        private void Start()
+        {
+            if (AutoInit) Init();
+        }
 
         // Update is called once per frame
         private void Update()
@@ -855,7 +858,7 @@ namespace FMETP
                         }
                         Status = _status;
                     }
-                    catch(Exception e) { if (ShowLog) Debug.LogWarning(e); }
+                    catch (Exception e) { if (ShowLog) Debug.LogWarning(e); }
                 }
                 else
                 {
@@ -893,7 +896,11 @@ namespace FMETP
         public void Send(string _stringData, FMSendType _type, bool _reliable = false) { Send(_stringData, _type, null, _reliable); }
 
         public void SendToAll(byte[] _byteData) { Send(_byteData, FMSendType.All, null, false); }
-        public void SendToServer(byte[] _byteData) { Send(_byteData, FMSendType.Server, null, false); }
+        public void SendToServer(byte[] _byteData)
+        {
+            Debug.Log("SendToServer");
+            Send(_byteData, FMSendType.Server, null, false);
+        }
         public void SendToOthers(byte[] _byteData) { Send(_byteData, FMSendType.Others, null, false); }
 
         public void SendToAll(string _stringData) { Send(_stringData, FMSendType.All, null, false); }
@@ -971,7 +978,7 @@ namespace FMETP
         private void Send(byte[] _byteData, FMSendType _type, string _targetIP, bool _reliable = false)
         {
             if (!Initialised) return;
-            if(NetworkType == FMNetworkType.DataStream)
+            if (NetworkType == FMNetworkType.DataStream)
             {
                 Debug.LogError("Your FMNetwork Type is \"DataStream\", please use StreamData() method instead. This data are ignored and not sent due to mis-matching network type and send method.");
                 return;

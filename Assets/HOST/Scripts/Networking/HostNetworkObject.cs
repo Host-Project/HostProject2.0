@@ -19,7 +19,7 @@ public class HostNetworkObject : MonoBehaviour
         {
             onStartGravity = rb.useGravity;
         }
-        if (FMNetworkManager.instance.NetworkType == FMNetworkType.Client)
+        if (!HostNetworkManager.instance.IsServer())
         {
             if (rb != null)
             {
@@ -43,7 +43,7 @@ public class HostNetworkObject : MonoBehaviour
 
     public void SetTransform(HostNetworkObjectTransform transform)
     {
-        if (this.transform.hasChanged && FMNetworkManager.instance.NetworkType == FMNetworkType.Client)
+        if (this.transform.hasChanged && !HostNetworkManager.instance.IsServer())
         {
             HostNetworkManager.instance.RequestObjectSync(this.GetTransform());
             this.transform.hasChanged = false;

@@ -26,11 +26,13 @@ namespace HOST.Monitoring.Settings
 
         private ScenarioSettings scenarioSettings;
 
+        private float time = 0;
+
         public Riddle Riddle { get => riddle; set => riddle = value; }
         public List<WeightedElements> Elements { get => elements; set => elements = value; }
         public ScenarioSettings ScenarioSettings { get => scenarioSettings; set => scenarioSettings = value; }
         public float LastCompletionTime { get; set; }
-        public float Time { get; set; }
+        public float Time { get => time; set => time = value; }
 
         public float GetProgression()
         {

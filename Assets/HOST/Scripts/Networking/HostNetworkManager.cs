@@ -11,20 +11,26 @@ using UnityEngine.SceneManagement;
 
 namespace HOST.Networking
 {
+    struct ClientDevice
+    {
+        public string IP;
+        public bool IsReady;
+        public bool IsSceneLoaded;
+    }
     public class HostNetworkManager : MonoBehaviour
     {
         public UnityEvent<string> OnClientConnection;
         public UnityEvent<string> OnClientDisconnection;
         public static HostNetworkManager instance;
 
-
+        private List<ClientDevice> connectedsIP = new List<ClientDevice>();
 
         private void Awake()
         {
             Application.runInBackground = true;
             if (instance == null) instance = this;
 
-           
+
         }
 
         // Start is called before the first frame update
@@ -54,12 +60,19 @@ namespace HOST.Networking
 
         public void HandleConnection(string data)
         {
+            connectedsIP.Add(new ClientDevice()
+            {
+                IP = data,
+                IsReady = false,
+                IsSceneLoaded = false,
+            });
             OnClientConnection?.Invoke(data);
         }
 
 
         public void HandleDisconnection(string data)
         {
+            connectedsIP.Remove(connectedsIP.Find(x => x.IP == data));
             OnClientDisconnection?.Invoke(data);
         }
         public void HandleStringDataEvent(string data)
@@ -78,28 +91,27 @@ namespace HOST.Networking
 
         public void HandleRPCMessage(HostNetworkMessage message)
         {
-            Debug.Log("Handle RPC Message");
-            Debug.Log("Message data : " + message.Data);
-            foreach(HostNetworkRPC instance in HostNetworkRPC.rpcInstances)
-            {
-                Debug.Log(string.Format("ID : {0}, Name : {1}", instance.InstanceId, instance.gameObject.name));
-            }
-
             HostNetworkRPCMessage rpcMessage = HostNetworkTools.DeserializeRPCMessage(message.Data);
-
+            Debug.Log(message.Data);
             HostNetworkRPC.GetRPCInstance(rpcMessage.InstanceId).HandleRPC(rpcMessage);
-
         }
 
         public void HandleObjectSyncMessage(HostNetworkMessage message)
         {
-            Debug.Log(message);
             if (!IsServer()) return; // Client can't update network objects
-            HostNetworkObjectTransform objectTransform = HostNetworkTools.DeserializeObjectTransform(message.Data);
 
-            FMNetworkManager.instance.NetworkObjects.FirstOrDefault(x => x.GetComponent<HostNetworkObject>().Id == objectTransform.Id)
-                .GetComponent<HostNetworkObject>()
-                .SetTransform(objectTransform);
+            try
+            {
+                HostNetworkObjectTransform objectTransform = HostNetworkTools.DeserializeObjectTransform(message.Data);
+
+                FMNetworkManager.instance.NetworkObjects.FirstOrDefault(x => x.GetComponent<HostNetworkObject>().Id == objectTransform.Id)
+                    .GetComponent<HostNetworkObject>()
+                    .SetTransform(objectTransform);
+            }catch(Exception e)
+            {
+                // Sometimes sync message bug but if it miss one, it will be resync later
+                Debug.LogError(e.Message);
+            }
         }
 
         public void RequestObjectSync(HostNetworkObjectTransform objectTransform)
@@ -114,7 +126,7 @@ namespace HOST.Networking
             FMNetworkManager.instance.SendToServer(HostNetworkTools.SerializeMessage(message));
         }
 
-        public void SendRPC(HostNetworkRPCMessage rpcMessage)
+        public void SendRPC(HostNetworkRPCMessage rpcMessage, string targetIP = null)
         {
             string data = HostNetworkTools.SerializeRPCMessage(rpcMessage);
             HostNetworkMessage message = new HostNetworkMessage()
@@ -123,6 +135,12 @@ namespace HOST.Networking
                 NetworkTarget = HostNetworkTarget.Server,
                 Data = data,
             };
+
+            if (targetIP != null)
+            {
+                FMNetworkManager.instance.SendToTarget(HostNetworkTools.SerializeMessage(message), targetIP);
+                return;
+            }
 
             if (IsServer())
             {
@@ -133,15 +151,6 @@ namespace HOST.Networking
                 FMNetworkManager.instance.SendToServer(HostNetworkTools.SerializeMessage(message));
             }
 
-
-
-            Debug.Log("Send RPC Message");
-            Debug.Log("Message data : " + message.Data);
-            foreach (HostNetworkRPC instance in HostNetworkRPC.rpcInstances)
-            {
-                Debug.Log(string.Format("ID : {0}, Name : {1}", instance.InstanceId, instance.gameObject.name));
-            }
-
         }
 
         public bool IsServer()
@@ -149,5 +158,13 @@ namespace HOST.Networking
             return FMNetworkManager.instance.NetworkType == FMNetworkType.Server;
         }
 
+
+        public void LoadStreams()
+        {
+            foreach(ClientDevice client in connectedsIP)
+            {
+                MonitorManager.instance.RegisterNewStream(client.IP );
+            }
+        }
     }
 }

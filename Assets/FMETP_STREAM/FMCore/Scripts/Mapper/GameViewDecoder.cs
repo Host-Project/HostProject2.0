@@ -139,6 +139,7 @@ namespace FMETP
 
         public void Action_ProcessImageData(byte[] _byteData)
         {
+            Debug.Log("Action_ProcessImageData");
             if (!enabled) return;
             if (_byteData.Length <= 14) return;
 

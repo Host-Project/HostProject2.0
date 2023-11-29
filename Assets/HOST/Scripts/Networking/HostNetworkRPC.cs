@@ -22,11 +22,20 @@ namespace HOST.Networking
         // Start is called before the first frame update
         protected virtual void Start()
         {
-            /*if(InstanceId == -1 || GetRPCInstance(InstanceId) != null)
-            {
-                throw new Exception("This RPC Id is not registered or already in use");
-            }*/
             rpcInstances.Add(this);
+        }
+
+        private void OnValidate()
+        {
+            if(GetRPCInstance(instanceId) != null)
+            {
+                throw new Exception("Instance ID already exists");
+            }
+        }
+
+        private void OnDestroy()
+        {
+            rpcInstances.Remove(this);
         }
 
         public void HandleRPC(HostNetworkRPCMessage message)
@@ -46,6 +55,15 @@ namespace HOST.Networking
         public static HostNetworkRPC GetRPCInstance(int instanceId)
         {
             return rpcInstances.Find(x => x.InstanceId == instanceId);
+        }
+
+        public static void DebugRPCInstances()
+        {
+            foreach (HostNetworkRPC instance in rpcInstances)
+            {
+                Debug.Log(instance);
+                Debug.Log(string.Format("ID : {0}, Name : {1}", instance.InstanceId, instance.gameObject.name));
+            }
         }
        
     }

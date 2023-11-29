@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6881520154790708271}
   - component: {fileID: 4856189813248587094}
-  - component: {fileID: 3693684223287557312}
   - component: {fileID: 2676049373986211794}
   m_Layer: 0
   m_Name: Server
@@ -97,7 +96,7 @@ MonoBehaviour:
   OnReceivedByteDataEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3693684223287557312}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: FMETP.GameViewDecoder, Assembly-CSharp
         m_MethodName: Action_ProcessImageData
         m_Mode: 0
@@ -145,45 +144,6 @@ MonoBehaviour:
   NetworkObjects: []
   SyncFPS: 60
   EnableNetworkObjectsSync: 1
---- !u!114 &3693684223287557312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4971545203974118720}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41b958dc0d06c834b944242ed4c03c0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EditorShowSettings: 1
-  EditorShowDecoded: 1
-  EditorShowDesktopFrameInfo: 0
-  EditorShowPairing: 1
-  FastMode: 1
-  AsyncMode: 1
-  DecoderDelay: 0
-  ReceivedTexture2D: {fileID: 0}
-  ReceivedRenderTexture: {fileID: 0}
-  ColorReductionLevel: 0
-  PreviewType: 1
-  PreviewRawImage: {fileID: 0}
-  PreviewMeshRenderer: {fileID: 0}
-  OnReceivedTextureEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  OnReceivedDesktopFrameRectEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  Mono: 0
-  Sharpen: 0
-  DeNoise: 0
-  DecodedFilterMode: 1
-  DecodedWrapMode: 1
-  MatColorAdjustment: {fileID: 0}
-  label: 1001
-  GZipMode: 0
 --- !u!114 &2676049373986211794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,16 +310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5610e991a3eabc74ea245bdab594d445, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deltaOnTime: 0.1
-  expectedDuration: 60
-  Scenario: {fileID: 0}
-  riddles:
-  - riddle: {fileID: 0}
-    weightedElements: []
-  - riddle: {fileID: 0}
-    weightedElements: []
+  settings: {fileID: 0}
   onTimerTick:
     m_PersistentCalls:
       m_Calls: []
-  timeBetweenHints: 30
-  timeBetweenPertubators: 15
