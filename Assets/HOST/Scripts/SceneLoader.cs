@@ -14,7 +14,6 @@ public class SceneLoader : HostNetworkRPC
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(this);
         }
     }
 

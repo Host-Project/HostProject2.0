@@ -48,6 +48,8 @@ namespace Michsky.MUIP
             if (inputText == null || inputFieldAnimator == null) { Initialize(); }
             inputText.ForceLabelUpdate();
             UpdateStateInstant();
+
+            UpdateState();
         }
 
         void Update()
@@ -148,6 +150,11 @@ namespace Michsky.MUIP
         public void SubmitText()
         {
             onSubmit.Invoke(this.inputText.text);
+            if (clearOnSubmit)
+            {
+                inputText.text = "";
+                UpdateState();
+            }
         }
     }
 }

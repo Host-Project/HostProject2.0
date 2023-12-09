@@ -18,7 +18,7 @@ namespace HOST.Monitoring
     public class ScenarioManager : MonoBehaviour
     {
         [SerializeField]
-        private ScenarioSettings settings;
+        public ScenarioSettings settings;
 
         public UnityEvent<float> onTimerTick;
 
@@ -29,6 +29,8 @@ namespace HOST.Monitoring
 
         private ProgressionState currentScenarioState;
         private ProgressionState currentRiddleState;
+
+        public static ScenarioManager instance;
 
 
         [SerializeField]
@@ -47,17 +49,22 @@ namespace HOST.Monitoring
 
         private void Start()
         {
+            if (instance == null)
+            {
+                instance = this;
+            }
             SceneManager.sceneLoaded += OnSceneLoaded;
-            
         }
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            //var tmp = FindObjectsByType<Scenario.Scenario>(FindObjectsSortMode.None);
-            settings.Scenario = FindFirstObjectByType<Scenario.Scenario>();
-            ResetSettings();
-            
-            Invoke("StartScenario", 20.0f);
+            if(scene.name != "03_Review")
+            {
+                settings.Scenario = FindFirstObjectByType<Scenario.Scenario>();
+                ResetSettings();
+
+                Invoke("StartScenario", 10.0f);
+            }
         }
 
         private void StartScenario()
@@ -79,6 +86,7 @@ namespace HOST.Monitoring
             foreach (RiddleSettings rs in settings.Riddles)
             {
                 rs.ScenarioSettings = settings;
+                rs.Name = rs.Riddle.name;
                 rs.Riddle.onRiddleComplete.AddListener(OnRiddleComplete);
 
                 foreach (Element element in rs.Riddle.Elements)
@@ -89,6 +97,10 @@ namespace HOST.Monitoring
             }
         }
 
+        public void EndScenario()
+        {
+            SceneLoader.instance.RequestLoadScene("03_Review");
+        }
 
         public void LoadScenario()
         {
@@ -130,7 +142,7 @@ namespace HOST.Monitoring
             ComputeCurrentState();
 
 
-            int influenceLevel = currentScenarioState.ComputeInfluenceLevel(settings) + currentRiddleState.ComputeInfluenceLevel(settings.GetRiddleSettings(currentRiddleIndex)); 
+            int influenceLevel = currentScenarioState.ComputeInfluenceLevel(settings) + currentRiddleState.ComputeInfluenceLevel(settings.GetRiddleSettings(currentRiddleIndex));
             if (influenceLevel != 0)
             {
 

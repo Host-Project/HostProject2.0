@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.github-glitchenzo.nugetforunity": {
+      "version": "https://github.com/GlitchEnzo/NuGetForUnity.git?path=/src/NuGetForUnity",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "441f6df275ff7bb54169554231ff0f8211148b1e"
+    },
     "com.meta.xr.simulator": {
       "version": "file:D:/Téléchargements/com.meta.xr.simulator-57.0.0/package",
       "depth": 0,

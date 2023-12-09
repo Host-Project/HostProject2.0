@@ -26,6 +26,7 @@ namespace HOST.Monitoring.Settings
 
         private ScenarioSettings scenarioSettings;
 
+        private string name;
         private float time = 0;
 
         public Riddle Riddle { get => riddle; set => riddle = value; }
@@ -33,6 +34,7 @@ namespace HOST.Monitoring.Settings
         public ScenarioSettings ScenarioSettings { get => scenarioSettings; set => scenarioSettings = value; }
         public float LastCompletionTime { get; set; }
         public float Time { get => time; set => time = value; }
+        public string Name { get => name; set => name = value; }
 
         public float GetProgression()
         {
