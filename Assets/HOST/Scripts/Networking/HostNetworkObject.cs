@@ -7,10 +7,13 @@ using UnityEngine;
 
 public class HostNetworkObject : MonoBehaviour
 {
-    public int Id { get; set; }
+    [SerializeField]
+    private int id = 0;
 
     private bool onStartGravity = false;
     private Rigidbody rb;
+
+    public int Id { get => id; set => id = value; }
 
     private void Start()
     {
@@ -29,14 +32,22 @@ public class HostNetworkObject : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (!HostNetworkManager.instance.IsServer() && this.transform.hasChanged)
+        {
+            HostNetworkManager.instance.RequestObjectSync(this.GetTransform());
+        }
+    }
+
 
     public HostNetworkObjectTransform GetTransform()
     {
         return new HostNetworkObjectTransform()
         {
             Id = Id,
-            Position = transform.position,
-            Rotation = transform.rotation,
+            Position = transform.localPosition,
+            Rotation = transform.localRotation,
             Scale = transform.localScale
         };
     }
@@ -49,8 +60,8 @@ public class HostNetworkObject : MonoBehaviour
             this.transform.hasChanged = false;
             return;
         }
-        this.transform.position = transform.Position;
-        this.transform.rotation = transform.Rotation;
+        this.transform.localPosition = transform.Position;
+        this.transform.localRotation = transform.Rotation;
         this.transform.localScale = transform.Scale;
         this.transform.hasChanged = false;
         if (onStartGravity)
@@ -63,7 +74,7 @@ public class HostNetworkObject : MonoBehaviour
 
     private void UseGravity()
     {
-        if(rb != null)
+        if (rb != null)
         {
             rb.useGravity = onStartGravity;
         }

@@ -385,11 +385,17 @@ namespace FMETP
 
         private byte[] EncodeTransformByte(GameObject obj)
         {
+            /* Modification for HOST
             byte[] _byte = new byte[40];
             Vector3 _pos = obj.transform.position;
             Quaternion _rot = obj.transform.rotation;
             Vector3 _scale = obj.transform.localScale;
+            */
 
+            byte[] _byte = new byte[40];
+            Vector3 _pos = obj.transform.localPosition;
+            Quaternion _rot = obj.transform.localRotation;
+            Vector3 _scale = obj.transform.localScale;
             float[] _float = new float[]
             {
             _pos.x,_pos.y,_pos.z,
@@ -763,8 +769,8 @@ namespace FMETP
                                     HostNetworkObjectTransform transform = new HostNetworkObjectTransform()
                                     {
                                         Id = -1,
-                                        Position = Vector3.Slerp(NetworkObjects[i].transform.position, NetworkTransform[i].position, step),
-                                        Rotation = Quaternion.Slerp(NetworkObjects[i].transform.rotation, NetworkTransform[i].rotation, step),
+                                        Position = Vector3.Slerp(NetworkObjects[i].transform.localPosition, NetworkTransform[i].position, step),
+                                        Rotation = Quaternion.Slerp(NetworkObjects[i].transform.localRotation, NetworkTransform[i].rotation, step),
                                         Scale = Vector3.Slerp(NetworkObjects[i].transform.localScale, NetworkTransform[i].localScale, step)
                                     };
 

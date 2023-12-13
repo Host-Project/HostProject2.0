@@ -41,7 +41,7 @@ namespace HOST.Networking
 
         private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
         {
-            RegisterNetworkObjects();
+            Invoke("RegisterNetworkObjects", 5);
         }
 
         private void RegisterNetworkObjects()
@@ -51,11 +51,12 @@ namespace HOST.Networking
             int count = 0;
             foreach (HostNetworkObject networkObject in networkObjects)
             {
-                FMNetworkManager.instance.NetworkObjects[count] = networkObject.gameObject;
-                networkObject.Id = count++;
+                Debug.Log(networkObject.gameObject.name);
+                FMNetworkManager.instance.NetworkObjects[count++] = networkObject.gameObject;
             }
 
             FMNetworkManager.instance.UpdateNumberOfSyncObjects();
+
         }
 
         public void HandleConnection(string data)
