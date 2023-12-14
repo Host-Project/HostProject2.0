@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -560,7 +560,7 @@ MonoBehaviour:
   m_RestoreOriginalTextOnEscape: 1
   m_isRichTextEditingAllowed: 1
   m_LineLimit: 0
-  m_InputValidator: {fileID: 11400000, guid: 7ceef59525c5eec4c9e2c3459b6c5e9c, type: 2}
+  m_InputValidator: {fileID: 0}
 --- !u!1 &152806521
 GameObject:
   m_ObjectHideFlags: 0
@@ -2516,7 +2516,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 462281911}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4950,7 +4950,7 @@ MonoBehaviour:
   m_RestoreOriginalTextOnEscape: 1
   m_isRichTextEditingAllowed: 1
   m_LineLimit: 0
-  m_InputValidator: {fileID: 11400000, guid: 7ceef59525c5eec4c9e2c3459b6c5e9c, type: 2}
+  m_InputValidator: {fileID: 0}
 --- !u!1 &870077614
 GameObject:
   m_ObjectHideFlags: 0
@@ -7987,6 +7987,89 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!1 &1347575015
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1347575016}
+  - component: {fileID: 1347575018}
+  - component: {fileID: 1347575017}
+  m_Layer: 0
+  m_Name: Arrow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1347575016
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1347575015}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1816614969}
+  m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
+--- !u!23 &1347575017
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1347575015}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 0a60801fce32f4bab86c58578e46e47b, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1347575018
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1347575015}
+  m_Mesh: {fileID: 4300000, guid: fbee8b80b0ed4458a8ab081226629138, type: 3}
 --- !u!1 &1352601799
 GameObject:
   m_ObjectHideFlags: 0
@@ -8261,7 +8344,7 @@ MonoBehaviour:
   m_RestoreOriginalTextOnEscape: 1
   m_isRichTextEditingAllowed: 1
   m_LineLimit: 0
-  m_InputValidator: {fileID: 11400000, guid: 97cccaf7e39177147bc97537376c6646, type: 2}
+  m_InputValidator: {fileID: 0}
 --- !u!1 &1379801067
 GameObject:
   m_ObjectHideFlags: 0
@@ -10555,8 +10638,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1816614969}
-  - component: {fileID: 1816614968}
   - component: {fileID: 1816614970}
+  - component: {fileID: 1816614972}
+  - component: {fileID: 1816614971}
   m_Layer: 0
   m_Name: CenteredUI
   m_TagString: Untagged
@@ -10564,19 +10648,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1816614968
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1816614967}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e312277a368c51543a6a5fed61e8c623, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hideSceneAnchor: 0
 --- !u!4 &1816614969
 Transform:
   m_ObjectHideFlags: 0
@@ -10590,6 +10661,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1347575016}
   - {fileID: 462281912}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10603,6 +10675,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1050b31fa67c514479b0c5ad2ecd17e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1816614971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816614967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eea07b9601eac249b1f3138b9586be7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1816614972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816614967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f937c5f654a72684a94dd8ecf1dea033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1843254153
@@ -11873,7 +11969,7 @@ MonoBehaviour:
   m_RestoreOriginalTextOnEscape: 1
   m_isRichTextEditingAllowed: 1
   m_LineLimit: 0
-  m_InputValidator: {fileID: 11400000, guid: 7ceef59525c5eec4c9e2c3459b6c5e9c, type: 2}
+  m_InputValidator: {fileID: 0}
 --- !u!1 &2143444120
 GameObject:
   m_ObjectHideFlags: 0
