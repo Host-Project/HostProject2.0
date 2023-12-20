@@ -176,19 +176,16 @@ public class CryptedMessageRidle : HostNetworkRPC
     {
         if (HostNetworkManager.instance.IsServer())
         {
-            cephalosporine = receivedFromClient ? cephalosporine : CephalosporineCheck.isOn;
-            vanocomycine = receivedFromClient ? vanocomycine : VanocomycineCheck.isOn;
-            amoxiciline = receivedFromClient ? amoxiciline : AmoxicilineCheck.isOn;
 
             HostNetworkManager.instance.SendRPC(new HostNetworkRPCMessage()
             {
                 InstanceId = this.InstanceId,
                 MethodName = "CheckAnswer",
-                Parameters = new object[] { cephalosporine, vanocomycine, amoxiciline }
+                Parameters = new object[] { CephalosporineCheck.isOn, VanocomycineCheck.isOn, AmoxicilineCheck.isOn }
             });
-            CheckAnswer(cephalosporine, vanocomycine, amoxiciline);
+            CheckAnswer(CephalosporineCheck.isOn, VanocomycineCheck.isOn, AmoxicilineCheck.isOn);
         }
-        else
+        /*else
         {
             HostNetworkManager.instance.SendRPC(new HostNetworkRPCMessage()
             {
@@ -196,7 +193,7 @@ public class CryptedMessageRidle : HostNetworkRPC
                 MethodName = "RequestCheckAnswer",
                 Parameters = new object[] { CephalosporineCheck.isOn, VanocomycineCheck.isOn, AmoxicilineCheck.isOn, true }
             });
-        }
+        }*/
     }
 
     private void CheckAnswer(bool cephalosporine, bool vanocomycine, bool amoxiciline)
