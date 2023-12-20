@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6717d7e44cf1ff24db30d85cafebae9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instanceId: 11
   influencers: []
   onComplete:
     m_PersistentCalls:
@@ -116,6 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dba7b4cf7350e74a9ff0d33db194046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instanceId: 5
   play:
     m_PersistentCalls:
       m_Calls: []
@@ -228,10 +230,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dba7b4cf7350e74a9ff0d33db194046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instanceId: 13
   play:
     m_PersistentCalls:
       m_Calls: []
-  influenceLevel: -1
+  influenceLevel: 1
 --- !u!1 &4284429067836438191
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,6 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 456ed8f181208e346b818901c22ea57e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instanceId: 4
   elements:
   - {fileID: 7022392543952662804}
   - {fileID: 6872072321747051960}
@@ -341,6 +345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6717d7e44cf1ff24db30d85cafebae9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instanceId: 0
   influencers: []
   onComplete:
     m_PersistentCalls:
@@ -389,6 +394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6717d7e44cf1ff24db30d85cafebae9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instanceId: 3
   influencers: []
   onComplete:
     m_PersistentCalls:
@@ -437,6 +443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dba7b4cf7350e74a9ff0d33db194046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instanceId: 6
   play:
     m_PersistentCalls:
       m_Calls: []
@@ -485,6 +492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dba7b4cf7350e74a9ff0d33db194046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instanceId: 9
   play:
     m_PersistentCalls:
       m_Calls: []
@@ -535,6 +543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c98c12492de8746baad22f1eb93847, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instanceId: 2
   riddles:
   - {fileID: 2725548020122372000}
   onScenarioStart:
@@ -556,7 +565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7f2ab894a6af284abe4f311a1c6af89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scenario: {fileID: 398603785747847863}
+  scenario: {fileID: 0}
   sceneName: Plane
   expectedDuration: 600
   timeBetweenHints: 30
@@ -618,6 +627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6717d7e44cf1ff24db30d85cafebae9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instanceId: 7
   influencers: []
   onComplete:
     m_PersistentCalls:

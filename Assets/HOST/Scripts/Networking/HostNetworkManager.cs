@@ -130,6 +130,7 @@ namespace HOST.Networking
         public void SendRPC(HostNetworkRPCMessage rpcMessage, string targetIP = null)
         {
             string data = HostNetworkTools.SerializeRPCMessage(rpcMessage);
+            Debug.Log(data);
             HostNetworkMessage message = new HostNetworkMessage()
             {
                 MessageType = HostNetworkMessageType.RPC,

@@ -904,7 +904,6 @@ namespace FMETP
         public void SendToAll(byte[] _byteData) { Send(_byteData, FMSendType.All, null, false); }
         public void SendToServer(byte[] _byteData)
         {
-            Debug.Log("SendToServer");
             Send(_byteData, FMSendType.Server, null, false);
         }
         public void SendToOthers(byte[] _byteData) { Send(_byteData, FMSendType.Others, null, false); }

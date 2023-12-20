@@ -40,8 +40,6 @@ public class CryptedMessageRidle : HostNetworkRPC
     public UnityEvent OnFailed;
 
 
-    //[SerializeField]
-    //private HelpRPC rpc;
     enum Direction { In, Out, None }
     private Direction direction = Direction.None;
 
@@ -60,26 +58,27 @@ public class CryptedMessageRidle : HostNetworkRPC
         {
             case Direction.In:
                 messageObject.GetComponent<BoxCollider>().enabled = false;
-                if (FMNetworkManager.instance.NetworkType == FMNetworkType.Server)
+                if (HostNetworkManager.instance.IsServer())
                     messageObject.transform.localPosition = Vector3.MoveTowards(messageObject.transform.localPosition, inPosition.localPosition, 0.1f);
 
                 if (messageObject.transform.localPosition == inPosition.localPosition)
                 {
                     direction = Direction.None;
-                    messageObject.GetComponent<BoxCollider>().enabled = true;
                 }
                 break;
             case Direction.Out:
                 messageObject.GetComponent<BoxCollider>().enabled = false;
-                if (FMNetworkManager.instance.NetworkType == FMNetworkType.Server)
+                if (HostNetworkManager.instance.IsServer())
                     messageObject.transform.localPosition = Vector3.MoveTowards(messageObject.transform.localPosition, outPosition.localPosition, 0.1f);
 
                 if (messageObject.transform.localPosition == outPosition.localPosition)
                 {
                     direction = Direction.None;
-                    messageObject.GetComponent<BoxCollider>().enabled = true;
 
                 }
+                break;
+            default:
+                messageObject.GetComponent<BoxCollider>().enabled = true;
                 break;
         }
     }
@@ -136,7 +135,7 @@ public class CryptedMessageRidle : HostNetworkRPC
 
     public void GenerateMessage()
     {
-        if (FMNetworkManager.instance.NetworkType == FMNetworkType.Server)
+        if (HostNetworkManager.instance.IsServer())
         {
             (string crypted, string pairs) = CryptMessage();
             HostNetworkManager.instance.SendRPC(new HostNetworkRPCMessage()
@@ -163,16 +162,19 @@ public class CryptedMessageRidle : HostNetworkRPC
 
     public void GiveMessage()
     {
-        messageObject.GetComponent<DragDrop>().enabled = true;
-        messageObject.transform.localPosition = outPosition.localPosition;
-        messageObject.transform.localRotation = rotation;
-        direction = Direction.In;
+        if (HostNetworkManager.instance.IsServer())
+        {
+            messageObject.GetComponent<DragDrop>().enabled = true;
+            messageObject.transform.localPosition = outPosition.localPosition;
+            messageObject.transform.localRotation = rotation;
+            direction = Direction.In;
+        }
         doorSound.Play();
     }
 
     public void RequestCheckAnswer(bool cephalosporine = false, bool vanocomycine = false, bool amoxiciline = false, bool receivedFromClient = false)
     {
-        if (FMNetworkManager.instance.NetworkType == FMNetworkType.Server)
+        if (HostNetworkManager.instance.IsServer())
         {
             cephalosporine = receivedFromClient ? cephalosporine : CephalosporineCheck.isOn;
             vanocomycine = receivedFromClient ? vanocomycine : VanocomycineCheck.isOn;

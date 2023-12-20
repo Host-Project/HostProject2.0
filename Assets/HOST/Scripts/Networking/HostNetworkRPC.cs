@@ -40,7 +40,7 @@ namespace HOST.Networking
 
         public void HandleRPC(HostNetworkRPCMessage message)
         {
-            Debug.Log("Handle RPC");
+            DebugRPCInstances();
             MethodInfo method = this.GetType().GetMethod(message.MethodName, BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
 
 
@@ -65,6 +65,6 @@ namespace HOST.Networking
                 Debug.Log(string.Format("ID : {0}, Name : {1}", instance.InstanceId, instance.gameObject.name));
             }
         }
-       
+
     }
 }

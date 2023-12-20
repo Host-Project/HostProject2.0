@@ -25,14 +25,15 @@ public class SceneContainer : MonoBehaviour
         {
             Debug.Log("Placing scene");
             Debug.Log(gameObject.name);
+
             transform.position = anchor.transform.position;
-            transform.rotation = Quaternion.Euler(transform.rotation.x, anchor.transform.GetChild(0).rotation.y, transform.rotation.z);
-            //new Quaternion.EulerAngles(anchor.transform.rotation.x, anchor.transform.rotation.y, anchor.transform.rotation.z);
+            transform.rotation = anchor.transform.rotation;
             isPlaced = true;
 
             if (hideSceneAnchor)
             {
-                anchor.transform.gameObject.SetActive(false);
+                foreach(Transform child in anchor.transform)
+                    child.gameObject.SetActive(false);
             }
         }
     }

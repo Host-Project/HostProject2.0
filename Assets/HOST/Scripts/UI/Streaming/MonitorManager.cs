@@ -55,7 +55,6 @@ public class MonitorManager : HostNetworkRPC
 
     private void OnDataByteReady(byte[] data)
     {
-        Debug.Log("Should Sending Stream to server");
         FMNetworkManager.instance.SendToServer(data);
     }
 

@@ -16,6 +16,7 @@ public class LookAtPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        cameraRig = FindAnyObjectByType<OVRCameraRig>();
         if (cameraRig != null && rotate)
         {
             Vector3 targetPostition = new Vector3(cameraRig.centerEyeAnchor.position.x, this.transform.position.y, cameraRig.centerEyeAnchor.position.z);

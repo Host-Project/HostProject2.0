@@ -23,7 +23,7 @@ public class CodeLock : HostNetworkRPC
     {
         if (useNetwork)
         {
-            if (FMNetworkManager.instance.NetworkType == FMNetworkType.Server)
+            if (HostNetworkManager.instance.IsServer())
             {
                 HostNetworkManager.instance.SendRPC(new HostNetworkRPCMessage()
                 {

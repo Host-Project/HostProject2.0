@@ -9,6 +9,10 @@ public class LockedContainerManipulator : MonoBehaviour
 
     public GameObject InsideContent;
 
+    public GameObject MainLock;
+
+    public GameObject BiggerLock;
+
 
     public void Start()
     {
@@ -24,7 +28,8 @@ public class LockedContainerManipulator : MonoBehaviour
         
         sequence.Append(CabinetDoor.transform.DOLocalRotate(new Vector3(0f, 0f, -170f), 1.5f));
 
-        
+        MainLock.gameObject.SetActive(false);
+        BiggerLock.gameObject.SetActive(false);
 
         // Show the content (was hiddent to prevent cheating by peaking inside)
         InsideContent.SetActive(true);

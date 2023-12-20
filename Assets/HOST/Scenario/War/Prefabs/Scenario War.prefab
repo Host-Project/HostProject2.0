@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dba7b4cf7350e74a9ff0d33db194046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instanceId: 16
   play:
     m_PersistentCalls:
       m_Calls:
@@ -105,6 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6717d7e44cf1ff24db30d85cafebae9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instanceId: 35
   influencers: []
   onComplete:
     m_PersistentCalls:
@@ -154,6 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 456ed8f181208e346b818901c22ea57e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instanceId: 17
   elements: []
   onGlobalStart:
     m_PersistentCalls:
@@ -245,6 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6717d7e44cf1ff24db30d85cafebae9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instanceId: 27
   influencers:
   - {fileID: 7517051817690067671}
   onComplete:
@@ -297,6 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 456ed8f181208e346b818901c22ea57e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instanceId: 7
   elements:
   - {fileID: 8135430177464268526}
   - {fileID: 4097022289481950898}
@@ -381,6 +386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6717d7e44cf1ff24db30d85cafebae9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instanceId: 8
   influencers:
   - {fileID: 5884044441969617482}
   - {fileID: 4481313340770940441}
@@ -432,6 +438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dba7b4cf7350e74a9ff0d33db194046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instanceId: 10
   play:
     m_PersistentCalls:
       m_Calls:
@@ -493,6 +500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dba7b4cf7350e74a9ff0d33db194046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instanceId: 11
   play:
     m_PersistentCalls:
       m_Calls:
@@ -556,12 +564,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6717d7e44cf1ff24db30d85cafebae9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instanceId: 2
   influencers:
   - {fileID: 7682339623746495383}
   - {fileID: 5891801160177582211}
   onComplete:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &4461431145459431713
 GameObject:
   m_ObjectHideFlags: 0
@@ -606,6 +627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dba7b4cf7350e74a9ff0d33db194046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instanceId: 13
   play:
     m_PersistentCalls:
       m_Calls:
@@ -667,6 +689,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dba7b4cf7350e74a9ff0d33db194046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instanceId: 6
   play:
     m_PersistentCalls:
       m_Calls:
@@ -728,6 +751,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dba7b4cf7350e74a9ff0d33db194046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instanceId: 3
   play:
     m_PersistentCalls:
       m_Calls:
@@ -789,6 +813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dba7b4cf7350e74a9ff0d33db194046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instanceId: 31
   play:
     m_PersistentCalls:
       m_Calls:
@@ -850,6 +875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dba7b4cf7350e74a9ff0d33db194046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instanceId: 20
   play:
     m_PersistentCalls:
       m_Calls:
@@ -916,6 +942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c98c12492de8746baad22f1eb93847, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instanceId: 12
   riddles:
   - {fileID: 3267015976308904342}
   - {fileID: 1813636315541903377}
@@ -1011,6 +1038,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 456ed8f181208e346b818901c22ea57e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instanceId: 1
   elements:
   - {fileID: 6640513379396465364}
   - {fileID: 2440875051618194015}
@@ -1068,6 +1096,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dba7b4cf7350e74a9ff0d33db194046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instanceId: 15
   play:
     m_PersistentCalls:
       m_Calls:
@@ -1129,10 +1158,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6717d7e44cf1ff24db30d85cafebae9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instanceId: 19
   influencers: []
   onComplete:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: LockedContainerManipulator, Assembly-CSharp
+        m_MethodName: OpenCabinet
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8185724837496582195
 GameObject:
   m_ObjectHideFlags: 0
@@ -1179,6 +1221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6717d7e44cf1ff24db30d85cafebae9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instanceId: 14
   influencers:
   - {fileID: 7112452939241344664}
   - {fileID: 4862291969515852105}
@@ -1230,6 +1273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6717d7e44cf1ff24db30d85cafebae9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instanceId: 5
   influencers:
   - {fileID: 147121464298164476}
   onComplete:
