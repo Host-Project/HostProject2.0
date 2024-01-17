@@ -28,6 +28,6 @@ public class SwitchToggle : HostNetworkRPC
     }
     private void Switch()
     {
-        GetComponent<Toggle>().isOn = !GetComponent<Toggle>().isOn;
+        toggle.isOn = !toggle.isOn;
     }
 }

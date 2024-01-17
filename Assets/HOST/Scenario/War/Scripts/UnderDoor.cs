@@ -1,3 +1,4 @@
+using HOST.Networking;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,11 +24,11 @@ public class UnderDoor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        
-        if(other.gameObject == waitingFor)
+        Debug.Log("OnTriggerEnter" + other.gameObject);
+        if(other.gameObject == waitingFor && HostNetworkManager.instance.IsServer())
         {
-         
-            ridle.RequestCheckAnswer();
+            Debug.Log("CheckAnswer");
+            ridle.CheckAnswer();
         }
     }
 }

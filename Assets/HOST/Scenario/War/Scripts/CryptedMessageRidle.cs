@@ -53,13 +53,11 @@ public class CryptedMessageRidle : HostNetworkRPC
     }
     private void Update()
     {
-
+        if (!HostNetworkManager.instance.IsServer()) return;
         switch (direction)
         {
             case Direction.In:
-                messageObject.GetComponent<BoxCollider>().enabled = false;
-                if (HostNetworkManager.instance.IsServer())
-                    messageObject.transform.localPosition = Vector3.MoveTowards(messageObject.transform.localPosition, inPosition.localPosition, 0.1f);
+                messageObject.transform.localPosition = Vector3.MoveTowards(messageObject.transform.localPosition, inPosition.localPosition, 0.1f);
 
                 if (messageObject.transform.localPosition == inPosition.localPosition)
                 {
@@ -67,18 +65,13 @@ public class CryptedMessageRidle : HostNetworkRPC
                 }
                 break;
             case Direction.Out:
-                messageObject.GetComponent<BoxCollider>().enabled = false;
-                if (HostNetworkManager.instance.IsServer())
-                    messageObject.transform.localPosition = Vector3.MoveTowards(messageObject.transform.localPosition, outPosition.localPosition, 0.1f);
+                messageObject.transform.localPosition = Vector3.MoveTowards(messageObject.transform.localPosition, outPosition.localPosition, 0.1f);
 
                 if (messageObject.transform.localPosition == outPosition.localPosition)
                 {
                     direction = Direction.None;
 
                 }
-                break;
-            default:
-                messageObject.GetComponent<BoxCollider>().enabled = true;
                 break;
         }
     }
@@ -91,13 +84,15 @@ public class CryptedMessageRidle : HostNetworkRPC
         string remainingLetters = "abefghjklnopqrstwxyz";
         string lettersToCode = "lgquchons";
 
-        Dictionary<char, char> pairs = new Dictionary<char, char>();
-        pairs.Add('e', 'c');
-        pairs.Add('i', 'u');
-        pairs.Add('t', 'd');
-        pairs.Add('r', 'i');
-        pairs.Add('a', 'm');
-        pairs.Add('p', 'v');
+        Dictionary<char, char> pairs = new Dictionary<char, char>
+        {
+            { 'e', 'c' },
+            { 'i', 'u' },
+            { 't', 'd' },
+            { 'r', 'i' },
+            { 'a', 'm' },
+            { 'p', 'v' }
+        };
 
         string pairsString = string.Empty;
 
@@ -164,7 +159,6 @@ public class CryptedMessageRidle : HostNetworkRPC
     {
         if (HostNetworkManager.instance.IsServer())
         {
-            messageObject.GetComponent<DragDrop>().enabled = true;
             messageObject.transform.localPosition = outPosition.localPosition;
             messageObject.transform.localRotation = rotation;
             direction = Direction.In;
@@ -172,39 +166,16 @@ public class CryptedMessageRidle : HostNetworkRPC
         doorSound.Play();
     }
 
-    public void RequestCheckAnswer(bool cephalosporine = false, bool vanocomycine = false, bool amoxiciline = false, bool receivedFromClient = false)
+
+
+    public void CheckAnswer()
     {
-        if (HostNetworkManager.instance.IsServer())
-        {
+        if (direction != Direction.None || !HostNetworkManager.instance.IsServer()) return;
 
-            HostNetworkManager.instance.SendRPC(new HostNetworkRPCMessage()
-            {
-                InstanceId = this.InstanceId,
-                MethodName = "CheckAnswer",
-                Parameters = new object[] { CephalosporineCheck.isOn, VanocomycineCheck.isOn, AmoxicilineCheck.isOn }
-            });
-            CheckAnswer(CephalosporineCheck.isOn, VanocomycineCheck.isOn, AmoxicilineCheck.isOn);
-        }
-        /*else
-        {
-            HostNetworkManager.instance.SendRPC(new HostNetworkRPCMessage()
-            {
-                InstanceId = this.InstanceId,
-                MethodName = "RequestCheckAnswer",
-                Parameters = new object[] { CephalosporineCheck.isOn, VanocomycineCheck.isOn, AmoxicilineCheck.isOn, true }
-            });
-        }*/
-    }
-
-    private void CheckAnswer(bool cephalosporine, bool vanocomycine, bool amoxiciline)
-    {
-        if (direction != Direction.None) return;
-
-        messageObject.GetComponent<DragDrop>().enabled = false;
         messageObject.transform.localPosition = inPosition.localPosition;
         messageObject.transform.localRotation = rotation;
         direction = Direction.Out;
-        if (!cephalosporine || vanocomycine || amoxiciline)
+        if (!CephalosporineCheck.isOn || VanocomycineCheck.isOn || AmoxicilineCheck.isOn)
         {
             OnFailed.Invoke();
             Invoke("GiveMessage", 5);
