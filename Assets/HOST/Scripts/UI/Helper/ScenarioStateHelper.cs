@@ -3,13 +3,14 @@ using HOST.Debriefing;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using HOST.Networking;
 
-public class ScenarioEndHelper : MonoBehaviour
+public class ScenarioStateHelper : MonoBehaviour
 {
     private ScenarioManager scenarioManager;
     private DebriefingManager videoManager;
 
-    public static ScenarioEndHelper instance;
+    public static ScenarioStateHelper instance;
 
     void Start()
     {
@@ -35,11 +36,18 @@ public class ScenarioEndHelper : MonoBehaviour
     public void EndScenario()
     {
         videoManager.StopRecordingVideo();
-        Invoke("WaitToChangeScene", 5f);
+        Invoke("WaitToChangeScene", 10f);
     }
 
     private void WaitToChangeScene()
     {
         scenarioManager.EndScenario();
+    }
+
+    public void StartScenario()
+    {
+        HostNetworkManager.instance.RequestRegisterNetworkObjects();
+        scenarioManager.StartScenario();
+
     }
 }

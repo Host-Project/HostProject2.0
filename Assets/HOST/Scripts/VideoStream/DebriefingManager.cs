@@ -40,12 +40,6 @@ namespace HOST.Debriefing
         }
 
 
-        private void Start()
-        {
-            if(ScenarioManager.instance != null)
-                ScenarioManager.instance.settings.Scenario.onScenarioStart.AddListener(StartRecordingVideo);
-        }
-
         public void StartRecordingVideo()
         {
             CaptureVideo_Windows(FindAnyObjectByType<ScenarioManager>().settings.SceneName);
@@ -59,6 +53,9 @@ namespace HOST.Debriefing
             {
                 filename = string.Format("Scenario_{0}_{1:yyyy-MM-dd_HH-mm}", scenario, DateTime.Now);
                 _directoryPath = simulationsDirectoryPath + "Scenario_" + scenario + "_" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm") + "/";
+
+                Debug.Log("Saving video to: " + _directoryPath);
+                Debug.Log("Saving video as: " + filename);
 
                 // Create the path if it doesn't exist
                 DirectoryInfo di = Directory.CreateDirectory(_directoryPath);

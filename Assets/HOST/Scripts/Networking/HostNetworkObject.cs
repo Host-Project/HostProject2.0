@@ -13,7 +13,10 @@ public class HostNetworkObject : MonoBehaviour
     private bool onStartGravity = false;
     private Rigidbody rb;
 
+    private bool isSynced = true;
+
     public int Id { get => id; set => id = value; }
+    public bool IsSynced { get => isSynced; set => isSynced = value; }
 
     private void Start()
     {
@@ -34,7 +37,7 @@ public class HostNetworkObject : MonoBehaviour
 
     private void Update()
     {
-        if (!HostNetworkManager.instance.IsServer() && this.transform.hasChanged)
+        if (!HostNetworkManager.instance.IsServer() && this.transform.hasChanged && IsSynced)
         {
             HostNetworkManager.instance.RequestObjectSync(this.GetTransform());
         }
@@ -54,6 +57,10 @@ public class HostNetworkObject : MonoBehaviour
 
     public void SetTransform(HostNetworkObjectTransform transform)
     {
+        if (!IsSynced)
+        {
+            return;
+        }
         if (this.transform.hasChanged && !HostNetworkManager.instance.IsServer())
         {
             HostNetworkManager.instance.RequestObjectSync(this.GetTransform());

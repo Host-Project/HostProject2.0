@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
 
 public class CryptedMessageRidle : HostNetworkRPC
 {
@@ -50,24 +51,32 @@ public class CryptedMessageRidle : HostNetworkRPC
         base.Start();
         rotation = messageObject.transform.rotation;
 
+
     }
     private void Update()
     {
         if (!HostNetworkManager.instance.IsServer()) return;
+        Debug.Log("----");
+        Debug.Log("direction : " + direction);
+        Debug.Log("messageObject.transform.localPosition : " + messageObject.transform.localPosition);
+        Debug.Log("inPosition.localPosition : " + inPosition.localPosition);
+        Debug.Log("outPosition.localPosition : " + outPosition.localPosition);
+        Debug.Log("____");
+
         switch (direction)
         {
             case Direction.In:
-                messageObject.transform.localPosition = Vector3.MoveTowards(messageObject.transform.localPosition, inPosition.localPosition, 0.1f);
+                messageObject.transform.localPosition = Vector3.MoveTowards(messageObject.transform.localPosition, inPosition.localPosition, Time.deltaTime);
 
-                if (messageObject.transform.localPosition == inPosition.localPosition)
+                if(Vector3.Distance(messageObject.transform.localPosition, inPosition.localPosition) < 0.001f)
                 {
                     direction = Direction.None;
                 }
                 break;
             case Direction.Out:
-                messageObject.transform.localPosition = Vector3.MoveTowards(messageObject.transform.localPosition, outPosition.localPosition, 0.1f);
+                messageObject.transform.localPosition = Vector3.MoveTowards(messageObject.transform.localPosition, outPosition.localPosition, Time.deltaTime);
 
-                if (messageObject.transform.localPosition == outPosition.localPosition)
+                if(Vector3.Distance(messageObject.transform.localPosition, outPosition.localPosition) < 0.001f)
                 {
                     direction = Direction.None;
 
@@ -75,6 +84,7 @@ public class CryptedMessageRidle : HostNetworkRPC
                 break;
         }
     }
+
 
     private (string, string) CryptMessage()
     {
@@ -157,10 +167,19 @@ public class CryptedMessageRidle : HostNetworkRPC
 
     public void GiveMessage()
     {
+        Debug.Log("GiveMessage");
         if (HostNetworkManager.instance.IsServer())
         {
-            messageObject.transform.localPosition = outPosition.localPosition;
-            messageObject.transform.localRotation = rotation;
+            Debug.Log("GiveMessage - OnlyServer");
+            /*messageObject.transform.localPosition = outPosition.localPosition;
+            messageObject.transform.localRotation = rotation;*/
+
+            HostNetworkManager.instance.SendRPC(new HostNetworkRPCMessage()
+            {
+                InstanceId = this.InstanceId,
+                MethodName = "GiveMessage",
+                Parameters = new object[] { }
+            });
             direction = Direction.In;
         }
         doorSound.Play();
@@ -172,8 +191,10 @@ public class CryptedMessageRidle : HostNetworkRPC
     {
         if (direction != Direction.None || !HostNetworkManager.instance.IsServer()) return;
 
-        messageObject.transform.localPosition = inPosition.localPosition;
-        messageObject.transform.localRotation = rotation;
+        Debug.Log("CheckAnswer");
+
+        /*  messageObject.transform.localPosition = inPosition.localPosition;
+          messageObject.transform.localRotation = rotation;*/
         direction = Direction.Out;
         if (!CephalosporineCheck.isOn || VanocomycineCheck.isOn || AmoxicilineCheck.isOn)
         {

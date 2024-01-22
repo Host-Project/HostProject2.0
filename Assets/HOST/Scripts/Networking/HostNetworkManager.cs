@@ -17,7 +17,7 @@ namespace HOST.Networking
         public bool IsReady;
         public bool IsSceneLoaded;
     }
-    public class HostNetworkManager : MonoBehaviour
+    public class HostNetworkManager : HostNetworkRPC
     {
         public UnityEvent<string> OnClientConnection;
         public UnityEvent<string> OnClientDisconnection;
@@ -33,19 +33,22 @@ namespace HOST.Networking
 
         }
 
-        // Start is called before the first frame update
-        void Start()
+        public void RequestRegisterNetworkObjects()
         {
-            SceneManager.sceneLoaded += SceneManager_sceneLoaded;
+            if(IsServer())
+            {
+                SendRPC(new HostNetworkRPCMessage()
+                {
+                    InstanceId = this.InstanceId,
+                    MethodName = "RegisterNetworkObjects",
+                    Parameters = new object[] { },
+                });
+                RegisterNetworkObjects();
+            }
         }
-
-        private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
-        {
-            Invoke("RegisterNetworkObjects", 5);
-        }
-
         private void RegisterNetworkObjects()
         {
+            Debug.Log("RegisterNetworkObjects");
             HostNetworkObject[] networkObjects = FindObjectsByType<HostNetworkObject>(FindObjectsSortMode.InstanceID);
             FMNetworkManager.instance.NetworkObjects = new GameObject[networkObjects.Length];
             int count = 0;
@@ -58,6 +61,8 @@ namespace HOST.Networking
             FMNetworkManager.instance.UpdateNumberOfSyncObjects();
 
         }
+
+       
 
         public void HandleConnection(string data)
         {
@@ -93,7 +98,6 @@ namespace HOST.Networking
         public void HandleRPCMessage(HostNetworkMessage message)
         {
             HostNetworkRPCMessage rpcMessage = HostNetworkTools.DeserializeRPCMessage(message.Data);
-            Debug.Log(message.Data);
             HostNetworkRPC.GetRPCInstance(rpcMessage.InstanceId).HandleRPC(rpcMessage);
         }
 

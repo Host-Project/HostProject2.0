@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -53,22 +54,13 @@ namespace HOST.Monitoring
             {
                 instance = this;
             }
-            SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
-        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+     
+        public  void StartScenario()
         {
-            if(scene.name != "03_Review")
-            {
-                settings.Scenario = FindFirstObjectByType<Scenario.Scenario>();
-                ResetSettings();
-
-                Invoke("StartScenario", 10.0f);
-            }
-        }
-
-        private void StartScenario()
-        {
+            settings.Scenario = FindFirstObjectByType<Scenario.Scenario>();
+            ResetSettings();
             settings.Scenario.StartScenario();
         }
 
@@ -80,11 +72,14 @@ namespace HOST.Monitoring
             lastHintTime = -settings.TimeBetweenHints;
             lastPertubatorTime = -settings.TimeBetweenPertubators;
 
+            
             settings.Scenario.onScenarioStart.AddListener(StartTimer);
             settings.Scenario.onScenarioComplete.AddListener(StopTimer);
+            settings.Time = 0;
 
             foreach (RiddleSettings rs in settings.Riddles)
             {
+                rs.Time = 0;
                 rs.ScenarioSettings = settings;
                 rs.Name = rs.Riddle.name;
                 rs.Riddle.onRiddleComplete.AddListener(OnRiddleComplete);

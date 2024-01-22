@@ -348,7 +348,7 @@ namespace FMETP
 
         //[Tooltip("Frequency for sync (second)")]
         private float SyncFrequency = 0.05f;
-        [Range(1f, 60f)]
+        [Range(1f, 120f)]
         public float SyncFPS = 20f;
         private float SyncTimer = 0f;
         private float SyncFPS_old = -1;

@@ -99,6 +99,7 @@ public class MonitorManager : HostNetworkRPC
             streamingId++;
             //streamings[ip] = stream;
         }
+        LayoutRebuilder.ForceRebuildLayoutImmediate(streamList.transform.GetComponent<RectTransform>());
     }
 
     public void SwitchMainVideo(GameObject video)

@@ -1311,6 +1311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 462ceb1679ad1a941be7bafff85cb425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instanceId: -10
   OnClientConnection:
     m_PersistentCalls:
       m_Calls:
@@ -7136,6 +7137,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4856189813248587094, guid: 43d9114caf26fb3428c930ad671a5ed9, type: 3}
+      propertyPath: SyncFPS
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856189813248587094, guid: 43d9114caf26fb3428c930ad671a5ed9, type: 3}
       propertyPath: NetworkType
       value: 0
       objectReference: {fileID: 0}
@@ -11326,7 +11331,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   NetworkObjects: []
-  SyncFPS: 60
+  SyncFPS: 120
   EnableNetworkObjectsSync: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
