@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 64ded5803992ce042b39fc75d7358ccb
+timeCreated: 1479215346
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/For Unity/Resources/Object/Vobot/Orange.mat
+  uploadId: 606088

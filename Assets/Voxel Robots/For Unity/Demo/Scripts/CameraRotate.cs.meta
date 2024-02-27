@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 546755b6c4fa6d8499fd2997d04a229b
+timeCreated: 1490080530
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {fileID: -3906512864147387971, guid: 0000000000000000d000000000000000, type: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/For Unity/Demo/Scripts/CameraRotate.cs
+  uploadId: 606088

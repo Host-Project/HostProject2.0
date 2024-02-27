@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f22171c31fee3924792b91b55cfc18ce
+timeCreated: 1479562145
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/For Unity/Resources/Physics/Bouncy.physicMaterial
+  uploadId: 606088

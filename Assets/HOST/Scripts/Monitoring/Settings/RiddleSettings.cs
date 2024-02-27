@@ -38,6 +38,8 @@ namespace HOST.Monitoring.Settings
 
         public float GetProgression()
         {
+            Debug.Log(Elements.Sum(e => e.element.IsCompleted() ? e.weight : 0));
+            Debug.Log(GetWeight());
             return Elements.Sum(e => e.element.IsCompleted() ? e.weight : 0);
         }
 

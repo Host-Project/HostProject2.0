@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 17ac38de66d80134c8a74261c23be16b
+timeCreated: 1491378333
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/ObjFiles/Materials/_Zipper-defaultMat.mat
+  uploadId: 606088

@@ -593,9 +593,9 @@ namespace FMETP
             for (int i = 0; i < NetworkTransform.Length; i++)
             {
                 NetworkTransform[i] = new FMNetworkTransform();
-                NetworkTransform[i].position = Vector3.zero;
-                NetworkTransform[i].rotation = Quaternion.identity;
-                NetworkTransform[i].localScale = new Vector3(1f, 1f, 1f);
+                NetworkTransform[i].position = NetworkObjects[i].transform.localPosition;
+                NetworkTransform[i].rotation = NetworkObjects[i].transform.localRotation;
+                NetworkTransform[i].localScale = NetworkObjects[i].transform.localScale;
             }
         }
 

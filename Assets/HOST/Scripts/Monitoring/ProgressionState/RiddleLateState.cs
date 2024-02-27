@@ -38,5 +38,9 @@ namespace HOST.Monitoring
 
         }
 
+        public override StateType GetStateType()
+        {
+            return StateType.LATE;
+        }
     }
 }

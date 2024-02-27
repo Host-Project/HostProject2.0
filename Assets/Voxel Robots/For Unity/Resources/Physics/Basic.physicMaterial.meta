@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f1a9dd6cfab6fa449a399b410251a2da
+timeCreated: 1481196119
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/For Unity/Resources/Physics/Basic.physicMaterial
+  uploadId: 606088

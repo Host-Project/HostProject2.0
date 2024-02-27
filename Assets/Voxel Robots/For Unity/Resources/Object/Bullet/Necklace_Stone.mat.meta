@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 37b60f54c0184744188e4ffb7e54d5de
+timeCreated: 1479637713
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/For Unity/Resources/Object/Bullet/Necklace_Stone.mat
+  uploadId: 606088

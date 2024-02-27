@@ -23,5 +23,10 @@ namespace HOST.Monitoring
 
             return 0;
         }
+
+        public override StateType GetStateType()
+        {
+            return StateType.EARLY;
+        }
     }
 }

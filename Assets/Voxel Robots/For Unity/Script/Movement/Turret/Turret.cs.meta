@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 86bbd3dd085d9b148b7d61f0069e8e14
+timeCreated: 1482924011
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {fileID: -2349822300998112484, guid: 0000000000000000d000000000000000, type: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/For Unity/Script/Movement/Turret/Turret.cs
+  uploadId: 606088

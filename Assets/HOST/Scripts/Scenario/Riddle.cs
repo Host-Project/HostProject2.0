@@ -6,6 +6,7 @@ using System.Xml;
 using UnityEngine;
 using UnityEngine.Events;
 using HOST.Influencers;
+using System.Linq;
 
 namespace HOST.Scenario
 {
@@ -14,8 +15,8 @@ namespace HOST.Scenario
         [SerializeField]
         private List<Element> elements;
 
+        public List<Influencer> influencers;
 
-        public UnityEvent onGlobalStart;
         public UnityEvent<Riddle> onRiddleStart;
         public UnityEvent<Riddle> onRiddleComplete;
 
@@ -30,7 +31,7 @@ namespace HOST.Scenario
             }
         }
 
-        private bool IsCompleted()
+        public bool IsCompleted()
         {
             foreach (Element element in Elements)
             {
@@ -47,24 +48,11 @@ namespace HOST.Scenario
             if (IsCompleted())
                 onRiddleComplete.Invoke(this);
         }
-
-        public void StartGlobal()
-        {
-            if (FMNetworkManager.instance.NetworkType == FMNetworkType.Server)
-            {
-                HostNetworkManager.instance.SendRPC(new HostNetworkRPCMessage()
-                {
-                    InstanceId = this.InstanceId,
-                    MethodName = "StartGlobal",
-                    Parameters = new object[] { }
-                });
-            }
-            onGlobalStart.Invoke();
-        }
+        
 
         public void StartRiddle()
         {
-            if (FMNetworkManager.instance.NetworkType == FMNetworkType.Server)
+            if (HostNetworkManager.instance.IsServer())
             {
                 HostNetworkManager.instance.SendRPC(new HostNetworkRPCMessage()
                 {
@@ -80,33 +68,23 @@ namespace HOST.Scenario
             }
         }
 
-        public void PlayInfluence(int influenceLevel)
+        public List<Influencer> GetPossibleInfluencers()
         {
-            while (true)
+            List<Influencer> list = new List<Influencer>();
+            foreach (Element e in Elements)
             {
-                foreach (Element e in Elements)
-                {
-                    if (e.IsCompleted()) continue;
+                if(e.IsCompleted()) continue;
 
-                    foreach (Influencer influencer in e.influencers)
-                    {
-                        if (influencer.GetInfluenceLevel() == influenceLevel)
-                        {
-                            HostNetworkManager.instance.SendRPC(new HostNetworkRPCMessage()
-                            {
-                                InstanceId = influencer.InstanceId,
-                                MethodName = "Play",
-                                Parameters = new object[] { }
-                            });
-
-                            influencer.Play();
-                            return;
-                        }
-                    }
-                }
-                influenceLevel += influenceLevel > 0 ? -1 : 1;
-                if (influenceLevel == 0)
-                    return;
+                list.AddRange(e.influencers.Where(i => i.IsPlayable()));
+            }
+            list.AddRange(influencers.Where(i => i.IsPlayable()));
+            return list;
+        }
+        public void Complete()
+        {
+            foreach(Element e in Elements)
+            {
+                e.RequestComplete();
             }
         }
 

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 310b43357808ea04b81ac06208963ec2
+timeCreated: 1490605411
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/For Unity/_Prefabs/Necklace.prefab
+  uploadId: 606088

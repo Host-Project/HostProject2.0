@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 8df55df7fdb99294cbbb417ba86a478c
+timeCreated: 1481185987
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {fileID: 7707008975528953803, guid: 0000000000000000d000000000000000, type: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/For Unity/Script/Movement/Character/RobotMovement.cs
+  uploadId: 606088

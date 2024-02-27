@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: fd4de7dee4f65a24595990add0cc1c70
+timeCreated: 1483006731
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/For Unity/Resources/Object/Enemy Turrets/Basic Green.mat
+  uploadId: 606088

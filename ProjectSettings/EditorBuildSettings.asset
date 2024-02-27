@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/HOST/Scenario/War/War.unity
     guid: 2f875ea69c046db44868b581a7eadfc5
   - enabled: 1
+    path: Assets/HOST/Scenario/Demo/Demo.unity
+    guid: 49f482c3d9eaeb0489baa93186fe1023
+  - enabled: 1
     path: Assets/HOST/Scenes/03_Review.unity
     guid: 2f23726e8f8c35b428c02e5bd8ca200a
   m_configObjects:

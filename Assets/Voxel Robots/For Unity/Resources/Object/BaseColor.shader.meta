@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 9e9a7371b4ff6144fa06123334a54e42
+timeCreated: 1479621955
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/For Unity/Resources/Object/BaseColor.shader
+  uploadId: 606088

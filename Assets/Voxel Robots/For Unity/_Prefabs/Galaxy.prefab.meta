@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: eb4fb1afdd97f2046816aeb2009f1bb8
+timeCreated: 1490605419
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/For Unity/_Prefabs/Galaxy.prefab
+  uploadId: 606088

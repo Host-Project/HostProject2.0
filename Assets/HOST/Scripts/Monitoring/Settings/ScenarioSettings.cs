@@ -19,7 +19,7 @@ namespace HOST.Monitoring.Settings
         private string sceneName;
 
         [SerializeField]
-        private float expectedDuration = 600f;
+        private float expectedDuration = 1200f;
 
         [SerializeField]
         private float timeBetweenHints = 30f;

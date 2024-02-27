@@ -7,8 +7,15 @@ namespace HOST.Monitoring
 {
     public abstract class ProgressionState 
     {
+        public enum StateType
+        {
+            LATE,
+            ON_TIME,
+            EARLY
+        }
         public abstract int ComputeInfluenceLevel(SimulationSettings settings);
 
+        public abstract StateType GetStateType();
 
         public float ExpectedProgression(SimulationSettings settings)
         {

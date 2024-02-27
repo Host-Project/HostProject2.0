@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: f5bcc0bd53946a948b7db056375c58e3
+timeCreated: 1491378334
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/ObjFiles/Materials/_AmbleGuy-defaultMat.mat
+  uploadId: 606088

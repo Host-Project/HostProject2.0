@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 590c6dee697ef4641b7c2a928fd0abb6
+timeCreated: 1490078361
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/For Unity/Demo/Demo.prefab
+  uploadId: 606088

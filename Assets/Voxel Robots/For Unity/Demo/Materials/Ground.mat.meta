@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ad0fb3dfee7cf4b4b8441ef96107ae7a
+timeCreated: 1490078941
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/For Unity/Demo/Materials/Ground.mat
+  uploadId: 606088

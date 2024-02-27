@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 9551dec4fb72279469122e17b835835e
+timeCreated: 1490605405
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/For Unity/_Prefabs/Scanner.prefab
+  uploadId: 606088

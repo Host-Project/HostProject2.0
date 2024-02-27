@@ -56,12 +56,12 @@ public class CryptedMessageRidle : HostNetworkRPC
     private void Update()
     {
         if (!HostNetworkManager.instance.IsServer()) return;
-        Debug.Log("----");
+       /* Debug.Log("----");
         Debug.Log("direction : " + direction);
         Debug.Log("messageObject.transform.localPosition : " + messageObject.transform.localPosition);
         Debug.Log("inPosition.localPosition : " + inPosition.localPosition);
         Debug.Log("outPosition.localPosition : " + outPosition.localPosition);
-        Debug.Log("____");
+        Debug.Log("____");*/
 
         switch (direction)
         {

@@ -5,6 +5,8 @@ using HOST.Networking;
 using UnityEngine.Events;
 using FMETP;
 using HOST.Monitoring.Settings;
+using HOST.Influencers;
+using System.Linq;
 
 namespace HOST.Scenario
 {
@@ -13,7 +15,8 @@ namespace HOST.Scenario
         [SerializeField]
         private List<Riddle> riddles;
 
-
+        [SerializeField]
+        private List<Influencer> influencers;
         #region Events
 
         public UnityEvent onScenarioStart;
@@ -35,10 +38,6 @@ namespace HOST.Scenario
                 StartScenario();
         }
 
-        private void OnEnable()
-        {
-
-        }
 
         public void StartScenario()
         {
@@ -46,7 +45,6 @@ namespace HOST.Scenario
             foreach (Riddle riddle in riddles)
             {
                 riddle.onRiddleComplete.AddListener(OnRiddleComplete);
-                riddle.StartGlobal();
             }
             currentRiddleIndex = 0;
             StartRiddle();
@@ -82,7 +80,38 @@ namespace HOST.Scenario
 
         public void PlayInfluence(int influenceLevel)
         {
-            riddles[currentRiddleIndex].PlayInfluence(influenceLevel);
+            List<Influencer> possibleInfluencer = new List<Influencer>();
+
+            possibleInfluencer.AddRange(influencers.Where(i => i.IsPlayable()));
+            possibleInfluencer.AddRange(riddles[currentRiddleIndex].GetPossibleInfluencers());
+
+            while (true)
+            {
+
+                foreach (Influencer influencer in possibleInfluencer)
+                {
+                    if (influencer.GetInfluenceLevel() == influenceLevel)
+                    {
+                        HostNetworkManager.instance.SendRPC(new HostNetworkRPCMessage()
+                        {
+                            InstanceId = influencer.InstanceId,
+                            MethodName = "Play",
+                            Parameters = new object[] { }
+                        });
+
+                        influencer.Play();
+                        return;
+                    }
+                }
+                influenceLevel += influenceLevel > 0 ? -1 : 1;
+                if (influenceLevel == 0)
+                    return;
+            }
+        }
+
+        public void CompleteCurrentRiddle()
+        {
+            riddles[currentRiddleIndex].Complete();
         }
     }
 }

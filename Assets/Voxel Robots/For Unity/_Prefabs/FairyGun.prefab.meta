@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: bf4a2cc8d571e694ab6b5b080c773b9e
+timeCreated: 1490605420
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/For Unity/_Prefabs/FairyGun.prefab
+  uploadId: 606088
