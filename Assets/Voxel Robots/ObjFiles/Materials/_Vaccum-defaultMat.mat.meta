@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: cf6e53060dd463947b44ce032d51b626
+timeCreated: 1491378333
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/ObjFiles/Materials/_Vaccum-defaultMat.mat
+  uploadId: 606088

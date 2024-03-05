@@ -23,17 +23,20 @@ namespace HOST.Monitoring
 
         public UnityEvent<float> onTimerTick;
 
+        public UnityEvent onRiddleStart;
+
         private int currentRiddleIndex = 0;
 
         private float lastHintTime = 0;
         private float lastPertubatorTime = 0;
 
-        private ProgressionState currentScenarioState;
-        private ProgressionState currentRiddleState;
-
         public static ScenarioManager instance;
 
 
+        private ProgressionState currentScenarioState;
+        private ProgressionState currentRiddleState;
+
+        
         [SerializeField]
         private ProgressionState scenarioEarlyState = new ScenarioEarlyState();
         [SerializeField]
@@ -62,6 +65,7 @@ namespace HOST.Monitoring
             settings.Scenario = FindFirstObjectByType<Scenario.Scenario>();
             ResetSettings();
             settings.Scenario.StartScenario();
+            onRiddleStart.Invoke();
         }
 
         private void ResetSettings()
@@ -77,19 +81,23 @@ namespace HOST.Monitoring
             settings.Scenario.onScenarioComplete.AddListener(StopTimer);
             settings.Time = 0;
 
-            foreach (RiddleSettings rs in settings.Riddles)
+            
+            foreach(var (rs, index) in settings.Riddles.Select((r, i) => (r, i)))
             {
+                settings.Riddles[index].Riddle = settings.Scenario.GetRiddles()[index];
                 rs.Time = 0;
                 rs.ScenarioSettings = settings;
                 rs.Name = rs.Riddle.name;
                 rs.Riddle.onRiddleComplete.AddListener(OnRiddleComplete);
 
-                foreach (Element element in rs.Riddle.Elements)
+                foreach (var (element, i) in rs.Elements.Select((e, i) => (e,i)))
                 {
-                    element.onComplete.AddListener(OnElementComplete);
+                    element.element = rs.Riddle.Elements[i];
+                    element.element.onComplete.AddListener(OnElementComplete);
                 }
 
             }
+            
         }
 
         public void EndScenario()
@@ -109,6 +117,8 @@ namespace HOST.Monitoring
         private void OnRiddleComplete(Riddle r)
         {
             currentRiddleIndex++;
+            currentRiddleIndex = Mathf.Min(currentRiddleIndex, settings.Riddles.Count - 1);
+            onRiddleStart.Invoke();
         }
 
         private void OnElementComplete(Element e)
@@ -137,7 +147,9 @@ namespace HOST.Monitoring
             ComputeCurrentState();
 
 
-            int influenceLevel = currentScenarioState.ComputeInfluenceLevel(settings) + currentRiddleState.ComputeInfluenceLevel(settings.GetRiddleSettings(currentRiddleIndex));
+            int influenceLevel = currentScenarioState.ComputeInfluenceLevel(settings) + 
+                                 currentRiddleState.ComputeInfluenceLevel(settings.GetRiddleSettings(currentRiddleIndex));
+
             if (influenceLevel != 0)
             {
 
@@ -167,6 +179,13 @@ namespace HOST.Monitoring
             float deltaRiddleProgression = ((SimulationSettings)currentRiddleSettings).GetProgressionPercentage() - expectedRiddleProgressionAtT;
             float deltaScenarioProgression = ((SimulationSettings)settings).GetProgressionPercentage() - expectedScenarioProgressionAtT;
 
+          /*  Debug.Log("Scenario " + expectedScenarioProgressionAtT);
+            Debug.Log("Riddle " + expectedRiddleProgressionAtT);
+            Debug.Log("Delta r " + deltaRiddleProgression);
+            Debug.Log("Delta s " + deltaScenarioProgression);
+            Debug.Log("S prog " + ((SimulationSettings)settings).GetProgressionPercentage());
+            Debug.Log("----");*/
+
             if (deltaRiddleProgression > settings.DeltaOnTime)
             {
                 currentRiddleState = riddleEarlyState;
@@ -195,12 +214,44 @@ namespace HOST.Monitoring
 
         }
 
+        public void CompleteCurrentRiddle()
+        {
+            settings.Scenario.CompleteCurrentRiddle();
+        }
         public float GetTime()
         {
             return settings.Time;
         }
 
+        public float GetCurrentRiddleTime()
+        {
+            return settings.GetRiddleSettings(currentRiddleIndex).Time;
+        }
 
+        public string GetCurrentRiddleName()
+        {
+            return settings.GetRiddleSettings(currentRiddleIndex).Name;
+        }
+
+        public float GetCurrentRiddleExpectedTime()
+        {
+            return settings.GetRiddleSettings(currentRiddleIndex).ExpectedDuration();
+        }
+
+      
+        public float GetExpectedTime()
+        {
+            return settings.ExpectedDuration();
+        }
+        public ProgressionState.StateType GetCurrentScenarioStateType()
+        {
+            return currentScenarioState.GetStateType();
+        }
+
+        public ProgressionState.StateType GetCurrentRiddleStateType()
+        {
+            return currentRiddleState.GetStateType();
+        }
 
     }
 }

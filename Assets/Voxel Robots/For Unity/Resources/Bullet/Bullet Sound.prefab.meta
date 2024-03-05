@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a506e9da6b230f54c884f90428bceedc
+timeCreated: 1479627523
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/For Unity/Resources/Bullet/Bullet Sound.prefab
+  uploadId: 606088

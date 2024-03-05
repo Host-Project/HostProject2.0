@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 2aab98cd9840c6a4da5621679c60d94a
+timeCreated: 1491378334
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/ObjFiles/Materials/_ElecBall-defaultMat.mat
+  uploadId: 606088

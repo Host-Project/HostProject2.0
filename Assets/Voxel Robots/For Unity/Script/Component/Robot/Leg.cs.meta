@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: e9e003e7befc78b469d4f86b7eb034b8
+timeCreated: 1481185707
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {fileID: 4660412927644837186, guid: 0000000000000000d000000000000000, type: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/For Unity/Script/Component/Robot/Leg.cs
+  uploadId: 606088

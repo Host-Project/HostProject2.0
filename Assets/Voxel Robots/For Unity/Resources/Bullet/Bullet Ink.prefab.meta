@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6259857e2e568734495b2f2bc19ff953
+timeCreated: 1479627523
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/For Unity/Resources/Bullet/Bullet Ink.prefab
+  uploadId: 606088

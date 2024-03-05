@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2f717031802b79f46be1d8f55687ea9f
+timeCreated: 1479627523
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/For Unity/Resources/Bullet/Bullet Radiation.prefab
+  uploadId: 606088

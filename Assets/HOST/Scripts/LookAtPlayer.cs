@@ -24,8 +24,15 @@ public class LookAtPlayer : MonoBehaviour
         }
     }
 
-    public void ToggleRotate()
+    public void Rotate()
     {
-        LookAtPlayer.rotate = !rotate;
+        rotate = true;
+    }
+
+    public void StopRotate()
+    {
+        rotate = false;
     }
 }
+
+   

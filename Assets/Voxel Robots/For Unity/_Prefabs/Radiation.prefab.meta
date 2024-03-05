@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c7a96b96871853b49b990db67d4afab7
+timeCreated: 1490605406
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/For Unity/_Prefabs/Radiation.prefab
+  uploadId: 606088

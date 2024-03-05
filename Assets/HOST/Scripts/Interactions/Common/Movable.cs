@@ -24,6 +24,7 @@ namespace HOST.Interactions.Common
 
         private void Start()
         {
+            
             rb = GetComponent<Rigidbody>();
         }
         void Update()

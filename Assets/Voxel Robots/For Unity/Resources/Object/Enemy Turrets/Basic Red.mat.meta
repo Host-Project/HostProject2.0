@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 97b10f44df340a74f9f891574f62dd10
+timeCreated: 1483006731
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/For Unity/Resources/Object/Enemy Turrets/Basic Red.mat
+  uploadId: 606088

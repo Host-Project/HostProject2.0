@@ -13,7 +13,7 @@ namespace HOST.Debriefing
 {
     public class DebriefingManager : MonoBehaviour
     {
-        private string _directoryPath;
+        public string _directoryPath;
         private string simulationsDirectoryPath = Application.dataPath + "/Simulations/";
         private string _srtFileName = "comments.srt";
 

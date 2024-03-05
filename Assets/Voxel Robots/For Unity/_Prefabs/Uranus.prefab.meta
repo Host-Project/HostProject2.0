@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3b71bb0f0e9e81a4a92a39a316518823
+timeCreated: 1490605403
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/For Unity/_Prefabs/Uranus.prefab
+  uploadId: 606088

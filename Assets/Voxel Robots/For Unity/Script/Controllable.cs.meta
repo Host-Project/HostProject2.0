@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 72964958c5f2b29449e24741e58efa8f
+timeCreated: 1481342249
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {fileID: 6926474624037801865, guid: 0000000000000000d000000000000000, type: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/For Unity/Script/Controllable.cs
+  uploadId: 606088

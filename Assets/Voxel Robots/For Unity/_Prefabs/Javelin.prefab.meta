@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2ad650dfca5ce7a4884f610fd9a739f8
+timeCreated: 1490605416
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/For Unity/_Prefabs/Javelin.prefab
+  uploadId: 606088

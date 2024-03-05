@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6a19161b5a9876d44a48e481856f8ee7
+timeCreated: 1490508135
+licenseType: Store
+TextScriptImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/ReadMe.txt
+  uploadId: 606088

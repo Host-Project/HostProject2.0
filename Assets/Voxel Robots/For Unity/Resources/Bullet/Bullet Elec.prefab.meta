@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 1d9501cd13d3b1e4a839356e215bdc51
+timeCreated: 1479627523
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/For Unity/Resources/Bullet/Bullet Elec.prefab
+  uploadId: 606088

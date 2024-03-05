@@ -28,7 +28,7 @@ public class DigitSpinner : MonoBehaviour
 
     void Update()
     {
-        if (transform.gameObject.TryGetComponent(out Rigidbody rb))
+        /*if (transform.gameObject.TryGetComponent(out Rigidbody rb))
         {
             if (hasMoved && rb.angularVelocity.magnitude == 0f)
             {
@@ -56,7 +56,7 @@ public class DigitSpinner : MonoBehaviour
 
             // store mouse
             _mouseReference = Input.mousePosition;
-        }
+        }*/
 
     }
 
@@ -76,6 +76,13 @@ public class DigitSpinner : MonoBehaviour
         _isRotating = false;
 
         SetNumberFromAngle();
+    }
+
+    public void AddToNumber(int value)
+    {
+        currentNumber = (currentNumber + value + 10) % 10;
+        OnDigitChanged.Invoke();
+        UpdateRotation();
     }
     private void SetNumberFromAngle()
     {

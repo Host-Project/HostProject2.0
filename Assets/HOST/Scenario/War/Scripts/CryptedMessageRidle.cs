@@ -6,7 +6,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using static UnityEngine.GraphicsBuffer;
 
 public class CryptedMessageRidle : HostNetworkRPC
 {
@@ -41,48 +40,15 @@ public class CryptedMessageRidle : HostNetworkRPC
     public UnityEvent OnFailed;
 
 
-    enum Direction { In, Out, None }
-    private Direction direction = Direction.None;
-
-
 
     private void Start()
     {
         base.Start();
         rotation = messageObject.transform.rotation;
-
-
     }
     private void Update()
     {
-        if (!HostNetworkManager.instance.IsServer()) return;
-        Debug.Log("----");
-        Debug.Log("direction : " + direction);
-        Debug.Log("messageObject.transform.localPosition : " + messageObject.transform.localPosition);
-        Debug.Log("inPosition.localPosition : " + inPosition.localPosition);
-        Debug.Log("outPosition.localPosition : " + outPosition.localPosition);
-        Debug.Log("____");
-
-        switch (direction)
-        {
-            case Direction.In:
-                messageObject.transform.localPosition = Vector3.MoveTowards(messageObject.transform.localPosition, inPosition.localPosition, Time.deltaTime);
-
-                if(Vector3.Distance(messageObject.transform.localPosition, inPosition.localPosition) < 0.001f)
-                {
-                    direction = Direction.None;
-                }
-                break;
-            case Direction.Out:
-                messageObject.transform.localPosition = Vector3.MoveTowards(messageObject.transform.localPosition, outPosition.localPosition, Time.deltaTime);
-
-                if(Vector3.Distance(messageObject.transform.localPosition, outPosition.localPosition) < 0.001f)
-                {
-                    direction = Direction.None;
-
-                }
-                break;
-        }
+       
     }
 
 
@@ -167,12 +133,8 @@ public class CryptedMessageRidle : HostNetworkRPC
 
     public void GiveMessage()
     {
-        Debug.Log("GiveMessage");
         if (HostNetworkManager.instance.IsServer())
         {
-            Debug.Log("GiveMessage - OnlyServer");
-            /*messageObject.transform.localPosition = outPosition.localPosition;
-            messageObject.transform.localRotation = rotation;*/
 
             HostNetworkManager.instance.SendRPC(new HostNetworkRPCMessage()
             {
@@ -180,8 +142,11 @@ public class CryptedMessageRidle : HostNetworkRPC
                 MethodName = "GiveMessage",
                 Parameters = new object[] { }
             });
-            direction = Direction.In;
+            
         }
+        messageObject.transform.localPosition = inPosition.localPosition;
+        messageObject.transform.rotation = rotation;
+        messageObject.GetComponent<AudioSource>().Play();
         doorSound.Play();
     }
 
@@ -189,21 +154,19 @@ public class CryptedMessageRidle : HostNetworkRPC
 
     public void CheckAnswer()
     {
-        if (direction != Direction.None || !HostNetworkManager.instance.IsServer()) return;
+        messageObject.transform.localPosition = outPosition.localPosition;
 
-        Debug.Log("CheckAnswer");
-
-        /*  messageObject.transform.localPosition = inPosition.localPosition;
-          messageObject.transform.localRotation = rotation;*/
-        direction = Direction.Out;
-        if (!CephalosporineCheck.isOn || VanocomycineCheck.isOn || AmoxicilineCheck.isOn)
+        if (HostNetworkManager.instance.IsServer())
         {
-            OnFailed.Invoke();
-            Invoke("GiveMessage", 5);
-        }
-        else
-        {
-            OnDone.Invoke();
+            if (!CephalosporineCheck.isOn || VanocomycineCheck.isOn || AmoxicilineCheck.isOn)
+            {
+                OnFailed.Invoke();
+                Invoke("GiveMessage", 5);
+            }
+            else
+            {
+                OnDone.Invoke();
+            }
         }
     }
 

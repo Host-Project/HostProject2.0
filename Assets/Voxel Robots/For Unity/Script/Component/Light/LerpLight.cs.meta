@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 4af22a656947620449989a090231c2cd
+timeCreated: 1481185652
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {fileID: -3701561207968579530, guid: 0000000000000000d000000000000000, type: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/For Unity/Script/Component/Light/LerpLight.cs
+  uploadId: 606088

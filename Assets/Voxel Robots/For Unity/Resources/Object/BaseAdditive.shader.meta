@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: fcd78eb1201723442a502e641e1abf75
+timeCreated: 1479621955
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/For Unity/Resources/Object/BaseAdditive.shader
+  uploadId: 606088

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5a61f08d1f4120c4db80d9609511f7cd
+timeCreated: 1483006731
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/For Unity/Resources/Object/Enemy Turrets/Basic Blue.mat
+  uploadId: 606088

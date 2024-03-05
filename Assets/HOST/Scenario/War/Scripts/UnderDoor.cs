@@ -24,10 +24,8 @@ public class UnderDoor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("OnTriggerEnter" + other.gameObject);
         if(other.gameObject == waitingFor && HostNetworkManager.instance.IsServer())
         {
-            Debug.Log("CheckAnswer");
             ridle.CheckAnswer();
         }
     }

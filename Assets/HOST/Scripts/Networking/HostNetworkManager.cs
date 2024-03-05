@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
 
 namespace HOST.Networking
 {
-    struct ClientDevice
+    public struct ClientDevice
     {
         public string IP;
         public bool IsReady;
@@ -21,9 +21,13 @@ namespace HOST.Networking
     {
         public UnityEvent<string> OnClientConnection;
         public UnityEvent<string> OnClientDisconnection;
+        public UnityEvent<string> OnServerFound;
+        public UnityEvent<ClientDevice> OnClientStateChanged;
         public static HostNetworkManager instance;
 
         private List<ClientDevice> connectedsIP = new List<ClientDevice>();
+
+        private string ip;
 
         private void Awake()
         {
@@ -35,7 +39,7 @@ namespace HOST.Networking
 
         public void RequestRegisterNetworkObjects()
         {
-            if(IsServer())
+            if (IsServer())
             {
                 SendRPC(new HostNetworkRPCMessage()
                 {
@@ -48,21 +52,18 @@ namespace HOST.Networking
         }
         private void RegisterNetworkObjects()
         {
-            Debug.Log("RegisterNetworkObjects");
             HostNetworkObject[] networkObjects = FindObjectsByType<HostNetworkObject>(FindObjectsSortMode.InstanceID);
             FMNetworkManager.instance.NetworkObjects = new GameObject[networkObjects.Length];
             int count = 0;
             foreach (HostNetworkObject networkObject in networkObjects)
             {
-                Debug.Log(networkObject.gameObject.name);
                 FMNetworkManager.instance.NetworkObjects[count++] = networkObject.gameObject;
             }
 
             FMNetworkManager.instance.UpdateNumberOfSyncObjects();
-
         }
 
-       
+
 
         public void HandleConnection(string data)
         {
@@ -73,8 +74,25 @@ namespace HOST.Networking
                 IsSceneLoaded = false,
             });
             OnClientConnection?.Invoke(data);
+            HostNetworkManager.instance.SendRPC(new HostNetworkRPCMessage()
+            {
+                InstanceId = this.InstanceId,
+                MethodName = "SetClientIP",
+                Parameters = new object[] { data },
+            }, data);
+
         }
 
+        private void SetClientIP(string ip)
+        {
+            this.ip = ip;
+        }
+
+
+        public void HandleServerFound(string data)
+        {
+            OnServerFound?.Invoke(data);
+        }
 
         public void HandleDisconnection(string data)
         {
@@ -112,7 +130,8 @@ namespace HOST.Networking
                 FMNetworkManager.instance.NetworkObjects.FirstOrDefault(x => x.GetComponent<HostNetworkObject>().Id == objectTransform.Id)
                     .GetComponent<HostNetworkObject>()
                     .SetTransform(objectTransform);
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 // Sometimes sync message bug but if it miss one, it will be resync later
                 Debug.LogError(e.Message);
@@ -134,7 +153,6 @@ namespace HOST.Networking
         public void SendRPC(HostNetworkRPCMessage rpcMessage, string targetIP = null)
         {
             string data = HostNetworkTools.SerializeRPCMessage(rpcMessage);
-            Debug.Log(data);
             HostNetworkMessage message = new HostNetworkMessage()
             {
                 MessageType = HostNetworkMessageType.RPC,
@@ -164,12 +182,41 @@ namespace HOST.Networking
             return FMNetworkManager.instance.NetworkType == FMNetworkType.Server;
         }
 
+        public string GetIP()
+        {
+            return ip;
+        }   
+
+        public void SetClientReady(string ip, bool isReady)
+        {
+            if (IsServer())
+            {
+                ClientDevice client = connectedsIP.Find(x => x.IP == ip);
+                if (client.IP != null)
+                {
+                    client.IsReady = isReady;
+                    OnClientStateChanged?.Invoke(client);
+                }
+
+            }
+            else
+            {
+                HostNetworkManager.instance.SendRPC(new HostNetworkRPCMessage()
+                {
+                    InstanceId = this.InstanceId,
+                    MethodName = "SetClientReady",
+                    Parameters = new object[] { ip, isReady },
+                });
+            }
+
+        }
+
 
         public void LoadStreams()
         {
-            foreach(ClientDevice client in connectedsIP)
+            foreach (ClientDevice client in connectedsIP)
             {
-                MonitorManager.instance.RegisterNewStream(client.IP );
+                MonitorManager.instance.RegisterNewStream(client.IP);
             }
         }
     }

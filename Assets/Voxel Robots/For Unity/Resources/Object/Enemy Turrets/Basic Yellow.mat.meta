@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0f901d13079a7814f9b831cf3ddc4a65
+timeCreated: 1483006731
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/For Unity/Resources/Object/Enemy Turrets/Basic Yellow.mat
+  uploadId: 606088

@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 512b8673106f2a14491c9e7ae622ed7d
+timeCreated: 1481185710
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {fileID: 4660412927644837186, guid: 0000000000000000d000000000000000, type: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/For Unity/Script/Component/Robot/Bullet.cs
+  uploadId: 606088

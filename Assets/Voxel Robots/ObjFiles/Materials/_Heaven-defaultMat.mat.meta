@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 7bddc749784a1a54ab60475bdf1eb6b7
+timeCreated: 1491378334
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/ObjFiles/Materials/_Heaven-defaultMat.mat
+  uploadId: 606088

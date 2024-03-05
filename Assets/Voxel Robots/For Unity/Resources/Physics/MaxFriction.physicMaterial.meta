@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f912d65e629a82a41a1eb64621139108
+timeCreated: 1479562145
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/For Unity/Resources/Physics/MaxFriction.physicMaterial
+  uploadId: 606088

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3142c21f290cab349af39029bd0f0fa7
+timeCreated: 1490605422
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/For Unity/_Prefabs/Dog.prefab
+  uploadId: 606088

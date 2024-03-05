@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 1fb6494bba165564fac784f7b4590794
+timeCreated: 1481272293
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {fileID: 4660412927644837186, guid: 0000000000000000d000000000000000, type: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/For Unity/Script/Component/Robot/Face.cs
+  uploadId: 606088

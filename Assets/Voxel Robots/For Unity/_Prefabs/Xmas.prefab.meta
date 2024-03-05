@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a60b6e0472300314a9bd887bec47ba4b
+timeCreated: 1490605400
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/For Unity/_Prefabs/Xmas.prefab
+  uploadId: 606088

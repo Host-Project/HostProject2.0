@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f69471b35a332c04e911c53636d3efdb
+timeCreated: 1490605402
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/For Unity/_Prefabs/Vaccum.prefab
+  uploadId: 606088

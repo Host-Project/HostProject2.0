@@ -38,15 +38,22 @@ namespace HOST.Networking
             rpcInstances.Remove(this);
         }
 
+        private void OnEnable()
+        {
+            if(GetRPCInstance(instanceId) == null)
+            {
+                rpcInstances.Add(this);
+            }
+        }
+
         public void HandleRPC(HostNetworkRPCMessage message)
         {
-            DebugRPCInstances();
             MethodInfo method = this.GetType().GetMethod(message.MethodName, BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
 
 
             if (method.GetParameters().Length > message.Parameters.Length)
             {
-                message.Parameters = message.Parameters.Append(FMNetworkManager.instance.NetworkType == FMNetworkType.Server).ToArray();
+                message.Parameters = message.Parameters.Append(HostNetworkManager.instance.IsServer()).ToArray();
             }
 
             method.Invoke(this, message.Parameters);

@@ -147,7 +147,6 @@ public class MonitorManager : HostNetworkRPC
 
     public void SendMessageToPlayers(string text)
     {
-        Debug.Log("Sending message to players");
         if (HostNetworkManager.instance.IsServer())
         {
             HostNetworkManager.instance.SendRPC(new HostNetworkRPCMessage()
@@ -159,7 +158,6 @@ public class MonitorManager : HostNetworkRPC
         }
         else
         {
-            Debug.Log("Showing text");
             textualInteractor.ShowText(text);
         }
     }

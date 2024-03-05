@@ -10,9 +10,9 @@ namespace HOST.Influencers.Interactors
         private AudioSource audioSource;
        
 
-        public void PlayAudio(AudioClip audioClip, float duration)
+        public void PlayAudio(AudioClip audioClip)
         {
-            Interact(duration);
+            Interact();
             audioSource.clip = audioClip;
             audioSource.Play();
         }

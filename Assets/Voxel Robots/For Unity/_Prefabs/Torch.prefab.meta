@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 626857d50cb43784695767b60ca2650b
+timeCreated: 1490605404
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/For Unity/_Prefabs/Torch.prefab
+  uploadId: 606088

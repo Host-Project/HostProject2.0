@@ -4,12 +4,14 @@ using HOST.Networking;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
 public class MonitoringRidle : HostNetworkRPC
 {
-
+    public UnityEvent OnSuccess;
+    public UnityEvent OnMaxStreak;
 
     [SerializeField]
     private Light success;
@@ -20,8 +22,8 @@ public class MonitoringRidle : HostNetworkRPC
     [SerializeField]
     private List<Light> lights;
 
-   // [SerializeField]
-   // private HelpRPC rpc;
+    // [SerializeField]
+    // private HelpRPC rpc;
 
     [SerializeField]
     private GameObject backgroundMonitoringHint;
@@ -54,7 +56,7 @@ public class MonitoringRidle : HostNetworkRPC
         timeLeft += Time.deltaTime;
         if (showImage && timeLeft >= 1.0f)
         {
-            int indexMax = counter / step > arrows.Count ? arrows.Count+1 : counter/step;
+            int indexMax = counter / step > arrows.Count ? arrows.Count + 1 : counter / step;
             if (indexMax > imageIndex)
             {
                 ShowImage(imageIndex);
@@ -80,8 +82,13 @@ public class MonitoringRidle : HostNetworkRPC
     {
         backgroundMonitoringHint.SetActive(true);
         displayedImage.sprite = id == arrows.Count ? periodicTable : arrows[id];
+        if (id > arrows.Count)
+        {
+            OnMaxStreak.Invoke();
+        }
+
         displayedImage.gameObject.SetActive(true);
-        
+
 
     }
     public void SendPushedButton(int id)
@@ -97,7 +104,7 @@ public class MonitoringRidle : HostNetworkRPC
             {
                 InstanceId = this.InstanceId,
                 MethodName = "ButtonClicked",
-                Parameters = new object[] { id}
+                Parameters = new object[] { id }
             });
         }
     }
@@ -118,11 +125,12 @@ public class MonitoringRidle : HostNetworkRPC
 
         if (success)
         {
-                counter++;
+            OnSuccess.Invoke();
+            counter++;
             showImage = true;
             this.success.gameObject.SetActive(true);
             StartCoroutine(StopLight(this.success, 2));
-            
+
         }
         else
         {
@@ -150,7 +158,7 @@ public class MonitoringRidle : HostNetworkRPC
 
     public void SendMonitoring()
     {
-        if(FMNetworkManager.instance.NetworkType == FMNetworkType.Server)
+        if (FMNetworkManager.instance.NetworkType == FMNetworkType.Server)
         {
             if (!hasBeenPressed)
             {
@@ -161,7 +169,7 @@ public class MonitoringRidle : HostNetworkRPC
             {
                 InstanceId = this.InstanceId,
                 MethodName = "ActiveButton",
-                Parameters = new object[] { currentButton}
+                Parameters = new object[] { currentButton }
             });
 
             ActiveButton(currentButton);

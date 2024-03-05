@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: cf6c17df4eb67af449d23727a93bb4f7
+timeCreated: 1490605397
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/For Unity/_Prefabs/Zipper.prefab
+  uploadId: 606088

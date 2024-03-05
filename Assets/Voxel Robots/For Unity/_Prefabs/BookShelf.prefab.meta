@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4518af9766620a44497ecbfeff2cb14b
+timeCreated: 1490605428
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 86550
+  packageName: Voxel Robots Model
+  packageVersion: 1.0.2
+  assetPath: Assets/Voxel Robots/For Unity/_Prefabs/BookShelf.prefab
+  uploadId: 606088
